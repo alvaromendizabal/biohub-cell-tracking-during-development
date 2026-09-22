@@ -1,0 +1,31 @@
+{
+  "snapshot_as_of_utc": "2026-09-22T02:05:40Z",
+  "official_public_score": 0.947,
+  "submission_ref": 56376695,
+  "reference_notebook": "alvaromendizabal/biohub-harmonic-fusion-exact-repro",
+  "notebook_version": 1,
+  "leader_snapshot_score": 0.974,
+  "leader_snapshot_observed_utc": "2026-09-21T17:51:00Z",
+  "recorded_gap": 0.027,
+  "independently_recreated_leader_training": false,
+  "new_challenger_official_score": null,
+  "completed_five_movie_baseline": {
+    "score": 0.933046,
+    "edge_tp": 2391,
+    "edge_fp": 111,
+    "edge_fn": 112,
+    "division_tp": 1,
+    "division_fp": 1,
+    "division_fn": 5
+  },
+  "latest_attempt": {
+    "name": "image-appearance continuation association",
+    "status": "blocked_before_fit",
+    "error": "IMAGE_COORDINATE_BOUNDS",
+    "elapsed_seconds": 31.319,
+    "new_fits": 0,
+    "new_submissions": 0,
+    "notebook30_completed": false
+  },
+  "scope": "Public portfolio snapshot of completed reference reproduction and research; not a claim that research is finished or the leader was beaten."
+}

@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "png_outputs": 3,
+  "html_outputs": 0,
+  "native_plotly_outputs": 0,
+  "error_outputs": 0,
+  "warning_outputs": 0,
+  "png_dimensions": [
+    [
+      1040,
+      580
+    ],
+    [
+      1040,
+      580
+    ],
+    [
+      1040,
+      600
+    ]
+  ],
+  "png_integrity": [
+    {
+      "width": 1040,
+      "height": 580,
+      "bytes": 61996,
+      "sha256": "67fafa8f54c39acdeef2c5f8da55a7a3c75bd2ab5391c65c15a9c2a66dddb212",
+      "chunk_crc_checked": true,
+      "scanline_structure_checked": true
+    },
+    {
+      "width": 1040,
+      "height": 580,
+      "bytes": 40694,
+      "sha256": "b1e6201f4f33ba82d53a329ef45f8b6e6f03050c4315694cf5b2659e66c35b89",
+      "chunk_crc_checked": true,
+      "scanline_structure_checked": true
+    },
+    {
+      "width": 1040,
+      "height": 600,
+      "bytes": 65238,
+      "sha256": "4b3511c627f64ec63018b1796d08973360dbda5001fe3edb7c773f7be6c9fa66",
+      "chunk_crc_checked": true,
+      "scanline_structure_checked": true
+    }
+  ],
+  "sha256": "00496cf8990a8039ed7b8393d89a60678c75aa0564efe9b5ffedd5f8d914d189",
+  "validation_backend": "python_standard_library_no_pillow"
+}

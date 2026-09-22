@@ -1,0 +1,18 @@
+{
+  "error_outputs": 0,
+  "execution_counts": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "html_outputs": 0,
+  "native_plotly_outputs": 0,
+  "path": "notebooks/23_organizer_training_reproduction.ipynb",
+  "png_outputs": 3,
+  "sentinel": true,
+  "sha256": "090674370a9880c8ffad18fde446ba08b277282b738f0a5ca403c05f8640f471",
+  "status": "completed",
+  "training_reproduction_success": false
+}
