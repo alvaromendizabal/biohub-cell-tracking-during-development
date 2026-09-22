@@ -1,0 +1,27 @@
+{
+  "all557_minus_anchor_by_fold": {
+    "6bba_05b6850b": 0.0,
+    "6bba_05db0fb1": 0.0
+  },
+  "all557_minus_public32_macro": 0.0,
+  "changed_strict_edge_records": 0,
+  "fitted_corrections_applied_to_reference_submission": false,
+  "folds": 2,
+  "full_0947_inference_integration_executed": false,
+  "independent_validation_required": true,
+  "macro_development_proxy_jaccard": {
+    "cached_harmonic_anchor": 0.975,
+    "residual_all557": 0.975,
+    "residual_public32": 0.975
+  },
+  "new_detector_training": 0,
+  "new_fits": 4,
+  "next_decision": "no_consistent_original_feature_gain_keep_frozen_anchor",
+  "official_score": null,
+  "original_feature_hypothesis_survived_development_gate": false,
+  "reused_models": 0,
+  "signature": "4882091723753ebceab49f3c0f632085657c17529baf3b780bb30edfca1f2616",
+  "status": "completed_development_experiment",
+  "submission_authorized": false,
+  "variants": 3
+}
