@@ -1,71 +1,82 @@
 # Results and verification
 
-Evidence cutoff: **September 23, 2026, 01:42 UTC**. This is a historical results
-snapshot, not a live leaderboard or a promise of future performance.
+Evidence cutoff: **September 24, 2026, 03:10 UTC**. This is a historical research snapshot, not a live leaderboard or a promise of future performance.
 
 ## Official benchmark
 
 | Evidence | Recorded result |
 |---|---:|
-| Official public score | **0.947** |
-| Submission identifier | **56376695** |
+| Verified official public score | **0.947** |
+| Verified submission identifier | **56376695** |
 | Saved notebook version | **1** |
-| Public leader observed September 21, 17:51 UTC | **0.974** |
-| Gap within that captured public-score comparison | **0.027** |
+| Second image-division probe | Submission **56503335**, pending at latest returned account check |
+| Highest account-side public leader snapshot retained in project evidence | **0.974** |
+| Gap from verified 0.947 to that captured leader | **0.027** |
 
-The scored entry reproduces the external Harmonic Fusion reference. These figures do
-not establish a private-leaderboard score or a newly improved model.
+The scored entry reproduces the external Harmonic Fusion reference. These figures do not establish a private-leaderboard score or a newly improved model.
+
+## Frozen five-movie development reference
+
+| Metric | Value |
+|---|---:|
+| Combined local score | **0.933046** |
+| Adjusted edge Jaccard | **0.918760** |
+| Edge TP / FP / FN | **2,391 / 111 / 112** |
+| Division TP / FP / FN | **1 / 1 / 5** |
+
+These local figures are not interchangeable with the official 0.947 public score.
 
 ## Completed research outcomes
 
 | Study | Evidence | Decision |
 |---|---|---|
 | Association feature ablation | 557 numeric features; no improvement in tracking decisions | Retain frozen probabilities |
-| Division-retention applicability | No eligible two-daughter proposals in eight saved graphs | Stop this configuration |
-| Temporal reassignment | Five-movie evaluation; zero accepted exchanges; no metric gain | Reject |
+| Division-retention applicability | No eligible two-daughter proposals in saved graphs | Stop |
+| Temporal reassignment | Zero accepted useful exchanges | Reject |
 | Exact error attribution | 2,391 correct, 111 incorrect, 112 missed edges | Prioritize measured failure mechanisms |
-| Competing-parent division model | 108 added forks; unchanged measured score | Reject |
-| Geometry + image continuation | Completed four-fit screen; unchanged measured score | Reject |
-| Open-target assignment | Expanded candidate set; no measured tracking improvement | Reject |
-| Pretrained neural decoder | Reduced local score by dropping correct links | Reject |
-| Link-count-controlled neural decoder | Preserved count but created false divisions and regressed | Reject |
-| Learned neural link ranking | Neural-feature ranker underperformed frozen reference | Reject |
-| Distinct detector localization | Moving reference centers reduced local score | Reject |
-| Detector-supported gap completion | Added nodes/bridges without scored edge or division recovery | Reject |
-| Detector-informed precision pruning | +0.000166 local gain, exactly matched by equal-count control | No demonstrated detector value |
-| Hand-generated synthetic division rank transfer | Four selected transactions; zero score or division-TP gain | Close this line |
+| Competing-parent division model | Changed graph structure without metric gain | Reject |
+| Geometry + image continuation | Full screen unchanged | Reject |
+| Open-target assignment | Expanded candidates without tracking improvement | Reject |
+| Neural affinity decoder | Dropped correct links | Reject |
+| Count-controlled neural decoder | Preserved edge count but introduced false divisions / regression | Reject |
+| Learned neural ranking | Underperformed frozen reference | Reject |
+| Detector localization | Moving reference centers reduced score | Reject |
+| Detector-supported gap completion | Added nodes/bridges without scored recovery | Reject |
+| Detector-informed pruning | +0.000166 local gain, matched by equal-count control | No demonstrated detector value |
+| Hand-generated synthetic division rank transfer | Selected plausible events; zero division-TP or score gain | Close line |
+| Public synthetic graph division model | Strong synthetic discrimination; five-movie score unchanged | Close line |
+| 64-sequence five-frame image model | Very high synthetic validation; five-movie score unchanged | Close line |
+| Cross-embryo domain adaptation | Reduced embedding discrepancy; selected same useful events | Close line |
+| 256-sequence image scale-up | Improved synthetic AP slightly; real graph score unchanged | Close line |
+| Sparse-real division fine-tuning | Real held-out AP saturated at 1.0; exact five-movie score unchanged | Close line |
+| Real-sparse transfer audit | Score delta **0.0**, division TP gain **0** | Close event-classification line |
 
-The five-movie frozen baseline combined score is **0.933046**, comprising adjusted edge
-Jaccard **0.918760** plus the evaluator's division contribution. These local numbers are
-not interchangeable with the official 0.947 public score.
+## What the negative results established
 
-## Current training pivot
+The project repeatedly observed that candidate-event classification could improve without changing the final graph metric. That is now treated as a structural finding, not a reason for more threshold tuning.
 
-The active lane moves from post-hoc graph heuristics to **sequence-level supervised
-division learning** using a public fully labelled synthetic lineage resource.
+The remaining high-value direction is the temporal-linking component itself.
 
-The AWS ingestion milestone verified:
+## Active frontier: integrated multi-frame linker
 
-- public notebook source capture;
-- a complete **19-page / 3,716-file** output inventory;
-- identification of **2,174 sequence NPZ outputs**;
-- deterministic selection of a bounded training subset;
-- project regressions and Plotly preflight.
+The current AWS lane fine-tunes the public baseline's node-linking transformer with sparse real continuation and division edges while keeping the public visual encoder/detector fixed.
 
-The first bounded transfer stopped before model fitting because a Kaggle kernel-output
-inventory byte count did not equal the downloaded NPZ byte count. That is treated as a
-transport-integrity issue, not a modeling result. The next run verifies the actual
-downloaded NPZ containers, SHA-256 hashes, and real byte budget before training.
+The research contract includes:
 
-No public-sequence model result is claimed yet.
+- multi-frame temporal windows;
+- all available sparse real edge supervision rather than division-only events;
+- resumable acquisition and immutable object caches;
+- cached frozen visual features;
+- held-out validation before development inference;
+- source-versus-candidate component comparison;
+- the same exact full-graph evaluator used in prior studies.
+
+At this evidence cutoff, the integrated-linker run was still in resumable data acquisition and had encountered handled Kaggle rate limits. **No training or score improvement from this lane is claimed yet.**
 
 ## Software and publication evidence
 
-The earlier research-publication checkpoint contained seven verified notebooks and
-passed a 277-test synthetic suite. Pull request 1 merged at commit
-`b28e74eeb335860f03850bb30a646fe9468d12b0`; both pull-request and post-merge CI
-succeeded. Pull request 2 converted the default branch to this presentation-oriented
-portfolio while keeping the AWS research workspace intact.
+The earlier research-publication checkpoint contained seven verified notebooks and passed a 277-test synthetic suite. Pull request 1 merged at commit b28e74eeb335860f03850bb30a646fe9468d12b0; both pull-request and post-merge CI succeeded.
 
-The public repository intentionally does not redistribute working datasets, weights,
-private caches, exact training recipes, or the active research implementation.
+Subsequent presentation-focused pull requests kept the repository public while separating the employer-facing case study from the active AWS research implementation.
+
+The public repository intentionally does not redistribute working datasets, weights, private caches, exact training recipes, or the active research code.
