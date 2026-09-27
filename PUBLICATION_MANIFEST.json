@@ -15,7 +15,7 @@
     "assets/exact_error_budget_0.png": "629191443695e226cac3f3557b31acae649ccc69",
     "licenses/royerlab-BSD-3-Clause.txt": "830713e4de20385bdea541d08aa897541d91f67e",
     "notebooks/portfolio.ipynb": "378a3fade39f9ab42062d92b80c5febd61845ed9",
-    "scripts/check_showcase.py": "ea890b22bad8ddfce6071c8db2f2ce06d16e240d"
+    "scripts/check_showcase.py": "3627b7edd99206face61a49620ee00301cbf6eae"
   },
   "release_id": "biohub-public-showcase-native-metric-20260927"
 }
