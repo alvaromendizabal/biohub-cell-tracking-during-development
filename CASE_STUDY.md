@@ -2,72 +2,48 @@
 
 ## The problem
 
-A tracking system must identify cells across time, assign continuations, and represent divisions without introducing invalid lineage relationships. Sparse annotations make validation especially important: absence of an annotation is not automatically evidence that a predicted cell or link is wrong.
+A tracking system must detect cells, preserve identity through time, and represent divisions without creating invalid lineage structure. Sparse annotations complicate evaluation: an absent annotation is not automatically a negative example, while the competition metric still penalizes wrong links, false forks, and excessive detections.
 
 ## My role
 
-I implemented original representation and association experiments, developed an AWS-centered execution and evidence workflow, reproduced a scored external reference, trained transfer models, and used exact graph evaluation to decide which research directions to continue. Public models, checkpoints, and baseline architecture authors retain credit for their contributions.
+I reproduced a scored external reference, implemented original representations and structured association models, developed an AWS-centered execution and evidence workflow, trained transfer models, reconciled proxy and native graph metrics, and used exact graph evaluation to decide which research directions to continue. Public models, checkpoints, and baseline architecture authors retain credit for their contributions.
 
-## Benchmark first, then test incremental value
+## Benchmark first, then measure incremental value
 
-The project established an official **0.947** public-score reference. Research candidates were compared against frozen baseline predictions rather than against changing controls. Development metrics, ablations, and diagnostics were kept separate from official competition performance.
+The project established an official **0.947** Kaggle public-score reference. Development metrics, ablations, and diagnostics were kept separate from official competition performance, and learned candidates were compared against frozen source predictions rather than moving controls.
 
-An expanded association feature set did not improve tracking decisions over the frozen public probabilities. Subsequent graph, neural-affinity, detector-consensus, and division-focused candidates were promoted only when they improved the full evaluator; otherwise they were rejected.
+The research moved through feature ablations, graph corrections, image-based division models, sparse-real transfer, grouped tracklet models, mixture-of-experts ranking, and dense parental competition. Each branch had an explicit promotion gate and was closed when the full graph evidence did not support it.
 
-## Attribute errors before escalating complexity
+## Why proxy metrics were not enough
 
-The exact error analysis separated missed detections from incorrect links between already-detected cells. On five development movies, it reconciled **2,391 correct, 111 incorrect, and 112 missed edges**. Division counts were **one correct, one incorrect, and five missed events**.
+The cross-fitted tracklet mixture-of-experts model improved held-out parent association across all six movies, but its exact development candidate improved by less than the predeclared full-graph promotion threshold and still left division recovery weak.
 
-Several missed daughter relationships competed with existing assignments, explaining why add-only rules could not solve them.
+A later dense-parental model trained directly on detected-point neighborhoods. Under the earlier research screen it appeared to add correct associations without recovering divisions. A subsequent native-metric reconciliation showed the more important truth: the learned graphs did recover **2 of 10** division events and **17 additional correct edges**, but also created **89–94 false divisions** and roughly **104–105 additional false edges** versus the raw-source comparator.
 
-![Reconciled development errors](assets/exact_error_budget_0.png)
+The aggregate native score therefore fell from **0.8301** for the raw-source comparator to **0.8058** for the pairwise model and **0.8054** for the contextual model. This is a negative result, but it is also a decisive one: point-only parental competition is not the next system to promote.
 
-## Use negative results to make better decisions
+## Reconcile the evaluator before spending more compute
 
-Several candidate families were deliberately stopped:
+The metric audit froze all **18 graph systems** before reading annotations, used the pinned native graph metric, and performed event-level attribution. It found that a prior proxy screen omitted some false-positive links involving unmatched endpoints and treated division timing more strictly than the organizer metric.
 
-- daughter-retention and temporal reassignment rules had no useful eligible changes;
-- competing-parent and neural decoders altered graph structure without improving the measured objective;
-- detector localization and gap completion changed predictions but did not recover scored errors;
-- detector-informed pruning produced the same tiny gain as a matched equal-count control;
-- synthetic graph and image division models achieved strong proxy classification but no exact tracking gain;
-- a larger 256-sequence image model changed real candidate rankings without changing the full score;
-- sparse-real fine-tuning achieved perfect held-out event AP on a small validation set but still produced **zero** five-movie graph-score gain.
+That discrepancy changed the diagnosis of the model. The issue was not simply that the learned model never found a real division. Instead, it occasionally found the event while making too many surrounding association mistakes. The next branch therefore needs better evidence for when a split is real, not another point-only threshold sweep.
 
-These are not presented as model wins. They demonstrate a measured research process: verify applicability, compare against fixed baselines and matched controls, preserve stronger predictions, and stop unproductive directions.
+## What the event audit exposed
 
-## Scale supervision, then verify transfer
+For true division daughters with detector matches, several errors were competitive rather than missing-candidate failures: the correct mother was present but ranked behind a nearby alternative parent. A smaller set of daughters lacked a unique detector-point match altogether. This separates representation errors from detection/matching limitations and gives the next model a concrete target.
 
-The project moved from hand-generated synthetic examples to a public fully labelled lineage resource and trained progressively stronger division models.
+## Current frontier
 
-That work established a useful distinction:
+The active research contract is now **image-conditioned temporal division-event scoring with source preservation**. The design keeps strong source associations by default, uses image evidence only where a division hypothesis is independently supported, and requires verified supervision before fitting.
 
-**classification quality on candidate events is not the same as end-to-end tracking quality.**
-
-Synthetic and real-sparse event models could rank plausible division candidates extremely well while failing to correct evaluator-counted graph errors. The full graph metric therefore remained the promotion gate.
-
-## Move upstream when post-processing plateaus
-
-The current frontier changes the modeled object.
-
-Instead of predicting whether one proposed division transaction is good, the new lane targets the actual temporal linker that scores edges between detected cells. The public Biohub baseline provides the architectural starting point: a temporal 3D U-Net supplies image features and a cross-attention transformer scores candidate links between adjacent frames.
-
-The AWS experiment freezes the expensive public visual encoder/detector, caches its outputs, and fine-tunes the linker using sparse real continuation and division edges in multi-frame windows. Held-out validation decides whether the representation is worth evaluating on the retrospective development movies.
-
-This is a broader engineering lesson: when increasingly sophisticated post-processing fails to move the objective, move the learning signal upstream to the component that creates the errors.
+The next model must beat geometry-only controls, improve real division recovery without losing trusted edge true positives, preserve embryo-level performance and topology, and pass the same full exact evaluation before any submission is prepared.
 
 ## Engineering decisions
 
-Expensive predictions and completed graph evaluations were cached instead of repeatedly regenerated. Data acquisition is resumable and rate-limit aware. Failed experiments preserve diagnostic evidence. Invalid checkpoints are excluded from promotion. Notebook plots remain embedded and readable after reopening.
-
-The public repository remains intentionally separate from working datasets, weights, account settings, and active implementation details.
+Expensive predictions and graph evaluations are cached rather than regenerated. Each bounded runner validates its environment, artifacts, notebooks, and return bundle before spending compute. Failed experiments preserve diagnostics and resumable state. AWS remains the canonical research environment; the public GitHub repository contains only employer-facing evidence, aggregate results, and methodological boundaries.
 
 ## Evidence limitations
 
-The five development movies are a retrospective diagnostic cohort from two embryos and have been examined repeatedly. They are useful for controlled engineering comparisons, not independent evidence of generalization.
+The development movies are a retrospective diagnostic cohort and have been examined repeatedly. They support controlled engineering comparisons, not independent generalization claims. The official 0.947 score remains the only improved-performance claim in this portfolio.
 
-Sparse real division labels are limited. Some event-level validation sets are small enough to saturate, which is why the project now emphasizes component-level and full-graph validation.
-
-The official 0.947 score is verified. A second image-division probe was accepted by Kaggle and remained pending at the latest returned account check; no improved official score is claimed here.
-
-This document intentionally omits implementation details, parameter settings, feature recipes, and execution instructions.
+This document intentionally omits private datasets, model weights, exact feature recipes, execution instructions, and submission logic.

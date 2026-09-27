@@ -1,82 +1,60 @@
 # Results and verification
 
-Evidence cutoff: **September 24, 2026, 03:10 UTC**. This is a historical research snapshot, not a live leaderboard or a promise of future performance.
+Evidence cutoff: **September 27, 2026, 05:08 UTC**. This is a historical research snapshot, not a live leaderboard claim or a promise of future performance.
 
 ## Official benchmark
 
 | Evidence | Recorded result |
 |---|---:|
-| Verified official public score | **0.947** |
+| Verified official Kaggle public score | **0.947** |
 | Verified submission identifier | **56376695** |
-| Saved notebook version | **1** |
-| Second image-division probe | Submission **56503335**, pending at latest returned account check |
-| Highest account-side public leader snapshot retained in project evidence | **0.974** |
-| Gap from verified 0.947 to that captured leader | **0.027** |
+| External reference | Harmonic Fusion saved-notebook inference |
+| Official improvements beyond 0.947 | **0** |
 
-The scored entry reproduces the external Harmonic Fusion reference. These figures do not establish a private-leaderboard score or a newly improved model.
+Historical leaderboard snapshots captured during the project are not presented here as current standings. Local development scores below are not interchangeable with the official 0.947 public score.
 
-## Frozen five-movie development reference
+## Latest native-metric reconciliation
 
-| Metric | Value |
-|---|---:|
-| Combined local score | **0.933046** |
-| Adjusted edge Jaccard | **0.918760** |
-| Edge TP / FP / FN | **2,391 / 111 / 112** |
-| Division TP / FP / FN | **1 / 1 / 5** |
+The latest completed audit froze **18 existing graph systems**—source, pairwise, and contextual predictions for six movies—and evaluated them with the pinned native graph metric. No new neural fit or inference was run during this reconciliation.
 
-These local figures are not interchangeable with the official 0.947 public score.
+| Native aggregate | Raw-source comparator | Pairwise model | Context model |
+|---|---:|---:|---:|
+| Adjusted score | **0.830087** | 0.805788 | 0.805368 |
+| Edge TP | 2,079 | **2,096** | **2,096** |
+| Edge FP | **185** | 289 | 290 |
+| Edge FN | 251 | **234** | **234** |
+| Division TP | 0 | **2** | **2** |
+| Division FP | **0** | 89 | 94 |
+| Division FN | 10 | **8** | **8** |
 
-## Completed research outcomes
+The learned models recovered two division events and 17 additional correct edges, but those gains were dominated by false associations and false forks. The point-only division branch was therefore closed.
+
+## Selected completed research outcomes
 
 | Study | Evidence | Decision |
 |---|---|---|
-| Association feature ablation | 557 numeric features; no improvement in tracking decisions | Retain frozen probabilities |
-| Division-retention applicability | No eligible two-daughter proposals in saved graphs | Stop |
-| Temporal reassignment | Zero accepted useful exchanges | Reject |
-| Exact error attribution | 2,391 correct, 111 incorrect, 112 missed edges | Prioritize measured failure mechanisms |
-| Competing-parent division model | Changed graph structure without metric gain | Reject |
-| Geometry + image continuation | Full screen unchanged | Reject |
-| Open-target assignment | Expanded candidates without tracking improvement | Reject |
-| Neural affinity decoder | Dropped correct links | Reject |
-| Count-controlled neural decoder | Preserved edge count but introduced false divisions / regression | Reject |
-| Learned neural ranking | Underperformed frozen reference | Reject |
-| Detector localization | Moving reference centers reduced score | Reject |
-| Detector-supported gap completion | Added nodes/bridges without scored recovery | Reject |
-| Detector-informed pruning | +0.000166 local gain, matched by equal-count control | No demonstrated detector value |
-| Hand-generated synthetic division rank transfer | Selected plausible events; zero division-TP or score gain | Close line |
-| Public synthetic graph division model | Strong synthetic discrimination; five-movie score unchanged | Close line |
-| 64-sequence five-frame image model | Very high synthetic validation; five-movie score unchanged | Close line |
-| Cross-embryo domain adaptation | Reduced embedding discrepancy; selected same useful events | Close line |
-| 256-sequence image scale-up | Improved synthetic AP slightly; real graph score unchanged | Close line |
-| Sparse-real division fine-tuning | Real held-out AP saturated at 1.0; exact five-movie score unchanged | Close line |
-| Real-sparse transfer audit | Score delta **0.0**, division TP gain **0** | Close event-classification line |
+| Harmonic Fusion reproduction | Official public score **0.947** | Verified reference |
+| Association feature ablation | 557 numeric features; no tracking improvement | Retain frozen probabilities |
+| Exact error attribution | Measured correct, incorrect, and missed links plus division failures | Prioritize concrete failure mechanisms |
+| Sparse-real division fine-tuning | Event-level validation saturated; exact graph gain **0.0** | Close event-classification line |
+| Grouped tracklet transformer | Held-out parent-F1 improved across folds | Continue to broader cross-fitting |
+| Cross-fitted tracklet MOE | Mean held-out parent-F1 gain about **+0.0090** across six movies | Exact confirmation only; no promotion claim |
+| MOE exact comparison | Best arm gained about **+0.0081** locally but missed the +0.010 gate and division floor | Close MOE line |
+| Dense parental point model | Eight fixed CUDA fits; added some true associations but failed the research screen | Native reconciliation required |
+| Native metric reconciliation | 18 frozen graphs; 2 division TPs but 89–94 false divisions | Close point-only division line |
 
-## What the negative results established
+## Engineering evidence
 
-The project repeatedly observed that candidate-event classification could improve without changing the final graph metric. That is now treated as a structural finding, not a reason for more threshold tuning.
+The latest reconciliation run completed in about **30 seconds** on `ml.g6e.2xlarge`, executed **61 regressions**, froze all 18 graph inputs before annotation access, reconciled native counts, executed the employer-facing notebook, and produced a validated return bundle. That run performed **zero new fits, zero new predictions, and zero cloud mutations**.
 
-The remaining high-value direction is the temporal-linking component itself.
+The research ledger at this cutoff records **39 completed bounded workflows, 34 hard execution failures, and 10 correctly gated scientific stops**. Passing unit tests are not counted as research workflows.
 
-## Active frontier: integrated multi-frame linker
+## Current research boundary
 
-The current AWS lane fine-tunes the public baseline's node-linking transformer with sparse real continuation and division edges while keeping the public visual encoder/detector fixed.
+The next branch is image-conditioned temporal division-event scoring with source preservation. The objective is not to make the graph more complicated; it is to add discriminative evidence exactly where point-only models confused true mothers with nearby alternatives or produced false splits.
 
-The research contract includes:
+A new candidate must outperform geometry-only controls and then pass the unchanged full-graph promotion requirements before any Kaggle submission is prepared.
 
-- multi-frame temporal windows;
-- all available sparse real edge supervision rather than division-only events;
-- resumable acquisition and immutable object caches;
-- cached frozen visual features;
-- held-out validation before development inference;
-- source-versus-candidate component comparison;
-- the same exact full-graph evaluator used in prior studies.
+## Publication boundary
 
-At this evidence cutoff, the integrated-linker run was still in resumable data acquisition and had encountered handled Kaggle rate limits. **No training or score improvement from this lane is claimed yet.**
-
-## Software and publication evidence
-
-The earlier research-publication checkpoint contained seven verified notebooks and passed a 277-test synthetic suite. Pull request 1 merged at commit b28e74eeb335860f03850bb30a646fe9468d12b0; both pull-request and post-merge CI succeeded.
-
-Subsequent presentation-focused pull requests kept the repository public while separating the employer-facing case study from the active AWS research implementation.
-
-The public repository intentionally does not redistribute working datasets, weights, private caches, exact training recipes, or the active research code.
+This public repository intentionally omits private competition data, AWS account state, model weights, exact feature recipes, working checkpoints, private caches, and executable submission logic. It is an employer-facing case study of research decisions and verified aggregate evidence.

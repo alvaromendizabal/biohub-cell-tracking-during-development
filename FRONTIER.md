@@ -2,65 +2,53 @@
 
 ## Current question
 
-The project has reached a clear boundary: increasingly capable post-hoc division classifiers changed candidate probabilities and rankings but did not improve the exact tracking graph.
+The point-only division branch is closed. Native metric reconciliation showed that dense parental models sometimes recover real division events, but the extra recall arrives with too many incorrect links and false forks.
 
-The active question is therefore:
+The active question is now:
 
-**Can the temporal linker itself be improved using sparse real continuation and division supervision, while preserving the strong pretrained detector and visual encoder?**
+**Can image-conditioned temporal evidence identify real division events while preserving the strong source graph everywhere else?**
 
 ## Why this is the next layer
 
-The frozen development reference contains:
+The latest native audit evaluated 18 frozen graph systems across six movies. Relative to the raw-source comparator, the learned point-only models added **17 correct edges** and recovered **2 of 10** division events, but also added more than one hundred false links and **89–94 false divisions**.
 
-- 2,391 correct edges;
-- 111 incorrect edges;
-- 112 missed edges;
-- 1 correct division;
-- 1 false division;
-- 5 missed divisions.
+Event-level probability inspection showed two distinct limitations:
 
-That error budget is much broader than a rare-event division classifier can address. A linker trained over all annotated temporal edges can, in principle, affect both continuation mistakes and division structure.
+- some true daughters lacked a unique detector-point match, which is a detection/matching limitation;
+- in many matched cases, the true mother was available but ranked behind a nearby alternative parent, which is a representation problem.
+
+Point geometry alone is therefore not a sufficient discriminator for the next round.
 
 ## Current model direction
 
-The public baseline architecture uses:
+The next bounded experiment will compare three frozen-policy systems:
 
-- a temporal 3D U-Net for image representation and detection;
-- node features indexed from the image representation;
-- positional features;
-- a bidirectional cross-attention transformer;
-- pairwise edge scoring between adjacent frames.
+1. the source graph;
+2. a geometry-only division-event scorer;
+3. an image-conditioned temporal division-event scorer.
 
-The active AWS experiment keeps the public visual encoder and detector fixed, caches their outputs, and fine-tunes the edge linker over multi-frame windows using sparse real edge supervision.
+The design preserves trusted source associations by default and asks the learned model to intervene only on independently supported division hypotheses. Supervision must be verified before any fit, and candidate graphs remain frozen before retrospective exact scoring.
 
-## Research controls
+## Promotion controls
 
-A frontier result is not promoted because training loss falls.
+A frontier result is not promoted because training loss falls or because division recall increases in isolation.
 
-The current lane requires:
+The next lane requires:
 
-1. a held-out validation improvement;
-2. comparison against the unchanged source linker;
-3. exact full-graph evaluation on the fixed retrospective development cohort;
-4. preservation of correct edges and lineage structure;
-5. an independent official confirmation step before any stronger performance claim.
+1. improvement over the geometry-only control;
+2. additional correct divisions without losing existing correct edges;
+3. no false-division explosion;
+4. no embryo-level regression;
+5. valid lineage topology;
+6. material full-graph exact improvement;
+7. private saved-notebook verification before any authorized Kaggle submission.
 
-## What is deliberately not public here
+The existing full-system promotion threshold remains approximately **+0.010 exact gain** with no true-positive, embryo, or topology regression.
 
-This repository does not publish:
+## What remains private
 
-- model weights;
-- active AWS code;
-- exact data-acquisition recipes;
-- private caches;
-- exact feature recipes;
-- account credentials or competition state;
-- executable submission logic.
-
-The purpose of this document is to show the research reasoning and engineering boundary, not to publish an active competition system.
+This repository does not publish model weights, active AWS code, exact feature recipes, working caches, private data, account credentials, or executable submission logic. The purpose is to show the research reasoning, validation discipline, and engineering boundary—not to publish the active competition system.
 
 ## Status
 
-As of the current evidence cutoff, the integrated-linker run is still acquiring and caching the real sparse training material in AWS. Rate-limit interruptions are handled by resumable object-level checkpoints.
-
-**No score improvement is claimed until training, held-out validation, full development evaluation, and official confirmation are complete.**
+The native metric discrepancy is resolved and the point-only division line is closed. The image-conditioned branch is the next unexecuted research milestone. **No score improvement beyond the verified 0.947 official result is claimed.**
