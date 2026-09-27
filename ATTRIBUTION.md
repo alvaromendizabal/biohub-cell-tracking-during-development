@@ -1,24 +1,13 @@
 # Attribution and contribution boundary
 
-The official 0.947 baseline is a reproduction of the public **Biohub Harmonic Fusion**
-inference system. Credit for the external model architectures, pretrained weights, and
-original reference methods belongs to their authors, including the public `pilkwang`
-artifact releases and the RoyerLab competition work.
+The verified official **0.947** baseline is a reproduction of the public **Biohub Harmonic Fusion** inference system. Credit for the external model architectures, pretrained weights, and original reference methods belongs to their authors, including the public `pilkwang` artifact releases and the RoyerLab competition work.
 
-The current sequence-level training investigation also uses the public synthetic lineage
-resource released by **José Freitas Alves Neto** for the Biohub competition. That external
-resource and generator remain credited to their author; the dataset is not redistributed
-by this portfolio.
+The project also used the public synthetic lineage resource released by **José Freitas Alves Neto** for the Biohub competition during controlled lineage and transfer experiments. That external resource and its generator remain credited to their author and are not redistributed by this portfolio.
 
-Alvaro Mendizabal's contributions demonstrated here include original representation
-engineering, controlled association experiments, exact error attribution, numerical and
-workflow safeguards, AWS execution, integration research, matched-control experimental
-design, and technical analysis of measured results.
+Recent grouped temporal-association and division studies were informed by publicly described Biohub organizer architectures and Trackastra-style temporal association ideas. The portfolio does **not** claim an independent reproduction of those complete systems, their training pipelines, or a leading-team solution.
 
-The portfolio does not claim authorship of the external baseline, external synthetic
-dataset, or independent reproduction of the leading competition team's complete training
-pipeline.
+Alvaro Mendizabal's contributions demonstrated here include original representation engineering, grouped temporal and parental-association experiments, exact and native metric reconciliation, event-level error attribution, source-preserving model design, numerical and workflow safeguards, AWS execution, matched-control experimental design, bounded-cost research orchestration, and technical analysis of measured results.
 
-Selected figures are genuine saved outputs of completed project analyses. The underlying
-experimental source, data, parameter settings, working caches, and checkpoints are not
-redistributed in this presentation-oriented edition.
+The portfolio does not claim authorship of the external baseline, external synthetic dataset, third-party pretrained weights, or the competition organizers' reference code.
+
+Selected figures are genuine saved outputs of completed project analyses. Working datasets, exact feature recipes, private AWS paths and account state, model weights, caches, checkpoints, return bundles, and executable submission logic are intentionally not redistributed in this presentation-oriented edition.

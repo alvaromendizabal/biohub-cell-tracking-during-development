@@ -1,3 +1,41 @@
 __pycache__/
 *.pyc
 .DS_Store
+
+# Local environments and credentials
+.env
+.env.*
+.aws/
+.kaggle/
+*.pem
+*.key
+
+# Canonical AWS research state stays off the public portfolio branch
+data/
+outputs/
+artifacts/
+checkpoints/
+models/
+weights/
+cache/
+caches/
+
+# Model and experiment binaries
+*.pt
+*.pth
+*.ckpt
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.zarr
+*.geff
+*.pyz
+*.zip
+*.tar
+*.tar.gz
+
+# Competition outputs / returned diagnostics
+submission*.csv
+*_return.zip
+*_return*.zip
