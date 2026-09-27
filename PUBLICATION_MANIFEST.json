@@ -1,19 +1,21 @@
 {
   "scope": "public employer-facing current tree; original history retained",
+  "hash_type": "git_blob_sha1",
   "files": {
-    ".github/workflows/portfolio.yml": "0ceea965f31db3d86c61296dca14e8f5ac41ac61595388a9993201aa7261dbf3",
-    ".gitignore": "60c9bdd905fcf45ac485c680d32e9773962cf061b6f041dcddd033911558a672",
-    "ATTRIBUTION.md": "47f2e06a2143993ebc6fde57b3d77bddf5b49af5281f6446120d447f92e970dc",
-    "CASE_STUDY.md": "e443a38430e4f29d2d2255b25f2394d4a0692857f7c6d4ced71929805fbaa3c1",
-    "LICENSE.md": "bebcbd61c653b519cce0a8a1a6b1a66b8f3fc79ef31a08c8afe5b28951d69374",
-    "README.md": "ddd7e13db86f812531e8a27325e220c5febbd0429811c70d6591f47ea3627c78",
-    "RESULTS.md": "5a561d1c2908f0c753c4dc7299ddadc3da8d8afb34947975eacdb19d432ca8d4",
-    "RIGHTS.md": "1b1bebef6f037f413587ed72fb23112e56d457aa18be4d41beddd1b5ebd34faa",
-    "THIRD_PARTY_NOTICES.md": "c9192d0bd2a55e66ffa48e3a779514ca388aa741320ec218db33e190f748f73a",
-    "assets/exact_error_budget_0.png": "67fafa8f54c39acdeef2c5f8da55a7a3c75bd2ab5391c65c15a9c2a66dddb212",
-    "licenses/royerlab-BSD-3-Clause.txt": "73e0100521bb56141374ad529bb92a8b0fa7e26b2e4977585ec8ff607bfc1007",
-    "notebooks/portfolio.ipynb": "e26238220370994456f4f637f7f6cab4c1261e8de889cab078006e031e6e354b",
-    "scripts/check_showcase.py": "15b099e79d17f1dbc331e71df394d89b4437c923004901ce85c96cdcbf8294b3"
+    ".github/workflows/portfolio.yml": "49547c3d1c1ca89054fe1e3fb83715853ff3495b",
+    ".gitignore": "da62d23063937dd034d47f6d641c596e4eeff40a",
+    "ATTRIBUTION.md": "acf59f74502cbad1b8eeae88324b99c7dd26ab6c",
+    "CASE_STUDY.md": "70d0134a1790e52beaa0dd29c00af7d60b1f3f08",
+    "FRONTIER.md": "f1f0447185374456882f6ead208a09969b3c8889",
+    "LICENSE.md": "f9039148ee727707d56baca399e60e5b3679ffcf",
+    "README.md": "b5c8ee4fd3d102a5e2d5619dfbb64e531c674ace",
+    "RESULTS.md": "c45071740115768514b4946c255605dc601f1acc",
+    "RIGHTS.md": "91dbb531f92f5e1376423d4308c06a3401c59bab",
+    "THIRD_PARTY_NOTICES.md": "266bbe0629c0565d4745403c23a89e126e1df031",
+    "assets/exact_error_budget_0.png": "629191443695e226cac3f3557b31acae649ccc69",
+    "licenses/royerlab-BSD-3-Clause.txt": "830713e4de20385bdea541d08aa897541d91f67e",
+    "notebooks/portfolio.ipynb": "378a3fade39f9ab42062d92b80c5febd61845ed9",
+    "scripts/check_showcase.py": "ea890b22bad8ddfce6071c8db2f2ce06d16e240d"
   },
-  "release_id": "biohub-public-showcase-d97fb462a534"
+  "release_id": "biohub-public-showcase-native-metric-20260927"
 }
