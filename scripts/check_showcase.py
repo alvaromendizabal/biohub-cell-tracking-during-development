@@ -58,7 +58,7 @@ for name, expected_sha in manifest["files"].items():
         width, height = struct.unpack(">II", data[16:24])
         assert width >= 600 and height >= 300, (name, width, height)
 
-    if path.suffix in {".md", ".py", ".yml", ".yaml", ".json", ".ipynb", ".txt"}:
+    if name != "scripts/check_showcase.py" and path.suffix in {".md", ".py", ".yml", ".yaml", ".json", ".ipynb", ".txt"}:
         text = data.decode("utf-8")
         for marker in sensitive_text:
             assert marker not in text, (name, marker)
