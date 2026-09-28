@@ -2,53 +2,64 @@
 
 ## Current question
 
-The point-only division branch is closed. Native metric reconciliation showed that dense parental models sometimes recover real division events, but the extra recall arrives with too many incorrect links and false forks.
+The current research question is no longer whether to train another point-only or image-conditioned reparenting model.
+
+A source-preserving candidate has already cleared the local full-graph promotion gate against the original Harmonic development control.
 
 The active question is now:
 
-**Can image-conditioned temporal evidence identify real division events while preserving the strong source graph everywhere else?**
+**Does the locally qualifying full-baseline candidate reproduce its prediction-time behavior on unseen competition movies and improve the verified 0.947 public score?**
 
-## Why this is the next layer
+## Why this is the right next layer
 
-The latest native audit evaluated 18 frozen graph systems across six movies. Relative to the raw-source comparator, the learned point-only models added **17 correct edges** and recovered **2 of 10** division events, but also added more than one hundred false links and **89–94 false divisions**.
+The selected candidate improved the retrospective five-movie exact score from **0.933046 to 0.948059**, while increasing correct edges and correct divisions and reducing false edges without adding a false division.
 
-Event-level probability inspection showed two distinct limitations:
+That result is stronger than the earlier proxy improvements because it was measured against the original full Harmonic control. It is still not independent evidence: the development movies have been inspected repeatedly and the candidate was selected among multiple policies.
 
-- some true daughters lacked a unique detector-point match, which is a detection/matching limitation;
-- in many matched cases, the true mother was available but ranked behind a nearby alternative parent, which is a representation problem.
+The only useful next evidence is therefore **deployment on unseen test movies followed by an actual saved-notebook score**.
 
-Point geometry alone is therefore not a sufficient discriminator for the next round.
+## Current deployment direction
 
-## Current model direction
+The deployment system keeps the scored Harmonic detector, image models, association logic, post-processing family, and CSV contract as the anchor.
 
-The next bounded experiment will compare three frozen-policy systems:
+The qualifying correction policy is reconstructed dynamically from prediction-time artifacts. No development movie IDs, annotations, or hard-coded graph edits are embedded into the test-time logic.
 
-1. the source graph;
-2. a geometry-only division-event scorer;
-3. an image-conditioned temporal division-event scorer.
+The additional learned association head reuses compatible frozen image features instead of running a second image encoder. Delivery also preserves the previously verified faster motion-linking implementation and skips repeated validation/reselection work that is no longer necessary once the baseline configuration is frozen.
 
-The design preserves trusted source associations by default and asks the learned model to intervene only on independently supported division hypotheses. Supervision must be verified before any fit, and candidate graphs remain frozen before retrospective exact scoring.
+Remote delivery is stateful and idempotent:
+
+1. verify the qualified local deployment contract;
+2. verify the private inference assets;
+3. launch one private saved notebook;
+4. return while remote inference runs;
+5. retrieve and validate the completed pinned output;
+6. submit that verified notebook version once.
+
+At the current evidence cutoff, private inference-input creation has been acknowledged. Private notebook completion and official submission remain pending.
 
 ## Promotion controls
 
-A frontier result is not promoted because training loss falls or because division recall increases in isolation.
+The candidate has already passed the retrospective local promotion gate. No stronger official claim is made until the saved notebook:
 
-The next lane requires:
+1. runs on unseen competition inputs;
+2. produces complete, valid tracking output;
+3. preserves the expected inference/configuration identities;
+4. passes topology and output-integrity checks;
+5. is submitted as the verified pinned notebook version;
+6. receives an official Kaggle score.
 
-1. improvement over the geometry-only control;
-2. additional correct divisions without losing existing correct edges;
-3. no false-division explosion;
-4. no embryo-level regression;
-5. valid lineage topology;
-6. material full-graph exact improvement;
-7. private saved-notebook verification before any authorized Kaggle submission.
+## If the official score does not improve
 
-The existing full-system promotion threshold remains approximately **+0.010 exact gain** with no true-positive, embryo, or topology regression.
+A non-improving official result would close this specific source-preserving integration candidate despite its retrospective gain.
+
+The next branch should then be structurally different—such as a more deeply joint image/linker representation or independent supervision—not another small threshold sweep on the same development cohort.
 
 ## What remains private
 
-This repository does not publish model weights, active AWS code, exact feature recipes, working caches, private data, account credentials, or executable submission logic. The purpose is to show the research reasoning, validation discipline, and engineering boundary—not to publish the active competition system.
+This repository does not publish model weights, active AWS code, tuned thresholds, exact feature recipes, working caches, candidate graph files, private data, account credentials, or executable submission logic.
+
+The public goal is to expose enough methodology, evidence, attribution, and validation structure to assess the engineering work without publishing the competition-specific implementation.
 
 ## Status
 
-The native metric discrepancy is resolved and the point-only division line is closed. The image-conditioned branch is the next unexecuted research milestone. **No score improvement beyond the verified 0.947 official result is claimed.**
+**Local full-baseline candidate qualified; official score unchanged at 0.947; private deployment in progress.**
