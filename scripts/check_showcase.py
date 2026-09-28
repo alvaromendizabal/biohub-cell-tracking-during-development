@@ -74,7 +74,11 @@ for name, expected_sha in manifest["files"].items():
 readme = (root / "README.md").read_text()
 frontier = (root / "FRONTIER.md").read_text()
 results = (root / "RESULTS.md").read_text()
+repro = (root / "REPRODUCIBILITY.md").read_text()
 assert "0.947" in readme and "0.947" in results
-assert "image-conditioned" in readme.lower() and "image-conditioned" in frontier.lower()
-assert "Official improvements beyond 0.947" in results
+assert "0.948059" in readme and "0.948059" in results
+assert "REPRODUCIBILITY.md" in readme
+assert "semi-reproducible" in readme.lower() and "semi-reproducible" in repro.lower()
+assert "official improvements beyond 0.947" in results.lower()
+assert "official score unchanged at 0.947" in frontier.lower()
 print("PUBLIC_SHOWCASE_INTEGRITY_PASSED")
