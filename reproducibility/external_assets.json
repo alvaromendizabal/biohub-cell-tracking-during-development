@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "generated_for": "biohub-cell-tracking-during-development archival reproduction",
+  "organizer": {
+    "repository": "https://github.com/royerlab/kaggle-cell-tracking-competition",
+    "commit": "075fc5f5a52d11077f9dc2b074644618f26939e2"
+  },
+  "hoct": {
+    "repository": "https://github.com/royerlab/hoct",
+    "commit": "8709ee9d3c4d7aae1f022b259d48dc6584237b02",
+    "models": {
+      "general_v1": {
+        "url": "https://github.com/royerlab/hoct/releases/download/weights-v1/general_v1.pt",
+        "sha256": "5bd836dfcb15ad796ea79a9595841a3e73b650a71c4acba3fc66aac65d745b33"
+      },
+      "ctc_v0": {
+        "url": "https://github.com/royerlab/hoct/releases/download/weights-v0/ctc_v0.pt",
+        "sha256": "b9be3d976e2d51ae946128ded99142a81b5ba99fb87a0da67c38de2934944000"
+      }
+    }
+  },
+  "harmonic_reference": {
+    "official_submission_id": "56376695",
+    "public_score": 0.947,
+    "output_sha256": "a69c78229c6556d06d5fe9ff050074254b4a326e83249efbf578b843aec7a848",
+    "executable_notebook_code_sha256": "93de46c8b61ac237349d444fc849c153b5273abab3e1353cb061997986abf523"
+  },
+  "failed_candidate": {
+    "official_submission_id": "56659462",
+    "public_score": 0.946,
+    "output_sha256": "0e36b2eec19bebc17189331160b5f76ceb595f1db5a7fc6cdc66c6a81da599c8"
+  },
+  "public_0953_lineage": {
+    "expected_output_sha256": "d52a5da2ae5cb0d1b22499f6ca51a00838a6c32ae9a1986ec756ea72e7909e03",
+    "expected_rows": 238260,
+    "expected_nodes": 121219,
+    "expected_edges": 117041,
+    "source_code_sha256": "ff015a48a08a7b0d8dcb7435490ccead32d2b37624fa831796379e07c5b6c7e3",
+    "notebooks": [
+      {
+        "kernel": "anvithpothula/biohub-0-953-lb-original",
+        "version": 1
+      },
+      {
+        "kernel": "kunaldesale2408/biohub-cell-tracking",
+        "version": 10
+      },
+      {
+        "kernel": "raunakdey07/biohub-harmonic-fusion-v3",
+        "version": 5
+      }
+    ]
+  },
+  "v1284": {
+    "head_dataset": "anvithpothula/biohub-v1284-head-s075",
+    "head_file": "v1284_head.pt",
+    "head_sha256": "625a0d9340f48193f2ec294fc2d81c5bb3c03087eab78ef0ae998a9c4c7da00c",
+    "embedded_public_source_file_sha256": "6b655e39bbfd2d3d6c762badea69847d3f00f5b548f385cb01b07ee2600fde6d"
+  },
+  "final_sprint_runner_artifact_sha256": {
+    "biohub_deadline_recovery_pyz": "d29a6b7fcab12d6698b947fae80faddd5c743dbfc61e5a89468e53a0d91a1f83",
+    "biohub_submission_verified_pyz": "6a7b24c4f3601a8a6916ec5bfc6dc25cf7b321e9c3c1de496ad9f7b0f2479397",
+    "biohub_fidelity_frontier_pyz": "b943b470cb368d37852d056e5e875dd6a98f3f31afa47b73c46650c88da84a1a",
+    "biohub_v1284_ablation_gpu_resume_pyz": "644141d1b9f683f0d91fd9d363db2047e1cf6e1b5b8af8d24ca0b6c4249fd382",
+    "biohub_public0953_versioned_submit_pyz": "fa11c3ecada69616046e5e90d0abb1695e6fdd34fd1d92fed43abbd2ebe9402d",
+    "biohub_public0953_output_diversity_pyz": "e97f453f2cd3086f273ba1f4f9f4e9ad062875aa2f9cdbea2536551a8f983b39",
+    "biohub_hoct_frozen_ab_resume_pyz": "b4515626789257fa8740d5d0ec62bdf2fe3f28b7cc2a5a41ed0c054fd517b83b",
+    "biohub_hoct_fastdecode_resume_v2_pyz": "741537276ac6bc757bfb06348a80864b3078f8e51d87b8167c7e4ac9ea2b5073"
+  }
+}
