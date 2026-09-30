@@ -1,22 +1,22 @@
 {
-  "scope": "public employer-facing current tree; original history retained",
+  "scope": "public employer-facing final competition snapshot; original history retained",
   "hash_type": "git_blob_sha1",
   "files": {
     ".github/workflows/portfolio.yml": "49547c3d1c1ca89054fe1e3fb83715853ff3495b",
     ".gitignore": "da62d23063937dd034d47f6d641c596e4eeff40a",
-    "ATTRIBUTION.md": "da48b186fce4dd928ccbf5e5a4207ceef47e725a",
-    "CASE_STUDY.md": "0bb2518f205916eece4dff24ffb231520caf0983",
-    "FRONTIER.md": "4f6665329b0520ea4c957f57dbc51d95bef864d1",
+    "ATTRIBUTION.md": "d4125f5ecb2e51d5fe5af18f5eeaee55aeab7e00",
+    "CASE_STUDY.md": "1dd9e903f65d83e08ac2909e45832c12d7a08454",
+    "FRONTIER.md": "21642b6c61fca3ebf43179f0e0e72530b1b57fe8",
     "LICENSE.md": "f9039148ee727707d56baca399e60e5b3679ffcf",
-    "README.md": "2d214b10357b0b652937cd1f2a4742b0541a020d",
-    "REPRODUCIBILITY.md": "bd60bdcf7283d5aea8180ba4478ac288ae1956f4",
-    "RESULTS.md": "3d337742847c525425c7c86d5ef19379c28f0d05",
+    "README.md": "f6e783f7bdb9dd74660dc05a6da4386ed9ae2527",
+    "REPRODUCIBILITY.md": "cb185235dc3a527621bbe1da442f80998bf3b8e0",
+    "RESULTS.md": "f616e3ee09aec01b8a77cec0fa0cf3fef3106b07",
     "RIGHTS.md": "91dbb531f92f5e1376423d4308c06a3401c59bab",
-    "THIRD_PARTY_NOTICES.md": "266bbe0629c0565d4745403c23a89e126e1df031",
+    "THIRD_PARTY_NOTICES.md": "fc0c21e89990b9bd9e62226df5fe0cf187208135",
     "assets/exact_error_budget_0.png": "629191443695e226cac3f3557b31acae649ccc69",
     "licenses/royerlab-BSD-3-Clause.txt": "830713e4de20385bdea541d08aa897541d91f67e",
-    "notebooks/portfolio.ipynb": "dcf52182a3f236f21c9cbe56e83c53235b7e9670",
-    "scripts/check_showcase.py": "d3efb7d94547f406076656360de55149d2dc2473"
+    "notebooks/portfolio.ipynb": "2bd266a7283fa1126aadddbafef858678759c332",
+    "scripts/check_showcase.py": "f095ae328342fdcf397fb26d464643c52efbde0e"
   },
-  "release_id": "biohub-public-showcase-qualified-harmonic-20260928"
+  "release_id": "biohub-public-showcase-final-day-evidence-20260929"
 }
