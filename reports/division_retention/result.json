@@ -1,0 +1,205 @@
+{
+  "added_forks": 0,
+  "adjusted_edge_delta": 0.0,
+  "all_eight_no_usable_proposals": true,
+  "approved_for_submission": false,
+  "available_complete_movies": [
+    "44b6_12dfb391",
+    "6bba_062c8d37",
+    "44b6_267148e4",
+    "6bba_07e24132",
+    "44b6_2a2eff9f"
+  ],
+  "by_embryo": {
+    "44b6": {
+      "frozen": {
+        "adj_edge_jaccard": 0.9435796643093203,
+        "division_fn": 1,
+        "division_fp": 0,
+        "division_jaccard": 0.0,
+        "division_tp": 0,
+        "edge_jaccard": 0.9220297029702971,
+        "n": 1,
+        "n_adj": 1,
+        "node_recall": 0.9923857868020305,
+        "score": 0.9435796643093203
+      },
+      "retained_divisions": {
+        "adj_edge_jaccard": 0.9435796643093203,
+        "division_fn": 1,
+        "division_fp": 0,
+        "division_jaccard": 0.0,
+        "division_tp": 0,
+        "edge_jaccard": 0.9220297029702971,
+        "n": 1,
+        "n_adj": 1,
+        "node_recall": 0.9923857868020305,
+        "score": 0.9435796643093203
+      }
+    }
+  },
+  "decision": "stop_exact_two_daughter_retention_no_usable_proposals_in_all_eight_cached_graphs",
+  "elapsed_seconds": 8.054420346000029,
+  "embryo_deltas": {
+    "44b6": 0.0
+  },
+  "fresh_leaderboard_query": false,
+  "full_eight_video_metric_complete": false,
+  "kaggle_actions": 0,
+  "leader_snapshot": 0.974,
+  "measured_movies": [
+    "44b6_12dfb391"
+  ],
+  "metric_notes": [],
+  "network_requests": 0,
+  "new_downloads": 0,
+  "new_fits": 0,
+  "official_gap_snapshot": 0.027,
+  "official_public_score": 0.947,
+  "proposal_audit": [
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": true,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 42871,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/44b6_12dfb391.geff",
+      "raw_graph_tree_sha256": "e22189c3e6ab6dffd2b0d480f0743359153f5842c51a3c52a33b65b2af2e16d0",
+      "raw_nodes": 45351,
+      "raw_scored_edges": 42870,
+      "raw_two_child_parents": 0,
+      "stem": "44b6_12dfb391",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": true,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 5696,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/6bba_062c8d37.geff",
+      "raw_graph_tree_sha256": "eb4ed0c9fb16c4c5b355835d240d69cf9502ec1620c12274342e514a9a87fea2",
+      "raw_nodes": 5997,
+      "raw_scored_edges": 5657,
+      "raw_two_child_parents": 0,
+      "stem": "6bba_062c8d37",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": true,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 21427,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/44b6_267148e4.geff",
+      "raw_graph_tree_sha256": "5b783991b71928422a22523edba8f950e6a88e8bd3f8216bdf72da286610ca34",
+      "raw_nodes": 22829,
+      "raw_scored_edges": 21426,
+      "raw_two_child_parents": 0,
+      "stem": "44b6_267148e4",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": true,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 27970,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/6bba_07e24132.geff",
+      "raw_graph_tree_sha256": "45f241e43d7e1e694d3fdca3f7e53110d8bc919a3233c560a867fd69bd037cc9",
+      "raw_nodes": 29751,
+      "raw_scored_edges": 27967,
+      "raw_two_child_parents": 0,
+      "stem": "6bba_07e24132",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": true,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 38160,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/44b6_2a2eff9f.geff",
+      "raw_graph_tree_sha256": "aa7a360f74dfad995b0ef2188a046b1cd50daaa1f7b0c4af969a7f2e5bbb253b",
+      "raw_nodes": 40928,
+      "raw_scored_edges": 38160,
+      "raw_two_child_parents": 0,
+      "stem": "44b6_2a2eff9f",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": false,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 8086,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/6bba_085bf656.geff",
+      "raw_graph_tree_sha256": "1a516eb41397994fa807ba5e34ffc060c18ca4d24d82c232598663750ec512f0",
+      "raw_nodes": 8417,
+      "raw_scored_edges": 8082,
+      "raw_two_child_parents": 0,
+      "stem": "6bba_085bf656",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": false,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 8189,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/44b6_341df25f.geff",
+      "raw_graph_tree_sha256": "6d00ec9977332f219c9ca48dd9c46a74b07dfdab7c576aa99ac9f132be96eb04",
+      "raw_nodes": 8523,
+      "raw_scored_edges": 8186,
+      "raw_two_child_parents": 0,
+      "stem": "44b6_341df25f",
+      "two_child_above_probability_gate": 0
+    },
+    {
+      "audit_contract_sha256": "121d610f9bf5ab48e253de03798dcce943c99d4b439289a7fb35adf22435133a",
+      "audit_reused": false,
+      "complete_image_cache": false,
+      "maximum_scored_outdegree": 1,
+      "raw_edges": 28658,
+      "raw_graph_path": "/home/sagemaker-user/biohub-cell-tracking-during-development/outputs/public_frontier_reproduction/exact_0947/our_exact_output/tracking_repo/predictions/unknown/unet_transformer_val/split_0/6bba_09961292.geff",
+      "raw_graph_tree_sha256": "b6e975e01d2b5a0f0ab10cc201f1edceffab2c67a00dbfd9562f495e63e20ddd",
+      "raw_nodes": 29955,
+      "raw_scored_edges": 28653,
+      "raw_two_child_parents": 0,
+      "stem": "6bba_09961292",
+      "two_child_above_probability_gate": 0
+    }
+  ],
+  "score_delta": 0.0,
+  "score_snapshot_utc": "2026-09-21T17:51:00Z",
+  "screen_threshold_met": false,
+  "setting": "Proposal support: all eight cached raw graphs. Metrics: explicitly listed available development movies only, selected by cache completion before reading scores; no independent validation claim.",
+  "status": "complete",
+  "summaries": {
+    "frozen": {
+      "adj_edge_jaccard": 0.9435796643093203,
+      "division_fn": 1,
+      "division_fp": 0,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "edge_jaccard": 0.9220297029702971,
+      "n": 1,
+      "n_adj": 1,
+      "node_recall": 0.9923857868020305,
+      "score": 0.9435796643093203
+    },
+    "retained_divisions": {
+      "adj_edge_jaccard": 0.9435796643093203,
+      "division_fn": 1,
+      "division_fp": 0,
+      "division_jaccard": 0.0,
+      "division_tp": 0,
+      "edge_jaccard": 0.9220297029702971,
+      "n": 1,
+      "n_adj": 1,
+      "node_recall": 0.9923857868020305,
+      "score": 0.9435796643093203
+    }
+  },
+  "unet_transformer_inference_calls": 0
+}
