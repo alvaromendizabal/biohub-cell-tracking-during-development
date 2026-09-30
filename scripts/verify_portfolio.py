@@ -40,6 +40,16 @@ def png_check(data: bytes):
     require(0 < len(raw) <= 50_000_000, "PNG decoded bounds")
     return list(dims)
 
+def check_path(rel: str):
+    p = Path(rel)
+    require(not p.is_absolute() and ".." not in p.parts, "Path escape " + rel)
+    require(not (set(p.parts) & PRIVATE_PARTS), "Private runtime path " + rel)
+    require(p.suffix.lower() not in BAD_EXT, "Private/binary artifact " + rel)
+    require(not any(part.endswith((".zarr", ".geff")) or part.startswith(".venv") for part in p.parts), "Private store " + rel)
+    require(p.name != "kaggle.json", "Credentials file")
+    return True
+
+
 def check_notebook(path: Path):
     nb = json.loads(path.read_text())
     cells = [c for c in nb.get("cells", []) if c.get("cell_type") == "code"]
@@ -86,8 +96,7 @@ def verify(root=ROOT):
             continue
         files += 1
         name = rel.as_posix()
-        require(not (set(rel.parts) & PRIVATE_PARTS), "Private runtime directory tracked " + name)
-        require(p.suffix.lower() not in BAD_EXT, "Large/private binary tracked " + name)
+        check_path(name)
         data = p.read_bytes()
         require(len(data) <= 4_000_000, "Oversized tracked file " + name)
         if p.suffix == ".png":
