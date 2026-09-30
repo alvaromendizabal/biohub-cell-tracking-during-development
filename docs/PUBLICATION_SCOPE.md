@@ -1,24 +1,26 @@
-# Publication boundary
+# Publication and archive boundary
 
-**AWS retains:** immutable images, GEFF stores, full data inventories, predictions,
-weights, virtual environments, failed/partial state, private account configuration,
-and the original working tree and Git index.
+This repository now serves two purposes:
 
-**GitHub receives:** reviewed source modules, selected synthetic tests, executed
-research notebooks, genuine result charts, compact metrics and status receipts,
-source attribution, and reproducibility/validation documentation.
+1. an employer-facing case study at the repository root; and
+2. a reproducible executable research archive under `src/`, `research/`, `tests/`, `configs/`, `reports/`, and `notebooks/`.
 
-The handoff contains a fixed file allowlist with hashes. It does not use `git add .`
-in the AWS research directory and does not mirror arbitrary local files. Git operations
-occur only in the separate publication clone. Symlinks, credentials, model binaries,
-raw data stores, and oversized files are rejected. The original AWS index and working
-source files remain unchanged.
+The earlier presentation-only publication deliberately withheld the executable tree while the competition was active. After the competition deadline, the tracked executable snapshot was restored from Git history so the project can survive AWS decommissioning.
 
-No automatic scientific rerun, competition submission, infrastructure change, or
-new model fit is part of this publication. Existing account authorization is reused;
-if terminal GitHub authorization is absent, the helper opens the CLI browser/device
-flow rather than asking for a token in chat. A missing CLI may be installed privately
-from the pinned, checksum-verified official distribution.
+## Included
 
-No blanket new open-source license is applied. Third-party rights and notices are
-preserved. Original project rights remain reserved unless a file states otherwise.
+GitHub contains reviewed first-party source, synthetic tests, executed notebooks, compact result/provenance receipts, public-source attribution, experiment configs, CI, and reproduction utilities.
+
+## Not mirrored as Git binaries
+
+- Kaggle competition data;
+- third-party model weights;
+- large predictions/caches/checkpoints;
+- virtual environments;
+- credentials or AWS account state.
+
+Those inputs remain reproducible through their original source plus the immutable refs/checksums in `reproducibility/external_assets.json`.
+
+No credential, AWS key, Kaggle token, or private key belongs in this archive.
+
+Third-party rights and notices are preserved. Original project rights remain reserved unless a file states otherwise.
