@@ -7,10 +7,12 @@ __pycache__/
 .env.*
 .aws/
 .kaggle/
+.venv/
+.venv-*/
 *.pem
 *.key
 
-# Canonical AWS research state stays off the public portfolio branch
+# Reacquired external/runtime state
 data/
 outputs/
 artifacts/
@@ -19,6 +21,8 @@ models/
 weights/
 cache/
 caches/
+external/
+repro_data/
 
 # Model and experiment binaries
 *.pt
@@ -28,6 +32,7 @@ caches/
 *.joblib
 *.npy
 *.npz
+*.parquet
 *.zarr
 *.geff
 *.pyz

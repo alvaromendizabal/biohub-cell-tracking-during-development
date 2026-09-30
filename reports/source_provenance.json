@@ -1,0 +1,622 @@
+[
+  {
+    "published_path": "src/biohub_tracking/__init__.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/__init__.py",
+    "source_sha256": "bcad235ecc513954229020a39f0f47e7eb160eb0543e10f937cbcbc259ce4bd3"
+  },
+  {
+    "published_path": "src/biohub_tracking/annotation_eval.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/annotation_eval.py",
+    "source_sha256": "eeb12b2ec32a52cccdddb854208b9e8380fe9e474ad24aaeae400f5b9ae6c478"
+  },
+  {
+    "published_path": "src/biohub_tracking/capture.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/capture.py",
+    "source_sha256": "978253b867aaade72392872234a098a3e02883ce6e8426a9874fd2ea02b44fe1"
+  },
+  {
+    "published_path": "src/biohub_tracking/d4_tta.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/d4_tta.py",
+    "source_sha256": "f0d82b9320fb1e0ce63b4790ab839f678617624ed2ab1f32e868b0e781edbccb"
+  },
+  {
+    "published_path": "src/biohub_tracking/environment.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/environment.py",
+    "source_sha256": "04b5b07556541bfa0004cd14a29e8069955372d6aa9e630a84512256ff3c9172"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_audit.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_audit.py",
+    "source_sha256": "b1420bb2d75e015f359e53f216f23c04feddd94b7db38d2017e42564975b29e3"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_display.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_display.py",
+    "source_sha256": "53f7b755c788e7fd026b07b61322cf143c64081a0c8fe61367db1f14bec84121"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_io.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_io.py",
+    "source_sha256": "4490598436d212c498a67d2fcf921d66daddec2d4d0f7f0ecd022c9efe496adf"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_math.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_math.py",
+    "source_sha256": "1fcbcd175bc1638408c9397eb4fbc671429c031c7edb154ba55546983619f7cb"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_round1.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_round1.py",
+    "source_sha256": "d3133bc1f91d10b7d1b8b75f2e15abea31b1af56995200cf884ea7ace6c0f878"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_round2.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_round2.py",
+    "source_sha256": "e7c3b011987a2d9c1d5f4ebd45f882198c3b95ae616a33ed11896cf4a0f7640e"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_runner.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_runner.py",
+    "source_sha256": "550141816565546135530910935ae9233070c9fcafc29d80ffac21702aed0c60"
+  },
+  {
+    "published_path": "src/biohub_tracking/feature_scores.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/feature_scores.py",
+    "source_sha256": "f5299727c24c9845a181fd98aed671364c6cdb5def5b6b93e17bde98c2219d8d"
+  },
+  {
+    "published_path": "src/biohub_tracking/file_display.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/file_display.py",
+    "source_sha256": "cdc68209e30e29ef9803fd4505487c518a0d524dfdf1bb60ea11e9d18f7b19ff"
+  },
+  {
+    "published_path": "src/biohub_tracking/focus3d_source_audit.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/focus3d_source_audit.py",
+    "source_sha256": "5fa2430babcec944b3d12bd95b1a0af03a69dca0ace7028272260e12543317cf"
+  },
+  {
+    "published_path": "src/biohub_tracking/geff_snapshot.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/geff_snapshot.py",
+    "source_sha256": "10e1e2668cf28c915df46d55b9bdb1b180fd181936acf09dbb800bf39f77266e"
+  },
+  {
+    "published_path": "src/biohub_tracking/inventory.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/inventory.py",
+    "source_sha256": "2d14cf30e81a84a4c76d4dd5694029d6f6757359710f79bc2fbe0c71aebb6613"
+  },
+  {
+    "published_path": "src/biohub_tracking/io.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/io.py",
+    "source_sha256": "e2ab639884e75156f2048bf9a895f8b5a9dccb90b5955b11b2bccefdfdc342d6"
+  },
+  {
+    "published_path": "src/biohub_tracking/labeled_eval.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/labeled_eval.py",
+    "source_sha256": "38ec93149fa078840265c852875a8c44c49de0bac65526f019c414f7cb72357b"
+  },
+  {
+    "published_path": "src/biohub_tracking/models/candidate_set_transformer.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/models/candidate_set_transformer.py",
+    "source_sha256": "4c19dc6f9ee9f3bccb8c323df3f8bad9fec380aa15c3103bd55ee50eb2b2e1c7"
+  },
+  {
+    "published_path": "src/biohub_tracking/models/temporal_unet3d.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/models/temporal_unet3d.py",
+    "source_sha256": "e2fc381d6830ff008471610ddd29d3a91c7d84db559116bdd794daf7c71bd946"
+  },
+  {
+    "published_path": "src/biohub_tracking/multisample_scout.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/multisample_scout.py",
+    "source_sha256": "15dc3e5fdf4a3ebae2f6548c526726791c0bc5ec7129df8d42e0d35268339619"
+  },
+  {
+    "published_path": "src/biohub_tracking/multiwindow_eval.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/multiwindow_eval.py",
+    "source_sha256": "3ce5e3f7de023a0cac79d8e94d81b9c161861ba08306519f5c08d047d13698b7"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot.py",
+    "source_sha256": "b197320db069c6e59025950c8f51332675a4953b25f3a6eded973a380e331e2f"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot_contract.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot_contract.py",
+    "source_sha256": "dcd621aa4312dbefff32c3eb68b9336c1123be92e5ad79af4c79495f8195b0ec"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot_features.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot_features.py",
+    "source_sha256": "a5862ea45a8458575122f076ae499d7e1e2ddf4613ded6bb61bc703a38bf66ab"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot_runtime.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot_runtime.py",
+    "source_sha256": "afce61528f3844ab6e6925b09b95f8b8b973e2a3d0575321b57d8aa9b1d7952a"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot_transfer.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot_transfer.py",
+    "source_sha256": "d6d74b2a0b8f8b4a18101d39cfbda284fca846affec213c8a841309c6247f9ac"
+  },
+  {
+    "published_path": "src/biohub_tracking/pilot_visuals.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/pilot_visuals.py",
+    "source_sha256": "f3f55ded1e86dc05fcdb7510df5cacb49d32c0ede146c351b342d125ced06548"
+  },
+  {
+    "published_path": "src/biohub_tracking/plot_policy.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/plot_policy.py",
+    "source_sha256": "9c1008afe1657a8ff1be97a7af39fdcd465e79b65cd7c1a7f714689850029e21"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_detector_integration.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_detector_integration.py",
+    "source_sha256": "4c32b99764359255ca4f82e7789480a17d2b438c813adef0c4c22135985c3225"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_frontier_assoc.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_frontier_assoc.py",
+    "source_sha256": "47e21b4af76492ff074a5a3522a3cb3789d0da26ba46584c834e23a2174695d7"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_frontier_diagnostic.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_frontier_diagnostic.py",
+    "source_sha256": "39efea84d776e5c7b64d0079149bc26e9a0622d1d7864b080a65cca2dd0f77b7"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_graph_methods.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_graph_methods.py",
+    "source_sha256": "f4b6ed1e205e15931fd6defbf095e2c884da65a298cb4227478afb734fe779c8"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_node_transformer_integration.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_node_transformer_integration.py",
+    "source_sha256": "e717b01fab5a0054ce18af9b9928626360721734968223d027e3cde9490ac641"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/__init__.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/__init__.py",
+    "source_sha256": "a3bb22e32fb39863599915a0153bc98d8e7dacb1df4aa63385d8539b23465f38"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/augmentations.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/augmentations.py",
+    "source_sha256": "71657a4b51c6d719870046ed06d13d8c3d55d6b0912dfbc69296764b5296dcee"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/checkpoint_audit.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/checkpoint_audit.py",
+    "source_sha256": "ba40a7f64652e3c9c7be983650a52faeb07573926b1822b7bd439350e2935be4"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/losses.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/losses.py",
+    "source_sha256": "e0b2eb9cfe2b1dbdba753df414207432d29432132cbb60f21a99698b6a197751"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/models.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/models.py",
+    "source_sha256": "fcc73204f005f694fea0efdf8ca1532453c633193a7239bbd2f0cd65f3883dd0"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_reproduction/utils.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_reproduction/utils.py",
+    "source_sha256": "2a35ce338733bee8866879318034d718e53034e53fc70c954faca422ab32a4d1"
+  },
+  {
+    "published_path": "src/biohub_tracking/public_solution_features.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/public_solution_features.py",
+    "source_sha256": "83e4c6b5577f83c5e7527a83ceeaad6449ecbb29e85cf68d57e9bcc5594b0aef"
+  },
+  {
+    "published_path": "src/biohub_tracking/secondary_detector_fusion_audit.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/secondary_detector_fusion_audit.py",
+    "source_sha256": "25c84f493a50b394dd400a2e9b60af74722f847559ce03c65a0a55cb4485cc82"
+  },
+  {
+    "published_path": "src/biohub_tracking/secondary_reverse_harmonic.py",
+    "source": "AWS source snapshot 2026-09-20/src/biohub_tracking/secondary_reverse_harmonic.py",
+    "source_sha256": "e8cf759ffcffa1615c655ba936adf49ca3dd099a28d5c198d49c400cd2ba4518"
+  },
+  {
+    "published_path": "tests/feature_fixtures.py",
+    "source": "AWS source snapshot 2026-09-20/tests/feature_fixtures.py",
+    "source_sha256": "bc52d71af9eee6fe2359c2e1fe2ca15d0267b0ce772fcb7741b50ddf9d0c4d3a"
+  },
+  {
+    "published_path": "tests/test_feature_round1.py",
+    "source": "AWS source snapshot 2026-09-20/tests/test_feature_round1.py",
+    "source_sha256": "1c9cabf7c051e2efbf4fb8a9f51adac761f13e19d6eea50ca2ab1b97b3301d9f"
+  },
+  {
+    "published_path": "tests/test_feature_round2.py",
+    "source": "AWS source snapshot 2026-09-20/tests/test_feature_round2.py",
+    "source_sha256": "0a5a64aaa9569bb70ce4fcd3725e914a1857c5286cafd20ad0174352fef71c3e"
+  },
+  {
+    "published_path": "tests/test_pilot_features.py",
+    "source": "AWS source snapshot 2026-09-20/tests/test_pilot_features.py",
+    "source_sha256": "2070b4771ea885d50d51f8f26f018240d20a1029dd0b2ae123161c3b20ee34a3"
+  },
+  {
+    "published_path": "tests/test_pilot_contract.py",
+    "source": "AWS source snapshot 2026-09-20/tests/test_pilot_contract.py",
+    "source_sha256": "c8aab814ca26a9e799ee1d39cef97adc014bfceff0917484749c42e6ca434d0c"
+  },
+  {
+    "published_path": "configs/feature_rounds.json",
+    "source": "AWS source snapshot 2026-09-20/configs/feature_rounds.json",
+    "source_sha256": "219ba38fa042ea2aaf21c6e6aeeaa1dc9634f7975d443390538fff12e9b38949"
+  },
+  {
+    "published_path": "configs/feature_catalog.json",
+    "source": "AWS source snapshot 2026-09-20/configs/feature_catalog.json",
+    "source_sha256": "f7a1d9f430b57a66f65ef885981713935872f72101d4b01df57bb2955ecb9387"
+  },
+  {
+    "published_path": "configs/pilot.json",
+    "source": "AWS source snapshot 2026-09-20/configs/pilot.json",
+    "source_sha256": "47823dcdfbd4ac56fea7fc2904538ac6e8bebef8bb7a15255ff3dbf7c9eba48e"
+  },
+  {
+    "published_path": "notebooks/23_organizer_training_reproduction.ipynb",
+    "source": "returned biohub_next_frontier_return(20260920-003336).zip:notebooks/23_organizer_training_reproduction.ipynb",
+    "source_sha256": "090674370a9880c8ffad18fde446ba08b277282b738f0a5ca403c05f8640f471"
+  },
+  {
+    "published_path": "reports/numerical_recovery/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260920-003336).zip:outputs/public_frontier_reproduction/organizer_training_reproduction/runs/v4/numerical_recovery/run_receipt.json",
+    "source_sha256": "729abeb7158fcd46b9a78d88c98263daefb3c999a03705325760b98b44f4dbb5"
+  },
+  {
+    "published_path": "reports/numerical_recovery/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260920-003336).zip:outputs/public_frontier_reproduction/organizer_training_reproduction/runs/v4/numerical_recovery/notebook_verification.json",
+    "source_sha256": "b745d333dd3d126f47de953223a918779083beb44cd138b5c90f69e14c299974"
+  },
+  {
+    "published_path": "reports/numerical_recovery/recovery_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260920-003336).zip:outputs/public_frontier_reproduction/organizer_training_reproduction/runs/v4/numerical_recovery/recovery_receipt.json",
+    "source_sha256": "bfa2519faefeaf4fe13fbb171deda614d6c68d40992026554b4fa1a4e1cdbe25"
+  },
+  {
+    "published_path": "notebooks/25_anchored_association_ablation.ipynb",
+    "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/25_anchored_association_ablation.ipynb",
+    "source_sha256": "ca67ccd4b449aee8006ff0cfa0a1be3defe9b8f84d4d89e499837e76916d67a4"
+  },
+  {
+    "published_path": "reports/anchored_association/experiment_result.json",
+    "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/experiment_result.json",
+    "source_sha256": "89e666b5d028f4fea9799bf30f35056d1ee8948bc105cc639cf577ef1336afbc"
+  },
+  {
+    "published_path": "reports/anchored_association/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/run_receipt.json",
+    "source_sha256": "71e82fbc5a812db4aae23dc76b485d5954457bb41349fa3eb0c0f5f4d058ed51"
+  },
+  {
+    "published_path": "reports/anchored_association/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/notebook_verification.json",
+    "source_sha256": "85322095f87f796e4e9727d755df59b485e8a3aac3ec0781d1ca485ba7da6aac"
+  },
+  {
+    "published_path": "notebooks/26_learned_division_retention.ipynb",
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/26_learned_division_retention.ipynb",
+    "source_sha256": "d6ceb7c725e9cb2279ab75abd4183058034acf4640e8ff84b0c5071614f70015"
+  },
+  {
+    "published_path": "reports/division_retention/result.json",
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/result.json",
+    "source_sha256": "aedf459b4e1cdb55d2acace169087a599a232d96516a3e95e08d49aa8558dd20"
+  },
+  {
+    "published_path": "reports/division_retention/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/run_receipt.json",
+    "source_sha256": "58fa07e6a04b4f72d9f7a3bcd4d09ca6675ad80c9d6ddc2642bd7d0caff4aac5"
+  },
+  {
+    "published_path": "reports/division_retention/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/notebook_verification.json",
+    "source_sha256": "8d8b41924ce27254eea9d4f0224ee3ff6461661cf5f25d226e6d6c959154684c"
+  },
+  {
+    "published_path": "notebooks/27_bidirectional_temporal_reassignment.ipynb",
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/27_bidirectional_temporal_reassignment.ipynb",
+    "source_sha256": "0258c10589ffbc5cde8f54c8dd572a35499a2b5f2c709bd5c4aa5fdb00bf2a36"
+  },
+  {
+    "published_path": "reports/temporal_reassignment/result.json",
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/result.json",
+    "source_sha256": "551b3b91b14bcd57a3f98f4a7f251649130f663430f5b839b38a22dcb821b777"
+  },
+  {
+    "published_path": "reports/temporal_reassignment/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/run_receipt.json",
+    "source_sha256": "5dc2d8ec65993e39e446fa24a7f85f3b6478b2212cb3c66473fe81ccbd97f373"
+  },
+  {
+    "published_path": "reports/temporal_reassignment/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/notebook_verification.json",
+    "source_sha256": "5856c50b647f6f146d5ff9bb823cf5543548313a8b3742f09cacaf269dbef1cf"
+  },
+  {
+    "published_path": "research/temporal_reassignment/division_retention.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:division_retention.py",
+    "source_sha256": "a34838bbd6c903b071d04eb198391cbb2a859d151ae3fae546ae07764caf758c"
+  },
+  {
+    "published_path": "research/temporal_reassignment/pinned_metric/__init__.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:pinned_metric/__init__.py",
+    "source_sha256": "d425dbff053be1991e87b1d57d9778980e17a42567ff6cdb3739eed252fa0135"
+  },
+  {
+    "published_path": "research/temporal_reassignment/pinned_metric/division_metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:pinned_metric/division_metrics.py",
+    "source_sha256": "0635c38621a38f1eb4b55a302b4a817a88e9094930dfc2dab16faeeee60f4dc9"
+  },
+  {
+    "published_path": "research/temporal_reassignment/pinned_metric/metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:pinned_metric/metrics.py",
+    "source_sha256": "cfdd596e3f8909cca14db0682889738b19ff75c3808b3773175aba9367ca7444"
+  },
+  {
+    "published_path": "research/temporal_reassignment/png_validation.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:png_validation.py",
+    "source_sha256": "b539fca1447d1de29ed0863c80f3fd0b9f1b867234d42095eb0a82b703eba86b"
+  },
+  {
+    "published_path": "research/temporal_reassignment/temporal_reassignment.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:temporal_reassignment.py",
+    "source_sha256": "65f3d5ba4e2273a9834fed6f59d17c2c5a108d4787536c4265ea2de1638ac8c6"
+  },
+  {
+    "published_path": "research/temporal_reassignment/temporal_report.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:temporal_report.py",
+    "source_sha256": "3d1bf2932be33c6441563b4fb86929498680f0000b63c8ef5afb571ba746a3d5"
+  },
+  {
+    "published_path": "research/temporal_reassignment/test_division_retention.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:test_division_retention.py",
+    "source_sha256": "fd5578ddd7783841e200097f0fffa85686992c5630a12ca5bbaf64c3a3f34725"
+  },
+  {
+    "published_path": "research/temporal_reassignment/test_temporal.py",
+    "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:test_temporal.py",
+    "source_sha256": "6e26ff36689dfd09db8ed82a8afe51714154aa038d6b4ba1fc0344d27589789a"
+  },
+  {
+    "published_path": "notebooks/28_exact_tracking_error_budget.ipynb",
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/28_exact_tracking_error_budget.ipynb",
+    "source_sha256": "00496cf8990a8039ed7b8393d89a60678c75aa0564efe9b5ffedd5f8d914d189"
+  },
+  {
+    "published_path": "reports/exact_error_budget/result.json",
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/result.json",
+    "source_sha256": "d696b4953605ca5c6eb1beebc97fca3ddae8b40365d5594282d8ede4eb1ad36d"
+  },
+  {
+    "published_path": "reports/exact_error_budget/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/run_receipt.json",
+    "source_sha256": "e5dec294313f45e9aea0c0e37086b8c45342a131b5c87845fe667d2485be8719"
+  },
+  {
+    "published_path": "reports/exact_error_budget/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/notebook_verification.json",
+    "source_sha256": "dad0e407ed8ba18843dd6c414bdab9e014c95fa5ca23ec75536143ebd9f67682"
+  },
+  {
+    "published_path": "research/exact_error_budget/diagnostics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:diagnostics.py",
+    "source_sha256": "d99c06bbaa9c42664ffd38e308407f7dfa5088f76d170a5c60098c4a0fab75c3"
+  },
+  {
+    "published_path": "research/exact_error_budget/error_report.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:error_report.py",
+    "source_sha256": "ad8f4e7e50025880d907a0d5ecd44f29a43c281c5d30acabe2a53b9d5c63a4ec"
+  },
+  {
+    "published_path": "research/exact_error_budget/error_worker.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:error_worker.py",
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+  },
+  {
+    "published_path": "research/exact_error_budget/expected_baselines.json",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:expected_baselines.json",
+    "source_sha256": "e8587085453c5f440aa4faab5e49b095ca044e114fc4c6225401c41897202e41"
+  },
+  {
+    "published_path": "research/exact_error_budget/pinned_metric/__init__.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:pinned_metric/__init__.py",
+    "source_sha256": "d425dbff053be1991e87b1d57d9778980e17a42567ff6cdb3739eed252fa0135"
+  },
+  {
+    "published_path": "research/exact_error_budget/pinned_metric/division_metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:pinned_metric/division_metrics.py",
+    "source_sha256": "0635c38621a38f1eb4b55a302b4a817a88e9094930dfc2dab16faeeee60f4dc9"
+  },
+  {
+    "published_path": "research/exact_error_budget/pinned_metric/metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:pinned_metric/metrics.py",
+    "source_sha256": "cfdd596e3f8909cca14db0682889738b19ff75c3808b3773175aba9367ca7444"
+  },
+  {
+    "published_path": "research/exact_error_budget/png_validation.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:png_validation.py",
+    "source_sha256": "b539fca1447d1de29ed0863c80f3fd0b9f1b867234d42095eb0a82b703eba86b"
+  },
+  {
+    "published_path": "research/exact_error_budget/test_diagnostics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:test_diagnostics.py",
+    "source_sha256": "ace88914dabcbd1cde297e85a8f30ff720d174e6bdf6e7982b40d7f499e95173"
+  },
+  {
+    "published_path": "notebooks/29_competing_parent_division_model.ipynb",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/29_competing_parent_division_model.ipynb",
+    "source_sha256": "c6972883666f174cf64184cebf45523c5fdac045f0e0a6b4b64449218e68aa92"
+  },
+  {
+    "published_path": "reports/competing_parent_events/result.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/result.json",
+    "source_sha256": "722b9f274242993836f97e075c702190d0c9634f286f5c64d65cf47b5028cb18"
+  },
+  {
+    "published_path": "reports/competing_parent_events/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/run_receipt.json",
+    "source_sha256": "08b3f700f1c94c8bc87b138bb1365f236661effdf7df315a2e5314587f7bf517"
+  },
+  {
+    "published_path": "reports/competing_parent_events/coverage.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/coverage.json",
+    "source_sha256": "f1dd7156f3c1cdb0dbf6b850bc6a446ac70fe3aeb5c0abf037e806d0f8b40717"
+  },
+  {
+    "published_path": "reports/competing_parent_events/model_audit.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/model_audit.json",
+    "source_sha256": "e5f72fee9d14e8a4217ca052c3e2ab7e893291f93a9928e49c9c7d0628fb0253"
+  },
+  {
+    "published_path": "reports/competing_parent_events/notebook_verification.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/notebook_verification.json",
+    "source_sha256": "f845007e7937605abca24f0e266c18804e1228ed15b02a59f6828c9454bbd9e8"
+  },
+  {
+    "published_path": "reports/competing_parent_events/fit_progress.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/fit_progress.json",
+    "source_sha256": "93df4d059817f7d48a9f2a5a89eb7bfce73efe5ea4b01d86b6aed6663dc66bf5"
+  },
+  {
+    "published_path": "research/competing_parent_events/diagnostics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:diagnostics.py",
+    "source_sha256": "d99c06bbaa9c42664ffd38e308407f7dfa5088f76d170a5c60098c4a0fab75c3"
+  },
+  {
+    "published_path": "research/competing_parent_events/division_events.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:division_events.py",
+    "source_sha256": "6eba5bd93d48a763b4c3aa3bce54641f426d11dcc8c2b6337a041946b6df1613"
+  },
+  {
+    "published_path": "research/competing_parent_events/error_worker.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:error_worker.py",
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+  },
+  {
+    "published_path": "research/competing_parent_events/event_report.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:event_report.py",
+    "source_sha256": "e7b1dfda77ffa99b87c1e8bf1b934aac5f4329455dfd78bcd3a5f99b6622e340"
+  },
+  {
+    "published_path": "research/competing_parent_events/event_worker.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:event_worker.py",
+    "source_sha256": "7cfff451f3b43ae5789b5ae9e1a51c9dc55bf313876077ced523a7534e2c6258"
+  },
+  {
+    "published_path": "research/competing_parent_events/expected_baselines.json",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:expected_baselines.json",
+    "source_sha256": "e8587085453c5f440aa4faab5e49b095ca044e114fc4c6225401c41897202e41"
+  },
+  {
+    "published_path": "research/competing_parent_events/pinned_metric/__init__.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:pinned_metric/__init__.py",
+    "source_sha256": "d425dbff053be1991e87b1d57d9778980e17a42567ff6cdb3739eed252fa0135"
+  },
+  {
+    "published_path": "research/competing_parent_events/pinned_metric/division_metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:pinned_metric/division_metrics.py",
+    "source_sha256": "0635c38621a38f1eb4b55a302b4a817a88e9094930dfc2dab16faeeee60f4dc9"
+  },
+  {
+    "published_path": "research/competing_parent_events/pinned_metric/metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:pinned_metric/metrics.py",
+    "source_sha256": "cfdd596e3f8909cca14db0682889738b19ff75c3808b3773175aba9367ca7444"
+  },
+  {
+    "published_path": "research/competing_parent_events/png_validation.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:png_validation.py",
+    "source_sha256": "b539fca1447d1de29ed0863c80f3fd0b9f1b867234d42095eb0a82b703eba86b"
+  },
+  {
+    "published_path": "research/competing_parent_events/test_events.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:test_events.py",
+    "source_sha256": "b2c4b62a1e5e08cf9b8e646c17bfaf1ba618f1f5cf5e079c0034fd0aca74ac31"
+  },
+  {
+    "published_path": "reports/appearance_association/run_receipt.json",
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/run_receipt.json",
+    "source_sha256": "8f044e504a0b744c8fe94ef8368422eedaac8e559aa1e4a7e613eaf0b68268a5"
+  },
+  {
+    "published_path": "reports/appearance_association/worker_failure.json",
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/worker_failure.json",
+    "source_sha256": "af788942dbb2f5c3385eb0b68be77a66adf46a83e6aa97c4bb7014f7242485ca"
+  },
+  {
+    "published_path": "reports/appearance_association/fit_progress.json",
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/fit_progress.json",
+    "source_sha256": "375a51cdea3a484f50281be200b908966637dd2ac4611c7d5475bc2fc23c0300"
+  },
+  {
+    "published_path": "research/appearance_association/appearance_edges.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:appearance_edges.py",
+    "source_sha256": "d3e4c6f8cafa24b7cc8614bf7329ba9ddf7bd57bc6d2b5a2372d1f5e5123e8a0"
+  },
+  {
+    "published_path": "research/appearance_association/association_report.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:association_report.py",
+    "source_sha256": "bf2b3fe7fb17343c667a5e03d3b3c6555d084d2b0d87203f6946103f6ea0f3aa"
+  },
+  {
+    "published_path": "research/appearance_association/association_worker.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:association_worker.py",
+    "source_sha256": "dcc748dddaa9f116d5d2c06a6363d2a2d8509054794209d4a02c1969364b5db8"
+  },
+  {
+    "published_path": "research/appearance_association/diagnostics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:diagnostics.py",
+    "source_sha256": "d99c06bbaa9c42664ffd38e308407f7dfa5088f76d170a5c60098c4a0fab75c3"
+  },
+  {
+    "published_path": "research/appearance_association/division_events.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:division_events.py",
+    "source_sha256": "6eba5bd93d48a763b4c3aa3bce54641f426d11dcc8c2b6337a041946b6df1613"
+  },
+  {
+    "published_path": "research/appearance_association/error_worker.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:error_worker.py",
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+  },
+  {
+    "published_path": "research/appearance_association/expected_baselines.json",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:expected_baselines.json",
+    "source_sha256": "e8587085453c5f440aa4faab5e49b095ca044e114fc4c6225401c41897202e41"
+  },
+  {
+    "published_path": "research/appearance_association/pinned_metric/__init__.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:pinned_metric/__init__.py",
+    "source_sha256": "d425dbff053be1991e87b1d57d9778980e17a42567ff6cdb3739eed252fa0135"
+  },
+  {
+    "published_path": "research/appearance_association/pinned_metric/division_metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:pinned_metric/division_metrics.py",
+    "source_sha256": "0635c38621a38f1eb4b55a302b4a817a88e9094930dfc2dab16faeeee60f4dc9"
+  },
+  {
+    "published_path": "research/appearance_association/pinned_metric/metrics.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:pinned_metric/metrics.py",
+    "source_sha256": "cfdd596e3f8909cca14db0682889738b19ff75c3808b3773175aba9367ca7444"
+  },
+  {
+    "published_path": "research/appearance_association/png_validation.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:png_validation.py",
+    "source_sha256": "b539fca1447d1de29ed0863c80f3fd0b9f1b867234d42095eb0a82b703eba86b"
+  },
+  {
+    "published_path": "research/appearance_association/test_association.py",
+    "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:test_association.py",
+    "source_sha256": "2bc89528cd99f3a3c5ec216891d3ea2dc0ef9f0da01e669efc2c78c9e6d83b04"
+  },
+  {
+    "published_path": "reports/official_submission.json",
+    "source": "scored_submission_receipt.json",
+    "source_sha256": "63db016795e35f02ff417f26ea02ff6cb18a5be624fd32fbd0999daaeb142c93"
+  }
+]

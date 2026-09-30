@@ -1,121 +1,87 @@
-# Reproducibility boundary
+# Reproducibility contract
 
-## Purpose
+## Scope
 
-This repository is intentionally **semi-reproducible**: a reviewer should be able to understand the experiment contracts, inspect the aggregate evidence, follow why systems were promoted or rejected, verify attribution, and see the engineering controls without receiving a turnkey competition implementation.
+This repository is a **reproducible research archive**. A fresh clone contains the first-party Python package, tests, experiment modules, configs, compact evidence receipts, and executed notebooks needed to inspect and rerun the public research logic.
 
-The public repository is therefore more than a slide deck, but intentionally less than a submission package.
+The only non-Git inputs are assets that should remain at their original source:
 
-## What is public and reproducible
+- Biohub competition data, which requires Kaggle authentication and accepted competition rules;
+- third-party pretrained weights;
+- public notebook outputs used in the final-day fidelity/diversity audit.
 
-The current tree exposes:
+Those external inputs are versioned by source reference and checksum in `reproducibility/external_assets.json`.
 
-- the verified official 0.947 reference and its attribution boundary;
-- the official 0.946 regression of the locally qualified candidate;
-- aggregate development metrics for major completed experiments;
-- the prediction-fidelity audit separating detection/coordinate drift from association edits;
-- the public-0.953 output lineage and duplicate-output audit;
-- the distinction between completed scientific results and unfinished engineering branches;
-- the progression from feature ablation through structured temporal models and higher-order association;
-- the promotion/kill-gate philosophy;
-- the presentation notebook and selected saved evidence figure;
-- the public-snapshot integrity checker and CI workflow.
+## Fresh-clone contract
 
-The public integrity entry point remains scripts/check_showcase.py.
+A clean checkout should be able to:
 
-## High-level experimental contract
+1. create a Python 3.11–3.13 environment;
+2. install `requirements-test.txt` and the local package;
+3. run `scripts/check_showcase.py`;
+4. run `scripts/verify_portfolio.py`;
+5. run `scripts/run_ci.py`;
+6. run `scripts/reproduce_final_evidence.py self-test`;
+7. inspect the seven executed evidence notebooks without AWS;
+8. reproduce final-day CSV fidelity/diversity checks after downloading the referenced public outputs.
 
-The main research loop is reproducible at the level of method:
+The CI workflow exercises steps 2–6 from a fresh GitHub checkout.
 
-1. **Freeze a scored baseline.** Preserve reference predictions, model family, evaluator, and configuration identity.
-2. **Generate candidates without retrospective labels.** Candidate systems may come from learned association, representation, graph-fusion, or source-preserving correction families.
-3. **Freeze complete candidate outputs before retrospective scoring.**
-4. **Score with the native full-graph evaluator.** Track aggregate score, edge true/false positives and negatives, divisions, topology, and embryo-level behavior.
-5. **Promote conservatively.** Require material gain and preservation of trusted structure.
-6. **Submit the prediction-time implementation, not hand-edited development graphs.**
-7. **Treat official evidence as stronger than retrospective development evidence.**
-8. **When an official result contradicts local validation, audit prediction fidelity before changing models.**
-9. **Separate source identity from output identity.** A source-provenance mismatch does not automatically invalidate a hash-bound prediction comparison, and prediction parity does not prove source parity.
-10. **Audit ensemble diversity from predictions, not notebook names.**
+## What Git contains
 
-This sequence is sufficient to understand and audit the project logic while withholding tuned competition-specific mechanics.
+- `src/biohub_tracking/`: reusable project package;
+- `tests/`: synthetic/unit tests;
+- `research/`: executable experiment modules and their pinned organizer metric copies;
+- `configs/`: feature/experiment configuration;
+- `notebooks/`: seven executed evidence notebooks plus the presentation notebook;
+- `reports/`: compact saved run/result/provenance receipts;
+- `docs/`: experiment, model-card, status, reproduction, and final-sprint documentation;
+- `scripts/`: CI, validation, and final-evidence reproduction utilities.
 
-## Reproducing the final-day evidence conceptually
+## External assets
 
-The final-day work added three public-safe reproducibility patterns.
+The asset manifest records immutable identifiers for:
 
-### 1. Regression fidelity audit
+- organizer source commit `075fc5f5a52d11077f9dc2b074644618f26939e2`;
+- HOCT source commit `8709ee9d3c4d7aae1f022b259d48dc6584237b02`;
+- HOCT `general_v1` and `ctc_v0` released model SHA-256 values;
+- the public 0.953 notebook versions used in the diversity audit;
+- the expected public 0.953 output SHA-256;
+- the scored 0.947 reference-output SHA-256;
+- the failed 0.946 candidate-output SHA-256.
 
-Two complete saved prediction outputs were verified by cryptographic hash before comparison. Their movie coverage, detections, frames, coordinates, and associations were compared without hidden labels.
+Reproduction scripts fail closed on hash mismatch.
 
-The published conclusion is limited to what that comparison establishes: the failed candidate preserved the preview detection universe and changed only a small number of associations. It does not claim access to hidden-test causality.
+## Evidence tiers
 
-### 2. Public-output lineage audit
+**Official evidence** is a scored Kaggle submission.
 
-Three public notebooks advertised at 0.953 were compared at their saved scored versions using complete submission outputs.
+**Retrospective development evidence** is useful for controlled comparisons but is not treated as unbiased generalization evidence.
 
-The outputs matched byte-for-byte, including row/node/edge counts and SHA-256. This is enough to conclude that the notebooks do not provide independent prediction diversity for ensembling, without redistributing the underlying competition output.
+**Diagnostic evidence** includes source/output/fidelity audits without hidden labels.
 
-### 3. Higher-order association boundary
+**Engineering evidence** includes environment, hash, runtime, packaging, and failure-path tests.
 
-The HOCT branch was run with frozen detections and pinned public source/model provenance. GPU inference reached completion, but native metric scoring did not complete before the evidence cutoff because of decoding/integration failures.
+The repository preserves these categories rather than collapsing them into a single “score.”
 
-The repository therefore records the branch as unfinished. Reproducibility includes the ability to reproduce a failure boundary, not only successful scores.
+## Final-day evidence
 
-## Determinism and engineering controls
+The final-day public-output claims can be reproduced from CSVs with:
 
-The private AWS implementation records and checks:
+`python scripts/reproduce_final_evidence.py compare <baseline.csv> <candidate.csv>`
 
-- source and artifact identities;
-- data/cache provenance;
-- software and hardware context;
-- checkpoint provenance;
-- bounded runtime and cost;
-- stage-level heartbeats;
-- checkpoint/resume receipts;
-- immutable completed outputs;
-- topology and schema validation;
-- notebook execution and saved-output persistence;
-- compact return bundles on success and failure;
-- duplicate-submission guards.
+and:
 
-The public CI checks that the showcase contains only declared files, that the presentation notebook remains markdown-only, that the selected image asset is structurally valid, that common credential/private-path markers are absent, and that the official/local evidence claims remain consistent.
+`python scripts/reproduce_final_evidence.py duplicate <public1.csv> <public2.csv> <public3.csv>`
 
-## What is intentionally not public
+The script reports row/node/edge counts, hashes, detection/coordinate equality, and edge-set differences without requiring hidden labels.
 
-To avoid turning the portfolio into a copyable competition solution, this repository does **not** publish:
+## Data and weights
 
-- model weights or fitted checkpoints;
-- exact feature recipes or learned tensors;
-- tuned numerical thresholds;
-- private training/validation caches;
-- candidate graph files or per-movie edits;
-- private AWS paths, account state, or credentials;
-- active experiment orchestration;
-- saved-notebook submission machinery;
-- private inference assets;
-- return bundles or packaged runners.
+Competition data and third-party weights are intentionally not vendored. Reproducibility means that the clone contains the code, immutable identifiers, checks, and instructions to reacquire them from their lawful source—not that GitHub becomes a mirror of licensed competition data.
 
-These omissions are deliberate and are part of the project boundary.
+## AWS decommissioning
 
-## How to interpret the numbers
+The canonical SageMaker app was already deleted before this archival milestone. The remaining project Space used a 128-GB EBS volume. Once this branch is merged and CI passes, the Git repository—not that volume—is the durable first-party source archive.
 
-The official **0.947** result is a scored Kaggle submission.
-
-The local **0.948059** result is a retrospective five-movie development score and is **not directly comparable** to the official public score.
-
-The same locally qualified policy later scored **0.946 officially**. That official regression is the stronger generalization evidence.
-
-Submission **56687425** is an exact saved-notebook reproduction of a public system advertised at 0.953. It was accepted and still pending at the latest captured evidence cutoff. This repository therefore does not count 0.953 as a verified personal result.
-
-## Final reproducibility frontier
-
-If the research is continued, the next high-value work is not another local graph micro-adjustment. It is:
-
-- clean embryo-disjoint validation for upstream detection;
-- a completed frozen-detection HOCT native-metric comparison;
-- a same-source localization ablation;
-- a genuinely independent detector representation;
-- diversity-aware ensembling based on prediction/residual differences.
-
-The public repository preserves the methodology and evidence boundary while keeping the competition-specific implementation private.
+No Biohub-specific S3 bucket or top-level Biohub S3 prefix was identified in the account inventory performed during archival; unrelated project buckets must not be deleted as part of Biohub cleanup.
