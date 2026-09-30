@@ -2,61 +2,75 @@
 
 ## The problem
 
-A tracking system must detect cells, preserve identity through time, and represent divisions without creating invalid lineage structure. Sparse annotations complicate evaluation: an absent annotation is not automatically a negative example, while the competition metric still penalizes wrong links, false forks, and excessive detections.
+A tracking system must detect cells, preserve identity through time, and represent divisions without creating invalid lineage structure. Sparse annotations complicate evaluation: absence is not automatically a negative example, while the competition metric still penalizes wrong links, false forks, and detection-count mismatch.
 
 ## My role
 
-I reproduced a scored external reference, implemented original representations and structured association models, developed an AWS-centered execution and evidence workflow, trained transfer models, reconciled proxy and native graph metrics, integrated completed research back into the strongest full baseline, and hardened the saved-notebook delivery path. Public models, checkpoints, and baseline architecture authors retain credit for their contributions.
+I reproduced a scored external reference, implemented original temporal and graph representations, built an AWS-centered experiment and evidence workflow, reconciled proxy and native metrics, integrated completed research back into the strongest full baseline, audited prediction fidelity after an official regression, reproduced a public 0.953 saved-output lineage, and explored a higher-order association model under frozen detections.
 
-## Benchmark first, then measure incremental value
+Public architectures, notebooks, checkpoints, and organizer code remain attributed to their original authors.
 
-The project established an official **0.947** Kaggle public-score reference. Development metrics, ablations, and diagnostics were kept separate from official competition performance, and learned candidates were compared against frozen source predictions rather than moving controls.
+## Benchmark first
 
-The research moved through feature ablations, graph corrections, image-based division models, sparse-real transfer, grouped tracklet models, mixture-of-experts ranking, dense parental competition, native metric reconciliation, and finally baseline-locked integration.
+The project established an official **0.947** Kaggle reference. Development metrics and diagnostic studies were kept separate from official performance.
 
-## Why proxy metrics were not enough
+The research moved through feature ablation, graph corrections, sparse-real transfer, grouped temporal models, mixture-of-experts ranking, dense parental competition, image-conditioned variants, native metric reconciliation, and source-preserving integration.
 
-Several learned systems improved intermediate association metrics without improving the complete tracking graph.
+## A local win that failed officially
 
-A dense-parental model, for example, recovered real division events and additional correct links but created too many false associations and false forks under the native organizer metric. That result closed the point-only branch.
+The strongest retrospective integration replayed **37 saved policies and two controlled combinations** against the original Harmonic development control.
 
-An image-conditioned reparenting pilot then tested whether frozen image features could disambiguate difficult parent choices. The fixed image policy ultimately accepted no corrections under its preservation gate. That branch also closed.
+The selected candidate improved the local exact metric from **0.933046 to 0.948059** (**+0.015014**), increased correct edges from 2,391 to 2,392, reduced false edges from 111 to 110, and recovered one additional annotated division without adding a false division.
 
-These results were useful because they narrowed the mechanism that mattered: any improvement had to preserve the already strong Harmonic graph rather than replace large portions of it.
+The candidate then scored **0.946** on Kaggle, below the unchanged **0.947** reference.
 
-## Return every compatible idea to the strongest baseline
+That result changed the project more than another local gain would have. The development cohort had been repeatedly inspected and overlapped public pretraining, so the official regression demonstrated that the promotion evidence was not an unbiased generalization estimate.
 
-The next milestone changed the experimental frame.
+## Diagnose the regression before adding more models
 
-Instead of asking whether a candidate beat a weaker component comparator, the system replayed **37 saved policies and two controlled combinations against the original Harmonic development control**. Historical candidates were represented as complete graph changes relative to their own paired sources, then transferred only when they could be mapped uniquely and the affected original neighborhood remained compatible.
+The next step was a prediction-only fidelity audit.
 
-The selected source-preserving candidate improved the local exact score from **0.933046 to 0.948059** (**+0.015014**), increased correct edges from **2,391 to 2,392**, reduced false edges from **111 to 110**, and increased correct divisions from **1 to 2** without adding a false division.
+The baseline and failed candidate outputs were hash-bound, then compared without hidden labels. Their preview detection sets, frames, and coordinates were identical. The difference was a small set of **eight association-edge edits across four movies**.
 
-The all-conflict-free combination performed substantially worse. This confirmed an important engineering principle: **conservative integration beat indiscriminate aggregation**.
+This did not prove the causal reason for the hidden-score decline, but it ruled out a broad class of accidental detector/coordinate drift explanations. The appropriate response was therefore not another tiny association threshold sweep.
 
-The development cohort had been inspected repeatedly, so this is not presented as independent evidence of leaderboard generalization. The official public score remains 0.947 until a new saved-notebook result is scored.
+## Reproduce the public frontier carefully
 
-## Make deployment reproducible before claiming a win
+The final-day sprint then audited public notebooks advertised at **0.953**.
 
-The qualifying graph policy was then reconstructed from prediction-time artifacts rather than hard-coded development edits. Deployment checks required the dynamic replay to reproduce the saved winner, and required the additional association head to remain compatible with the frozen image encoder.
+One exact saved notebook version was verified by source and output hash and submitted as **56687425**. It was accepted and still pending at the latest captured evidence cutoff, so 0.953 is not presented as a verified personal score.
 
-The delivery path also removed unnecessary repeated work:
+Two other public 0.953 notebook versions were tested for prediction diversity. They generated the same complete hidden-test output byte-for-byte, with identical node and edge counts. That closed the idea of treating the three notebooks as an ensemble.
 
-- a parity-checked spatial optimization reduced the measured motion-linking component time by about **34.7×**;
-- validation inference and post-processing reselection were removed from the frozen deployment path;
-- the additional private inference assets were externalized from the notebook;
-- notebook launch, output verification, and competition submission were converted into idempotent state transitions so retries do not deliberately duplicate remote writes.
+A source-level audit also showed that the 0.953 lineage was not simply the 0.947 system plus one tiny coordinate head. The refinement artifact was a compact 224→32→3 MLP, while the notebook also introduced additional relinking and recovery logic. That distinction matters because it prevents falsely attributing a leaderboard gain to the easiest visible component.
 
-The latest remote delivery state has acknowledged creation of the private inference input. Private notebook completion and an official new score are still pending.
+## Try a structurally different association model
+
+The next branch evaluated HOCT, a higher-order cell-tracking transformer, while holding the detection layer fixed.
+
+The public implementation reached real GPU inference on the AWS L4 runtime. The first decoding path was blocked by an unavailable Gurobi license and a bounded SCIP timeout; a later fast decoder reached the end of neural inference but hit a graph-API integration error before native scoring.
+
+No scientific HOCT result was established before the publication cutoff. Recording that distinction is intentional: an unfinished execution is not evidence that the model failed.
 
 ## Engineering decisions
 
-Expensive predictions and graph evaluations are cached rather than regenerated. Each bounded runner validates its environment, artifacts, notebooks, and return bundle before spending compute. Failed runs preserve diagnostics and resumable state. Candidate graphs are frozen before retrospective labels are opened. AWS remains the canonical research environment; the public GitHub repository contains only employer-facing evidence, aggregate results, and methodological boundaries.
+Several engineering controls became first-class project artifacts:
+
+- immutable hashes for scored and candidate outputs;
+- separate source-identity and prediction-fidelity evidence axes;
+- isolated CPU/GPU/runtime overlays rather than destructive environment mutation;
+- bounded execution time and cost;
+- resumable caches and explicit reuse contracts;
+- compact failure returns;
+- persistent notebook-output checks;
+- idempotent remote submission guards.
+
+A parity-checked motion-linking optimization also reduced a measured component from roughly 80.5 seconds to 2.32 seconds, about **34.7×**, without changing selected edges.
 
 ## Evidence limitations
 
-The development movies are a retrospective diagnostic cohort and have been examined repeatedly. They support controlled engineering comparisons, not independent generalization claims.
+The development movies are retrospective diagnostics, not clean hidden-test validation. Some public pretrained detector checkpoints were trained on all annotated train videos, so train-movie evaluation is explicitly treated as contaminated/in-sample diagnostic evidence.
 
-The locally qualifying candidate was selected among multiple integrated policies. Its **0.948059 local development score is not comparable to the official 0.947 Kaggle score**. The only definitive next evidence is a completed, verified saved-notebook submission on unseen competition inputs.
+The official 0.946 regression is therefore weighted more heavily than the local 0.948059 promotion result.
 
-This document intentionally omits private datasets, model weights, exact feature recipes, tuned thresholds, execution instructions, and submission logic.
+This repository intentionally omits private datasets, model weights, exact feature recipes, tuned thresholds, per-movie corrections, executable runners, and submission machinery.

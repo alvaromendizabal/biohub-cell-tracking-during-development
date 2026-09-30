@@ -1,25 +1,25 @@
 # Results and verification
 
-Evidence cutoff: **September 28, 2026, 05:10 UTC**. This is a historical research snapshot, not a live leaderboard claim or a promise of future performance.
+Evidence cutoff: **September 29, 2026, 23:02 UTC**. This is a historical project snapshot. Claims below distinguish official scores, retrospective development metrics, accepted-but-unscored submissions, and incomplete engineering work.
 
-## Official benchmark
+## Official benchmark state
 
 | Evidence | Recorded result |
 |---|---:|
 | Verified official Kaggle public score | **0.947** |
-| Verified submission identifier | **56376695** |
-| External reference | Harmonic Fusion saved-notebook inference |
-| Official improvements beyond 0.947 | **0** |
+| Verified reference submission | **56376695** |
+| Locally qualified candidate submission | **56659462 → 0.946** |
+| Image/division probe submission | **56503335 → 0.946** |
+| Exact public-0.953 reproduction | **56687425 → pending at cutoff** |
+| Official improvements beyond 0.947 verified at evidence cutoff | **0** |
 
-Historical leaderboard snapshots captured during the project are not presented as current standings. Local development scores below are **not interchangeable** with the official 0.947 public score.
+The 0.947 submission reproduces the public Harmonic Fusion inference reference. The later 0.946 results are official adverse evidence and supersede optimism based only on retrospective development gains.
 
-## Qualified full-baseline integration
+## Retrospective full-baseline integration
 
-Recent work replayed compatible completed research against the original Harmonic development control rather than evaluating only weaker component baselines.
+Thirty-seven saved candidate policies plus two controlled combinations were replayed against one frozen Harmonic development control.
 
-Thirty-seven saved policies plus two controlled combinations were evaluated under one frozen full-graph contract. The selected source-preserving candidate produced:
-
-| Five-movie local exact metric | Original Harmonic control | Qualified candidate | Change |
+| Five-movie local exact metric | Original Harmonic control | Locally qualified candidate | Change |
 |---|---:|---:|---:|
 | Combined local score | **0.933046** | **0.948059** | **+0.015014** |
 | Edge TP | 2,391 | **2,392** | +1 |
@@ -29,63 +29,92 @@ Thirty-seven saved policies plus two controlled combinations were evaluated unde
 | Division FP | **1** | **1** | 0 |
 | Division FN | 5 | **4** | -1 |
 
-The candidate passed the predeclared local promotion checks for score gain, true-positive preservation, embryo stability, topology, material graph change, and no additional false divisions.
+The candidate passed the local gate but then scored **0.946 officially**. The correct interpretation is therefore not that the candidate “won locally,” but that the project exposed a validation/generalization mismatch in a repeatedly inspected development cohort.
 
-This result is **retrospective development evidence selected among multiple candidate systems on repeatedly inspected movies**. It is not a clean hidden-test estimate, and **0.948059 is not a Kaggle score**.
+## Prediction-fidelity audit of the 0.946 regression
 
-An all-conflict-free combination of historical changes scored below the original control and lost many correct edges. The selected policy therefore remains deliberately conservative rather than aggregating every historical idea.
+The scored-reference preview output and the failed candidate output were both verified by SHA-256 before comparison.
 
-## Recent work since the previous publication snapshot
+The comparison found:
 
-| Milestone | Evidence | Decision |
-|---|---|---|
-| Image-conditioned parent-ranking pilot | Four fixed fits completed; calibrated image policy accepted no corrections | Close fixed image-ranker branch |
-| Harmonic fastlane | Exact motion-linker parity on five native graph comparisons; about **34.7×** summed component speedup | Retain optimization |
-| Completed-work integration | 37 saved policies + 2 combinations tested against original Harmonic control | Promote one source-preserving candidate to deployment |
-| Dynamic deployment replay | Saved winner reconstructed from prediction-time artifacts with no hard-coded development edits | Pass deployment qualification |
-| Shared-encoder verification | Candidate head shown compatible with the frozen image encoder under the deployment contract | Reuse encoder features |
-| Thin private notebook | Inference assets externalized; notebook reduced to a lightweight loader/orchestrator | Retain for remote delivery |
-| Guarded delivery state machine | Upload, launch, output verification, and submission separated into resumable idempotent states | Prevent duplicate pushes/submissions |
-| Current remote state | Private inference input creation acknowledged; notebook execution and official submission not yet verified | Continue delivery; no new score claim |
+- identical preview movie coverage;
+- identical row counts;
+- no added or removed preview detections;
+- no shared-ID coordinate shifts;
+- no frame conflicts;
+- **eight association-edge edits total** across four movies.
 
-## Earlier completed research outcomes
+No hidden labels were used. This audit cannot prove why the hidden/public score fell, but it substantially weakens an accidental detector/coordinate-drift explanation and supports treating the local association edits as poor generalization evidence.
+
+## Public 0.953 reproduction
+
+The final-day sprint audited a public saved notebook advertised at **0.953**. Its source, saved version, and complete output were bound by hash before submission.
+
+Submission **56687425** was accepted by Kaggle from saved notebook version 1. At the latest captured evidence cutoff it remained **pending**, so this repository does not promote 0.953 to a verified personal leaderboard result.
+
+The exact public output contained:
+
+| Output property | Recorded value |
+|---|---:|
+| Rows | **238,260** |
+| Nodes | **121,219** |
+| Edges | **117,041** |
+| Datasets | **4** |
+| SHA-256 prefix | **d52a5d…** |
+
+## Public 0.953 diversity audit
+
+Two additional public notebooks advertised at 0.953 were checked at their scored versions:
+
+- Kunal Desale, V10;
+- Raunak Dey, V5.
+
+Both produced the **same complete output SHA-256** as the first audited 0.953 notebook, with the same row/node/edge counts. They were not independent prediction systems for ensemble purposes. The runner correctly consumed **zero additional submission slots**.
+
+## V1284 / source dissection
+
+The small public refinement artifact was inspected with a weights-only CPU loader. Its tensors correspond to a compact **224→32→3** coordinate-regression MLP plus 224-dimensional normalization statistics.
+
+Source comparison also showed that the public 0.953 lineage contains additional relinking/readmission/gap-repair behavior. Therefore the public-score difference cannot be attributed to the refinement head alone from the available evidence.
+
+A clean head-on/head-off causal experiment did not reach a scientific result before the deadline because of environment and historical-source/version issues. Those are engineering failures, not model-quality evidence.
+
+## HOCT frozen-detection branch
+
+The public HOCT higher-order tracker was pinned to a specific source revision and brought to real GPU inference while the detection layer remained frozen.
+
+The final branch reached complete neural inference on a large validation movie, but:
+
+- the default global ILP path first encountered an unavailable Gurobi license and exceeded the bounded SCIP fallback window;
+- a faster source-preserving decoder then reached inference but failed on a downstream graph-API call before native scoring.
+
+No HOCT native metric result was established at this evidence cutoff. It is recorded as unfinished engineering work, not a scientific negative.
+
+## Earlier research outcomes retained
 
 | Study | Evidence | Decision |
 |---|---|---|
 | Harmonic Fusion reproduction | Official public score **0.947** | Verified reference |
 | Association feature ablation | 557 numeric features; no tracking improvement | Retain frozen probabilities |
-| Exact error attribution | Measured correct, incorrect, and missed links plus division failures | Prioritize concrete failure mechanisms |
-| Sparse-real division fine-tuning | Event-level validation saturated; exact graph gain **0.0** | Close event-classification line |
-| Grouped tracklet transformer | Held-out parent-F1 improved across folds | Continue to broader cross-fitting |
+| Sparse-real division fine-tuning | Exact graph gain **0.0** | Close event-classification line |
+| Grouped tracklet transformer | Held-out parent-F1 gains on early folds | Extend to cross-fitting |
 | Cross-fitted tracklet MOE | Mean held-out parent-F1 gain about **+0.0090** across six movies | Exact confirmation only |
-| MOE exact comparison | Best arm gained about **+0.0081** locally but missed the strict gate | Close MOE line |
-| Dense parental point model | Added some true associations but produced too many false links/forks under native scoring | Close point-only division line |
-| Native metric reconciliation | Corrected a proxy/native mismatch across 18 frozen systems | Use native full-graph evidence for decisions |
-
-## Delivery and runtime evidence
-
-The deployment path preserves the selected model behavior while reducing repeated work.
-
-The motion-linker optimization reproduced the original selected edges, edge attributes, and reported statistics across five native graph comparisons. Summed measured component time fell from roughly **80.5 seconds to 2.32 seconds**, about **34.7×** for that component.
-
-That benchmark does not include image inference, remote queueing, other post-processing, or submission overhead. It must not be interpreted as a whole-notebook runtime ratio.
-
-The current delivery design also removes repeated validation/reselection and separates the private inference assets from the small saved notebook. Remote input creation has been acknowledged, but private notebook completion and official scoring remain unverified at this evidence cutoff.
+| Dense parental point model | Added true associations but too many false links/forks | Close point-only branch |
+| Native metric reconciliation | Corrected proxy/native mismatch across frozen systems | Use native full-graph evidence |
+| Harmonic fastlane | Exact linker parity; about **34.7×** component speedup | Retain optimization |
 
 ## Engineering evidence
 
-The private research ledger currently records **43 completed bounded workflows**. Execution failures, scientific stops, and remote-service blocks are tracked separately in the private project state rather than collapsed into model-quality results.
+The private project ledger records **45 completed scientific workflows** at this publication cutoff. Scientific stops and delivery/runtime failures are tracked separately so a failed hypothesis is not confused with a broken execution.
 
-Important runs are bounded, resumable, hash-gated, and expected to produce compact diagnostic returns on success or failure. Passing local tests are not counted as completed scientific workflows.
+Important runners are bounded, resumable, hash-gated, and expected to emit compact diagnostic returns on both success and failure. Packaging tests and status-only reads are not counted as scientific workflows.
 
-## Current research boundary
+## Final interpretation
 
-The next milestone is **delivery confirmation of the qualified full-baseline candidate**, not another model-training round.
+The strongest verified personal leaderboard result at this evidence cutoff remains **0.947**.
 
-The candidate must run dynamically on unseen competition movies, produce a valid complete output, pass version/input/topology checks, and receive an actual Kaggle score before any stronger performance claim is made.
-
-If the official result does not improve the 0.947 reference, the next modeling branch should be structurally different rather than another small threshold sweep.
+The project nevertheless produced a stronger research conclusion than the earlier publication snapshot: locally selected graph improvements on contaminated/repeatedly inspected cohorts were not reliable enough to predict official performance. The final-day work shifted the emphasis toward fidelity auditing, genuinely independent validation, and structurally different representations rather than more micro-adjustments to the same graph.
 
 ## Publication boundary
 
-This public repository intentionally omits private competition data, AWS account state, model weights, exact feature recipes, tuned thresholds, working checkpoints, private caches, candidate graphs, and executable submission logic. It is an employer-facing, semi-reproducible case study of research decisions and verified aggregate evidence.
+This public repository intentionally omits private competition data, AWS account state, model weights, exact feature recipes, tuned thresholds, working checkpoints, per-movie candidate graphs, return bundles, and executable submission logic. It is an employer-facing, semi-reproducible case study of research decisions and verified aggregate evidence.

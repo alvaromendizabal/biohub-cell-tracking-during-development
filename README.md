@@ -5,9 +5,9 @@
 
 ### Computer vision. Graph learning. Evidence-led ML engineering.
 
-I built an AWS research system for tracking cells through three-dimensional time-lapse microscopy: reproducing a scored external benchmark, engineering original representations, training structured temporal models, reconciling proxy and native graph metrics, integrating prior experiments back into the strongest full pipeline, and hardening the saved-notebook delivery path.
+I built an AWS-centered research system for tracking cells through 3D time-lapse microscopy: reproducing scored public references, engineering temporal and graph representations, reconciling proxy and native metrics, hardening prediction-time delivery, and using negative results to identify which layers actually generalized.
 
-**Verified Kaggle public score: 0.947.** Official submission 56376695 reproduced the public Harmonic Fusion inference reference. The original pretrained systems and public competition baselines are credited to their authors; the research orchestration, original representation work, controlled experiments, transfer studies, source-preserving integration, metric reconciliation, error analysis, and AWS execution infrastructure described here are my project contributions.
+**Verified Kaggle public score: 0.947.** Submission **56376695** is the scored Harmonic Fusion reference reproduction. A later locally qualified source-preserving candidate officially scored **0.946**, demonstrating that a strong retrospective development gain did not generalize. A final exact reproduction of a public notebook advertised at 0.953 was accepted as submission **56687425** and remained **pending** at the latest captured evidence cutoff, so this repository does not count 0.953 as my verified official score.
 
 [Technical case study](CASE_STUDY.md) · [Results and evidence](RESULTS.md) · [Research frontier](FRONTIER.md) · [Reproducibility boundary](REPRODUCIBILITY.md) · [Visual portfolio](notebooks/portfolio.ipynb)
 
@@ -15,53 +15,64 @@ I built an AWS research system for tracking cells through three-dimensional time
 
 | Capability | Evidence from the project |
 |---|---|
-| Representation engineering | Evaluated 557 association features and progressed from hand-designed graph corrections to grouped temporal, mixture-of-experts, dense-parental, and image-conditioned representations. |
-| Structured prediction | Built source-preserving association, grouped tracklet, graph-fusion, parental-competition, and topology-gated systems around a frozen strong baseline. |
-| Baseline-locked integration | Replayed prior candidate families against the original Harmonic development control instead of judging them only against weaker component comparators. |
-| Metric-faithful evaluation | Reconciled proxy and native tracking metrics, froze candidate graphs before annotation access, and used full-graph promotion gates. |
-| Delivery engineering | Removed repeated validation/reselection work, verified exact motion-linker parity, externalized private inference assets, and added idempotent launch/submission guards. |
-| Cloud ML engineering | Established AWS-first execution with immutable caches, resumable checkpoints, artifact hashes, failure recovery, bounded compute, and persistent notebook evidence. |
-| Technical judgment | Closed attractive model families when extra true links were outweighed by false links or false divisions, and rejected an indiscriminate all-changes ensemble when it damaged the graph. |
+| Representation engineering | Evaluated 557 association features and progressed from graph corrections to grouped temporal, mixture-of-experts, image-conditioned, and higher-order association experiments. |
+| Baseline-locked integration | Replayed completed candidate families against the strongest Harmonic development control instead of judging them only against weaker component comparators. |
+| Metric-faithful evaluation | Reconciled proxy and organizer-native graph metrics, froze candidate graphs before retrospective annotation access, and separated diagnostic evidence from official leaderboard evidence. |
+| Fidelity auditing | Compared hash-bound baseline and candidate outputs and established that the failed 0.946 candidate preserved the preview detection universe and coordinates while changing only a small number of association edges. |
+| Delivery engineering | Built hash-gated notebook/output verification, idempotent submission guards, resumable state, isolated GPU/runtime overlays, and bounded failure returns. |
+| Cloud ML engineering | Used AWS as the canonical research environment with immutable caches, checkpoint/reuse contracts, resource gates, and persistent notebook evidence. |
+| Technical judgment | Closed locally attractive systems when full-graph or official evidence contradicted proxy gains, including a locally +0.015 candidate that regressed officially. |
 
-## Latest verified research result
+## Final-day evidence changed the conclusion
 
-The strongest recent result comes from integrating completed research back into the **original Harmonic development control**, not into a replacement tracker.
+Before the official submission, the strongest retrospective candidate improved the five-movie development metric from **0.933046 to 0.948059** (**+0.015014**). It added one correct edge, removed one false edge, recovered one annotated division, and passed the local promotion gate.
 
-Thirty-seven saved candidate policies and two controlled combinations were compared under the same frozen full-graph evaluator. The selected source-preserving candidate improved the local exact score from **0.933046 to 0.948059**, a gain of **+0.015014**. It increased correct edges from **2,391 to 2,392**, reduced false edges from **111 to 110**, increased correct divisions from **1 to 2**, and did not add a false division.
+That candidate was then submitted and scored **0.946**, below the unchanged **0.947** reference. This is the most important scientific result of the final sprint: the development cohort had been inspected too heavily to serve as an unbiased generalization estimate.
 
-This is **retrospective local development evidence**, not a new Kaggle score. The development cohort has been inspected repeatedly, so the official public score remains **0.947** until a new saved-notebook submission is actually scored.
+A prediction-only fidelity audit then compared the scored-reference output with the failed candidate. The candidate preserved the same preview detections and coordinates and differed through **eight association-edge edits** across four movies. This substantially weakened the hypothesis that the official regression came from accidental detector or coordinate drift. Because hidden labels are unavailable, the audit is descriptive rather than a causal proof, but it redirected the project away from more local graph micro-tuning.
 
-An all-conflict-free combination of historical changes performed substantially worse than the original control. The lesson was not “ensemble everything”; it was to preserve the strong source graph and apply only compatible, independently validated changes.
+## Public 0.953 reproduction and diversity audit
+
+The project also audited public notebooks advertised at **0.953**. One exact saved notebook version was source/output/version hash-gated and accepted by Kaggle as submission **56687425**. Its official score was still pending at the latest captured evidence cutoff.
+
+Two other public 0.953 notebook lineages were then audited for hidden-test prediction diversity. Their complete saved outputs were byte-for-byte identical to the first public 0.953 output: **238,260 rows, 121,219 nodes, 117,041 edges**, with the same SHA-256 beginning **d52a5d…**. They therefore provided no useful independent ensemble diversity, and no duplicate submissions were burned.
+
+A separate source audit showed that the public 0.953 lineage contains more than a small coordinate-refinement head; it also includes additional association/relinking behavior. The small refinement artifact itself was inspected safely as a **224→32→3** MLP with normalization tensors, but no claim is made that the head alone explains the public-score difference.
+
+## Higher-order association frontier
+
+The final structurally different branch evaluated the public HOCT higher-order tracking system while freezing detections. The pinned model/runtime reached real GPU inference, but global decoding and then a downstream graph-API integration issue prevented a native-metric result before the evidence cutoff. That branch is therefore recorded as **unfinished engineering work, not a negative model result**.
 
 ## Delivery performance
 
-The deployment work also targeted notebook latency without changing the selected tracking policy:
+The productionization work retained earlier verified improvements:
 
-- the optimized motion-linking component matched the original selected edges and attributes exactly while reducing summed component time by about **34.7×** in the measured AWS comparison;
-- repeated validation inference and post-processing reselection were removed from the deployment path because the scored configuration is already frozen;
-- the private inference head and runtime are carried as hash-checked private inputs instead of embedding a multi-megabyte payload directly in the notebook;
-- notebook launch, remote completion, output verification, and submission are tracked as separate idempotent states to avoid duplicate pushes or submissions.
+- a parity-checked motion-linking component reproduced selected edges and attributes while reducing measured component time by about **34.7×**;
+- repeated validation/reselection was removed from the frozen delivery path;
+- public and private assets were hash-checked instead of silently substituted;
+- remote launch, output verification, and competition submission were treated as separate idempotent states.
 
-The 34.7× figure is a **component benchmark**, not a whole-notebook speedup claim. Complete remote Kaggle runtime remains unmeasured.
+The 34.7× figure is a **component benchmark**, not a whole-notebook speedup claim.
 
 ## Research progression
 
-1. **Reproduce the benchmark.** The external Harmonic Fusion reference was reproduced and scored at 0.947.
-2. **Test richer associations.** Hundreds of original and public features were evaluated against frozen predictions.
-3. **Attribute exact failures.** Full graph evaluation exposed continuation-link errors, missed divisions, and detector/matching limits.
-4. **Move from heuristics to learned context.** Grouped tracklet, mixture-of-experts, dense-parental, and image-conditioned variants were tested with explicit kill gates.
-5. **Reconcile the evaluator.** Proxy improvements were checked against the native organizer metric; point-only models that created false forks were closed.
-6. **Return to the strongest full system.** Compatible prior work was replayed against the original Harmonic control, producing the current locally qualifying source-preserving candidate.
-7. **Harden delivery.** The inference path was optimized and converted into a guarded private saved-notebook workflow.
-8. **Current frontier.** Finish private notebook execution and obtain the candidate's actual Kaggle score before starting another modeling branch.
+1. **Reproduce a scored benchmark.** Established the 0.947 Harmonic Fusion reference.
+2. **Test richer associations.** Evaluated hundreds of original and public association features.
+3. **Attribute exact failures.** Measured edge, division, and topology failure modes.
+4. **Move from heuristics to learned context.** Tested grouped tracklets, MOE ranking, dense parental competition, and image-conditioned variants.
+5. **Reconcile evaluation.** Used organizer-native full-graph evidence to close proxy-improving but graph-worsening branches.
+6. **Return completed work to the strongest baseline.** Produced the locally qualifying +0.015 source-preserving candidate.
+7. **Test the official result.** The candidate scored 0.946, invalidating the local promotion as generalization evidence.
+8. **Audit fidelity and public frontier.** Ruled out preview detector drift, reproduced the public 0.953 output lineage, and showed its public variants were prediction-identical.
+9. **Explore a structurally different linker.** Brought HOCT to real GPU inference while preserving detections; final metric scoring remained unfinished at cutoff.
 
 ## Evidence discipline
 
-Development cohorts have been examined repeatedly, so local improvements are treated as engineering evidence rather than independent proof of leaderboard generalization. Official competition claims remain limited to scored submissions. Negative experiments remain part of the record because they narrow the search space and prevent repeated spending on non-improving directions.
+The official 0.946 regression is treated as stronger evidence than the retrospective 0.948059 development score. Diagnostic cohorts that overlap public pretraining are explicitly labeled contaminated/in-sample rather than clean validation. Passing unit tests, successful packaging, and local graph improvements are never presented as leaderboard improvements.
 
 ## About this portfolio
 
-This **public repository is a hiring-oriented case study and semi-reproducible research record**, not a training kit or an open-source competition implementation. It exposes the research sequence, validation contracts, aggregate results, public attribution, and presentation checks while intentionally withholding working datasets, model weights, exact feature recipes, tuned thresholds, private AWS state, candidate graph files, and executable submission logic.
+This **public repository is a hiring-oriented case study and semi-reproducible research record**, not a turnkey competition solution. It exposes the research sequence, validation contracts, aggregate evidence, negative-result discipline, attribution, and presentation checks while intentionally withholding working datasets, model weights, exact feature recipes, tuned thresholds, private AWS state, candidate graph files, and executable submission logic.
 
 See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the public reproducibility contract.
 
