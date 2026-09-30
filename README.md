@@ -76,4 +76,6 @@ A fresh clone contains all first-party source needed to install, test, and inspe
 
 See [REPRODUCE.md](REPRODUCE.md) for the exact clone-to-tests workflow and [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for evidence boundaries.
 
+The original Biohub SageMaker JupyterLab app and persistent Space were deleted after the reproducible archive merged and passed post-merge CI. A final S3 audit found no remaining Biohub objects under the project's known backup prefix; unrelated shared-bucket data was left untouched. See [Decommission record](docs/DECOMMISSION.md).
+
 [Rights](RIGHTS.md) · [Attribution](ATTRIBUTION.md)
