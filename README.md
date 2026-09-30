@@ -20,7 +20,8 @@ This repository is now the **reproducible research archive** for my Biohub cell-
 - seven executed research notebooks plus the presentation notebook;
 - compact saved receipts and result JSONs under `reports/`;
 - the final-day fidelity/public-0.953/HOCT reproduction contract;
-- CI that installs the package from a fresh checkout, validates the presentation snapshot, runs the synthetic/unit suite, and self-tests the final-evidence reproducer.
+- an exact **99-file readable source snapshot** extracted from the September 29 final-sprint handoff artifacts, with a safe extractor/self-test;
+- CI that installs the package from a fresh checkout, validates the presentation snapshot, runs the synthetic/unit suite, self-tests the final-evidence reproducer, and validates the final-sprint source snapshot.
 
 Large competition datasets and third-party pretrained weights are **not committed as binaries**. They are reacquired from their original public/Kaggle sources using the exact versions/commits/checksums recorded in `reproducibility/external_assets.json`. Kaggle competition data still requires the user to accept the competition rules and authenticate.
 
