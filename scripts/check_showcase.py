@@ -75,10 +75,26 @@ readme = (root / "README.md").read_text()
 frontier = (root / "FRONTIER.md").read_text()
 results = (root / "RESULTS.md").read_text()
 repro = (root / "REPRODUCIBILITY.md").read_text()
+case_study = (root / "CASE_STUDY.md").read_text()
+attribution = (root / "ATTRIBUTION.md").read_text()
+notebook = json.loads((root / "notebooks/portfolio.ipynb").read_text())
+
 assert "0.947" in readme and "0.947" in results
+assert "0.946" in readme and "0.946" in results
 assert "0.948059" in readme and "0.948059" in results
+assert "56687425" in readme and "56687425" in results and "56687425" in frontier
+assert "pending" in readme.lower() and "pending" in results.lower()
+assert "eight association-edge edits" in readme.lower()
+assert "d52a5d" in results.lower()
+assert "hoct" in case_study.lower() and "hoct" in frontier.lower()
+assert "unfinished" in frontier.lower()
 assert "REPRODUCIBILITY.md" in readme
 assert "semi-reproducible" in readme.lower() and "semi-reproducible" in repro.lower()
 assert "official improvements beyond 0.947" in results.lower()
-assert "official score unchanged at 0.947" in frontier.lower()
+assert "verified official score 0.947" in frontier.lower()
+assert "anvith" in attribution.lower() and "raunak" in attribution.lower() and "kunal" in attribution.lower()
+assert notebook.get("metadata", {}).get("official_public_score") == 0.947
+assert notebook.get("metadata", {}).get("local_qualified_official_score") == 0.946
+assert notebook.get("metadata", {}).get("accepted_public_reproduction_submission") == "56687425"
+assert notebook.get("metadata", {}).get("accepted_public_reproduction_status_at_cutoff") == "pending"
 print("PUBLIC_SHOWCASE_INTEGRITY_PASSED")
