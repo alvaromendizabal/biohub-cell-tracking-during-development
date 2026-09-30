@@ -35,3 +35,5 @@ jobs:
         run: python scripts/run_ci.py
       - name: Self-test final evidence reproducer
         run: python scripts/reproduce_final_evidence.py self-test
+      - name: Validate archived final-sprint source
+        run: python scripts/extract_final_sprint_source.py self-test
