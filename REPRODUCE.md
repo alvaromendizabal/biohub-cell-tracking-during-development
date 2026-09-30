@@ -23,15 +23,27 @@ python scripts/check_showcase.py
 python scripts/verify_portfolio.py
 python scripts/run_ci.py
 python scripts/reproduce_final_evidence.py self-test
+python scripts/extract_final_sprint_source.py self-test
 ```
 
 These checks use synthetic fixtures and committed evidence only. They do not contact AWS or Kaggle and do not require a GPU.
 
-## 3. Inspect the executed evidence notebooks
+## 3. Recover the exact final-sprint runner source
+
+The exact readable source extracted from the September 29 handoff zipapps is committed as a 99-file source snapshot. Validate it or expand it into ordinary files:
+
+```bash
+python scripts/extract_final_sprint_source.py self-test
+python scripts/extract_final_sprint_source.py extract ./recovered-final-sprint
+```
+
+This preserves the final fidelity, V1284, public-0.953, and HOCT runner implementations even after the SageMaker volume is deleted.
+
+## 4. Inspect the executed evidence notebooks
 
 Seven executed research notebooks are committed under `notebooks/` in addition to the presentation notebook. The research notebooks retain execution counts and saved evidence figures.
 
-## 4. Reproduce the final regression-fidelity audit
+## 5. Reproduce the final regression-fidelity audit
 
 Obtain the two saved prediction CSVs identified in `reproducibility/external_assets.json`:
 
@@ -46,7 +58,7 @@ python scripts/reproduce_final_evidence.py compare path/to/reference.csv path/to
 
 The script reports file hashes, row/node/edge counts, added/removed detections, shared-node coordinate drift, and edge-set differences. It does not use hidden labels.
 
-## 5. Reproduce the public-0.953 diversity audit
+## 6. Reproduce the public-0.953 diversity audit
 
 Install/authenticate the Kaggle CLI yourself and accept the competition rules. Download the saved `submission.csv` output from these exact notebook versions:
 
@@ -62,13 +74,13 @@ python scripts/reproduce_final_evidence.py duplicate   path/to/anvith_submission
 
 The expected saved-output SHA-256 is recorded in the external-asset manifest. A mismatch should be treated as version drift, not silently accepted.
 
-## 6. Reacquire third-party source/weights
+## 7. Reacquire third-party source/weights
 
 `reproducibility/external_assets.json` pins the organizer and HOCT Git commits plus released HOCT model hashes. Clone those repositories at the listed commits and verify downloaded weights before use.
 
 Competition datasets and public model assets remain at their original distribution points; they are not mirrored into Git.
 
-## 7. What a fresh clone can and cannot reproduce
+## 8. What a fresh clone can and cannot reproduce
 
 A fresh clone can reproduce the first-party package/tests, synthetic research logic, saved notebook evidence, publication integrity checks, final CSV fidelity audit, and public-output diversity audit.
 
