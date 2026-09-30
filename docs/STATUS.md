@@ -24,8 +24,12 @@ The executable September 22 research snapshot has been restored from Git history
 
 The root docs and final-evidence utilities capture the September 23–29 research conclusions and reproduce the saved-output fidelity/diversity claims from downloaded CSV artifacts.
 
-## AWS state during archive
+## AWS decommissioned after archive verification
 
-The Biohub JupyterLab app was already **Deleted**. The SageMaker Space remained **InService** with a **128-GB EBS volume**. The archive is intended to make that remaining Space disposable after merge/CI verification.
+The Biohub JupyterLab app was already **Deleted** before archival. The remaining SageMaker Space, previously configured with a **128-GB EBS volume**, was deleted only after PR #9 merged and the post-merge fresh-clone CI passed.
 
-No Biohub-specific S3 bucket or top-level Biohub prefix was identified. Other S3 buckets belong to separate projects and are outside this cleanup.
+Deletion was then verified two ways: the Space no longer appeared in `ListSpaces`, and `DescribeSpace` returned `ResourceNotFound`.
+
+A targeted final S3 audit of the known Biohub backup prefix found **0 objects / 0 bytes**. The shared SageMaker bucket was not deleted because it contains unrelated projects.
+
+See [DECOMMISSION.md](DECOMMISSION.md).

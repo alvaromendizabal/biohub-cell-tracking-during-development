@@ -8,7 +8,7 @@
     "CASE_STUDY.md": "1dd9e903f65d83e08ac2909e45832c12d7a08454",
     "FRONTIER.md": "21642b6c61fca3ebf43179f0e0e72530b1b57fe8",
     "LICENSE.md": "f9039148ee727707d56baca399e60e5b3679ffcf",
-    "README.md": "7541a84a45122a781cc065782ba204be79e16ca0",
+    "README.md": "797d57cb64a978689d49549b7afce8bebd20313c",
     "REPRODUCIBILITY.md": "cd0e5c272401f0ce13e71df3bea6ef1628687aaa",
     "RESULTS.md": "f616e3ee09aec01b8a77cec0fa0cf3fef3106b07",
     "RIGHTS.md": "91dbb531f92f5e1376423d4308c06a3401c59bab",
@@ -18,5 +18,5 @@
     "notebooks/portfolio.ipynb": "2bd266a7283fa1126aadddbafef858678759c332",
     "scripts/check_showcase.py": "9ce7271390c03a9c5def8258bbad6efd96dfed91"
   },
-  "release_id": "biohub-reproducible-archive-20260930"
+  "release_id": "biohub-reproducible-archive-decommissioned-20260930"
 }
