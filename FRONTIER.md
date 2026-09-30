@@ -1,65 +1,60 @@
 # Research frontier
 
-## Current question
+## Final verified state at publication cutoff
 
-The current research question is no longer whether to train another point-only or image-conditioned reparenting model.
+The competition deadline has passed, so this document records the research frontier rather than an active submission plan.
 
-A source-preserving candidate has already cleared the local full-graph promotion gate against the original Harmonic development control.
+The strongest **verified personal official score** in the captured evidence remains **0.947** from submission 56376695.
 
-The active question is now:
+The locally qualified source-preserving candidate scored **0.946** officially, despite improving the retrospective development metric from 0.933046 to 0.948059. That result closes the specific local graph-edit policy as generalization evidence.
 
-**Does the locally qualifying full-baseline candidate reproduce its prediction-time behavior on unseen competition movies and improve the verified 0.947 public score?**
+An exact public notebook advertised at 0.953 was accepted as submission **56687425**, but it was still pending at the latest captured evidence cutoff. It is therefore tracked as an accepted reproduction attempt, not promoted to a verified personal score.
 
-## Why this is the right next layer
+## What the official regression taught us
 
-The selected candidate improved the retrospective five-movie exact score from **0.933046 to 0.948059**, while increasing correct edges and correct divisions and reducing false edges without adding a false division.
+The post-submission fidelity audit established that the failed candidate did not alter the preview detection universe or coordinates. It made only a small number of association-edge changes.
 
-That result is stronger than the earlier proxy improvements because it was measured against the original full Harmonic control. It is still not independent evidence: the development movies have been inspected repeatedly and the candidate was selected among multiple policies.
+The remaining uncertainty is therefore not “did the deployment accidentally change detections?” but whether association changes selected on an in-sample/repeatedly inspected cohort can generalize at all.
 
-The only useful next evidence is therefore **deployment on unseen test movies followed by an actual saved-notebook score**.
+That shifts the research priority toward **independent validation and structurally new representations**.
 
-## Current deployment direction
+## Public 0.953 lineage
 
-The deployment system keeps the scored Harmonic detector, image models, association logic, post-processing family, and CSV contract as the anchor.
+Three public notebooks advertised at 0.953 were audited. Their complete saved prediction outputs were byte-identical, so they are one prediction lineage for diversity purposes.
 
-The qualifying correction policy is reconstructed dynamically from prediction-time artifacts. No development movie IDs, annotations, or hard-coded graph edits are embedded into the test-time logic.
+The associated source audit indicates that the lineage combines coordinate refinement with additional relinking/recovery logic. The refinement head is small, but the available evidence does not isolate it as the source of the full public-score difference.
 
-The additional learned association head reuses compatible frozen image features instead of running a second image encoder. Delivery also preserves the previously verified faster motion-linking implementation and skips repeated validation/reselection work that is no longer necessary once the baseline configuration is frozen.
+A future clean study would need same-source head-on/head-off inference with version-locked historical inputs and embryo-disjoint upstream training provenance.
 
-Remote delivery is stateful and idempotent:
+## Higher-order association
 
-1. verify the qualified local deployment contract;
-2. verify the private inference assets;
-3. launch one private saved notebook;
-4. return while remote inference runs;
-5. retrieve and validate the completed pinned output;
-6. submit that verified notebook version once.
+HOCT remains the most interesting unfinished association branch because it is structurally different from the Harmonic linker and the project's grouped-tracklet/MOE families.
 
-At the current evidence cutoff, private inference-input creation has been acknowledged. Private notebook completion and official submission remain pending.
+The deadline sprint established that:
 
-## Promotion controls
+- the public model can run on the project's GPU environment;
+- neural inference completed on a large movie;
+- global ILP decoding was operationally constrained by solver availability/runtime;
+- a source-preserving fast decoder still needed one final API integration fix before native scoring.
 
-The candidate has already passed the retrospective local promotion gate. No stronger official claim is made until the saved notebook:
+That is enough to keep HOCT on the future research frontier, but not enough to claim a metric gain.
 
-1. runs on unseen competition inputs;
-2. produces complete, valid tracking output;
-3. preserves the expected inference/configuration identities;
-4. passes topology and output-integrity checks;
-5. is submitted as the verified pinned notebook version;
-6. receives an official Kaggle score.
+## Recommended next research layer
 
-## If the official score does not improve
+If this project is continued outside the competition deadline, the highest-value sequence is:
 
-A non-improving official result would close this specific source-preserving integration candidate despite its retrospective gain.
+1. reconstruct a clean embryo-disjoint detector validation regime;
+2. finish the frozen-detection HOCT comparison under the native metric;
+3. run a controlled localization ablation on the public refinement mechanism;
+4. test a genuinely independent high-resolution 2.5D detector representation;
+5. evaluate ensemble value using prediction/residual diversity rather than notebook lineage names.
 
-The next branch should then be structurally different—such as a more deeply joint image/linker representation or independent supervision—not another small threshold sweep on the same development cohort.
+The goal is to escape the 0.947/0.953 public lineage by changing validation quality and representation, not by accumulating more local graph micro-adjustments.
 
 ## What remains private
 
-This repository does not publish model weights, active AWS code, tuned thresholds, exact feature recipes, working caches, candidate graph files, private data, account credentials, or executable submission logic.
-
-The public goal is to expose enough methodology, evidence, attribution, and validation structure to assess the engineering work without publishing the competition-specific implementation.
+This repository does not publish model weights, private AWS orchestration, tuned thresholds, exact feature recipes, cached candidate graphs, competition data, or executable submission logic.
 
 ## Status
 
-**Local full-baseline candidate qualified; official score unchanged at 0.947; private deployment in progress.**
+**Verified official score 0.947; locally promoted candidate officially regressed to 0.946; exact public-0.953 reproduction accepted but unscored at the latest captured evidence cutoff; public 0.953 variants proved prediction-identical; HOCT native scoring unfinished.**
