@@ -1,26 +1,35 @@
-# Publication and archive boundary
+# Publication boundary
 
-This repository now serves two purposes:
-
-1. an employer-facing case study at the repository root; and
-2. a reproducible executable research archive under `src/`, `research/`, `tests/`, `configs/`, `reports/`, and `notebooks/`.
-
-The earlier presentation-only publication deliberately withheld the executable tree while the competition was active. After the competition deadline, the tracked executable snapshot was restored from Git history so the project can survive AWS decommissioning.
+This repository is an **employer-facing, semi-reproducible ML engineering portfolio**.
 
 ## Included
 
-GitHub contains reviewed first-party source, synthetic tests, executed notebooks, compact result/provenance receipts, public-source attribution, experiment configs, CI, and reproduction utilities.
+GitHub contains reviewed first-party source, synthetic/unit tests, selected experiment modules, executed notebooks, compact result/provenance receipts, experiment configs, CI, reproduction utilities, and third-party attribution.
 
-## Not mirrored as Git binaries
+The public artifact is intentionally sufficient for technical review without mirroring private infrastructure or licensed assets.
 
-- Kaggle competition data;
+## Intentionally excluded
+
+- competition datasets;
 - third-party model weights;
-- large predictions/caches/checkpoints;
+- large predictions, caches, and checkpoints;
 - virtual environments;
-- credentials or AWS account state.
+- credentials, tokens, and AWS account state;
+- tuned private thresholds and private candidate graphs;
+- private orchestration/submission machinery.
 
-Those inputs remain reproducible through their original source plus the immutable refs/checksums in `reproducibility/external_assets.json`.
+External dependencies are referenced through source/version identifiers and checksums in `reproducibility/external_assets.json` where appropriate.
 
-No credential, AWS key, Kaggle token, or private key belongs in this archive.
+## Review principle
+
+A portfolio reviewer should be able to determine:
+
+1. what first-party work was implemented;
+2. what evidence supports the claims;
+3. which components came from third parties;
+4. what can be tested from a fresh clone;
+5. what remains intentionally private.
+
+No credential, AWS key, external-service token, or private key belongs in this repository.
 
 Third-party rights and notices are preserved. Original project rights remain reserved unless a file states otherwise.

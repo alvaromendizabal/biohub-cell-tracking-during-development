@@ -1,6 +1,6 @@
 # Reproduce this project from a fresh clone
 
-This archive is designed so a reviewer can clone it, install the first-party package, run all data-free tests, inspect the executed evidence notebooks, and reproduce the final saved-output audits without the deleted SageMaker Space.
+This portfolio is designed so a reviewer can clone it, install the first-party package, run all data-free checks, inspect genuine executed evidence notebooks, and reproduce the public fidelity/diversity utilities without access to private AWS state.
 
 ## 1. Clone and create the environment
 
@@ -16,72 +16,51 @@ python -m pip install -r requirements-test.txt
 python -m pip install -e .
 ```
 
-## 2. Run the clone-level validation
+## 2. Run the public quality gates
 
 ```bash
 python scripts/check_showcase.py
 python scripts/verify_portfolio.py
 python scripts/run_ci.py
 python scripts/reproduce_final_evidence.py self-test
-python scripts/extract_final_sprint_source.py self-test
 ```
 
-These checks use synthetic fixtures and committed evidence only. They do not contact AWS or Kaggle and do not require a GPU.
+These checks use synthetic fixtures and committed evidence only. They do not contact AWS or external scoring services and do not require a GPU.
 
-## 3. Recover the exact final-sprint runner source
+## 3. Inspect the executed evidence notebooks
 
-The exact readable source extracted from the September 29 handoff zipapps is committed as a 99-file source snapshot. Validate it or expand it into ordinary files:
+Seven executed research notebooks are committed under `notebooks/` in addition to the presentation notebook. They retain execution counts and saved evidence figures so a reviewer can inspect what actually ran.
 
-```bash
-python scripts/extract_final_sprint_source.py self-test
-python scripts/extract_final_sprint_source.py extract ./recovered-final-sprint
-```
+Start with [`notebooks/00_portfolio_overview.ipynb`](notebooks/00_portfolio_overview.ipynb) or use the [`notebooks/README.md`](notebooks/README.md) reading guide.
 
-This preserves the final fidelity, V1284, public-0.953, and HOCT runner implementations even after the SageMaker volume is deleted.
+## 4. Reproduce the regression-fidelity audit
 
-## 4. Inspect the executed evidence notebooks
-
-Seven executed research notebooks are committed under `notebooks/` in addition to the presentation notebook. The research notebooks retain execution counts and saved evidence figures.
-
-## 5. Reproduce the final regression-fidelity audit
-
-Obtain the two saved prediction CSVs identified in `reproducibility/external_assets.json`:
-
-- the exact 0.947 reference output;
-- the submitted 0.946 candidate output.
-
-Then run:
+Obtain the two saved prediction CSVs identified in `reproducibility/external_assets.json`: the frozen reference output and the independently scored candidate output.
 
 ```bash
 python scripts/reproduce_final_evidence.py compare path/to/reference.csv path/to/candidate.csv
 ```
 
-The script reports file hashes, row/node/edge counts, added/removed detections, shared-node coordinate drift, and edge-set differences. It does not use hidden labels.
+The script reports file hashes, row/node/edge counts, added/removed detections, shared-node coordinate drift, and edge-set differences. It does not require hidden labels.
 
-## 6. Reproduce the public-0.953 diversity audit
+## 5. Reproduce the prediction-diversity audit
 
-Install/authenticate the Kaggle CLI yourself and accept the competition rules. Download the saved `submission.csv` output from these exact notebook versions:
-
-- `anvithpothula/biohub-0-953-lb-original/1`;
-- `kunaldesale2408/biohub-cell-tracking/10`;
-- `raunakdey07/biohub-harmonic-fusion-v3/5`.
-
-Then run:
+`reproducibility/external_assets.json` also records exact public notebook/output versions used for a duplicate-prediction audit. After obtaining those outputs from their original source, run:
 
 ```bash
-python scripts/reproduce_final_evidence.py duplicate   path/to/anvith_submission.csv   path/to/kunal_submission.csv   path/to/raunak_submission.csv
+python scripts/reproduce_final_evidence.py duplicate path/to/output1.csv path/to/output2.csv path/to/output3.csv
 ```
 
-The expected saved-output SHA-256 is recorded in the external-asset manifest. A mismatch should be treated as version drift, not silently accepted.
+The tool compares complete output hashes and graph counts so nominally different systems are not assumed to provide ensemble diversity without evidence.
 
-## 7. Reacquire third-party source/weights
+## 6. Reacquire third-party source and weights
 
-`reproducibility/external_assets.json` pins the organizer and HOCT Git commits plus released HOCT model hashes. Clone those repositories at the listed commits and verify downloaded weights before use.
+`reproducibility/external_assets.json` pins organizer and third-party source revisions plus released model hashes where applicable. Clone those repositories at the listed revisions and verify downloaded assets before use.
 
-Competition datasets and public model assets remain at their original distribution points; they are not mirrored into Git.
+Competition datasets and third-party model assets remain at their original distribution points; they are not mirrored into Git.
 
-## 8. What a fresh clone can and cannot reproduce
+## 7. What a fresh clone can and cannot reproduce
 
-A fresh clone can reproduce the first-party package/tests, synthetic research logic, saved notebook evidence, publication integrity checks, final CSV fidelity audit, and public-output diversity audit.
+A fresh clone can reproduce the first-party package/tests, synthetic research logic, saved notebook evidence, portfolio integrity checks, and CSV fidelity/diversity tooling.
 
-Real-data reruns additionally require lawful access to the Biohub competition data and referenced third-party model assets. That dependency is explicit and versioned rather than hidden inside the retired AWS volume.
+Real-data reruns additionally require lawful access to the original dataset and referenced third-party model assets. That dependency is explicit and versioned rather than hidden inside a private cloud workspace.

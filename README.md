@@ -1,79 +1,118 @@
-# 3D Cell Tracking & Lineage Analysis
+# 3D Cell Tracking & Lineage Graph ML
 
-**Alvaro Mendizabal · Machine Learning Engineer**  
-[GitHub profile](https://github.com/alvaromendizabal)
+**Computer vision · temporal modeling · graph learning · reproducible ML systems**
 
-### Computer vision. Graph learning. Evidence-led ML engineering.
+**Alvaro Mendizabal · Machine Learning Engineer** · [GitHub profile](https://github.com/alvaromendizabal)
 
-This repository is now the **reproducible research archive** for my Biohub cell-tracking project. It contains the employer-facing case study **and** the executable Python package, synthetic/unit tests, research modules, experiment configs, compact result receipts, and seven executed evidence notebooks that were previously preserved only in repository history.
+[![Portfolio CI](https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/actions/workflows/portfolio.yml/badge.svg)](https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/actions/workflows/portfolio.yml)
 
-**Verified Kaggle public score: 0.947.** Submission **56376695** is the scored Harmonic Fusion reference reproduction. A later locally qualified source-preserving candidate officially scored **0.946**, demonstrating that a strong retrospective development gain did not generalize. A final exact reproduction of a public notebook advertised at 0.953 was accepted as submission **56687425** and remained **pending** at the latest captured evidence cutoff, so this repository does not count 0.953 as my verified official score.
+This portfolio project shows how I approach a difficult ML system end to end: reproduce a trustworthy reference, build new representations, evaluate under sparse supervision, debug validation failures, optimize runtime without changing outputs, and package the work so another engineer can inspect it from a fresh clone.
 
-[Reproduce from a fresh clone](REPRODUCE.md) · [Technical case study](CASE_STUDY.md) · [Results](RESULTS.md) · [Research frontier](FRONTIER.md) · [Reproducibility contract](REPRODUCIBILITY.md) · [Visual portfolio](notebooks/portfolio.ipynb)
+Given anisotropic 3D microscopy sequences, the system reasons about **cell detections, temporal associations, and division events** to construct lineage graphs while preserving evidence about what was measured, what failed, and why.
 
-## What is included
+## 60-second employer review
 
-- installable `src/biohub_tracking` package;
-- synthetic/unit tests under `tests/`;
-- executable research modules under `research/`;
-- versioned experiment configs under `configs/`;
-- seven executed research notebooks plus the presentation notebook;
-- compact saved receipts and result JSONs under `reports/`;
-- the final-day fidelity/public-0.953/HOCT reproduction contract;
-- an exact **99-file readable source snapshot** extracted from the September 29 final-sprint handoff artifacts, with a safe extractor/self-test;
-- CI that installs the package from a fresh checkout, validates the presentation snapshot, runs the synthetic/unit suite, self-tests the final-evidence reproducer, and validates the final-sprint source snapshot.
-
-Large competition datasets and third-party pretrained weights are **not committed as binaries**. They are reacquired from their original public/Kaggle sources using the exact versions/commits/checksums recorded in `reproducibility/external_assets.json`. Kaggle competition data still requires the user to accept the competition rules and authenticate.
-
-## What I built and demonstrated
-
-| Capability | Evidence from the project |
+| Area | What this project demonstrates |
 |---|---|
-| Representation engineering | Evaluated 557 association features and progressed from graph corrections to grouped temporal, mixture-of-experts, image-conditioned, and higher-order association experiments. |
-| Baseline-locked integration | Replayed completed candidate families against the strongest Harmonic development control instead of judging them only against weaker component comparators. |
-| Metric-faithful evaluation | Reconciled proxy and organizer-native graph metrics, froze candidate graphs before retrospective annotation access, and separated diagnostic evidence from official leaderboard evidence. |
-| Fidelity auditing | Compared hash-bound baseline and candidate outputs and established that the failed 0.946 candidate preserved the preview detection universe and coordinates while changing only a small number of association edges. |
-| Delivery engineering | Built hash-gated notebook/output verification, idempotent submission guards, resumable state, isolated GPU/runtime overlays, and bounded failure returns. |
-| Cloud ML engineering | Used AWS as the canonical research environment with immutable caches, checkpoint/reuse contracts, resource gates, and persistent notebook evidence. |
-| Technical judgment | Closed locally attractive systems when full-graph or official evidence contradicted proxy gains, including a locally +0.015 candidate that regressed officially. |
+| ML problem | 3D cell detection, temporal association, lineage reconstruction, sparse supervision |
+| Modeling | 3D CNN components, candidate-set transformers, temporal/graph features, association ranking, constraint-aware graph edits |
+| Evaluation | Native graph metrics, edge/division error budgets, validation-contamination analysis, prediction-fidelity audits |
+| ML systems | AWS-centered GPU research, resumable execution, immutable hashes, failure receipts, notebook verification, CI |
+| Scale of research | **557** association features evaluated, **45** completed scientific workflows, **7** executed evidence notebooks |
+| Measured engineering result | Parity-checked motion-linking component reduced from ~80.5 s to ~2.32 s — about **34.7×** faster |
+| External evidence | A faithfully reproduced reference scored **0.947**; a locally attractive candidate later scored **0.946**, exposing a validation/generalization mismatch |
 
-## Final-day evidence changed the conclusion
+**Best places to review:** [technical case study](CASE_STUDY.md) · [engineering overview](docs/ENGINEERING_OVERVIEW.md) · [results](RESULTS.md) · [executed notebooks](notebooks/README.md) · [reproduction guide](REPRODUCE.md)
 
-Before the official submission, the strongest retrospective candidate improved the five-movie development metric from **0.933046 to 0.948059** (**+0.015014**). It added one correct edge, removed one false edge, recovered one annotated division, and passed the local promotion gate.
+## System architecture
 
-That candidate then scored **0.946**, below the unchanged **0.947** reference. This is the most important scientific result of the final sprint: the development cohort had been inspected too heavily to serve as an unbiased generalization estimate.
+```mermaid
+flowchart LR
+    A[3D microscopy sequences] --> B[Detection / candidate graph]
+    B --> C[Association feature layer]
+    C --> D[Temporal + learned association models]
+    D --> E[Constraint-aware lineage graph]
+    E --> F[Native metric + error attribution]
+    F --> G[Evidence receipts + executed notebooks]
+    G --> H[CI + reproducibility gates]
+```
 
-A prediction-only fidelity audit then compared the scored-reference output with the failed candidate. The candidate preserved the same preview detections and coordinates and differed through **eight association-edge edits** across four movies. Because hidden labels are unavailable, the audit is descriptive rather than causal, but it redirected the project away from further local graph micro-tuning.
+The repository separates **modeling**, **evaluation**, and **evidence** so improvements cannot be accepted solely because an intermediate metric looks better.
 
-## Public 0.953 reproduction and diversity audit
+## What I built
 
-One exact saved notebook version advertised at **0.953** was source/output/version hash-gated and accepted by Kaggle as submission **56687425**. Its official score was still pending at the latest captured evidence cutoff.
+- an installable `src/biohub_tracking` Python package with reusable evaluation, feature, integration, and model components;
+- original temporal, graph, and candidate-set modeling experiments under `research/`;
+- a 3D U-Net-style temporal model and candidate-set transformer components;
+- sparse-supervision-aware graph evaluation and exact edge/division error accounting;
+- source/output fidelity checks that distinguish detector drift from association-only changes;
+- experiment receipts, provenance records, and versioned configs;
+- seven executed research notebooks plus a presentation notebook;
+- CI that validates package integrity, notebooks, publication boundaries, synthetic/unit tests, and evidence tooling from a fresh checkout.
 
-Two other public 0.953 notebook lineages were then audited for prediction diversity. Their complete saved outputs were byte-for-byte identical to the first public 0.953 output: **238,260 rows, 121,219 nodes, 117,041 edges**, with the same SHA-256 beginning **d52a5d…**. They therefore provided no independent ensemble diversity.
+## Selected engineering and research outcomes
 
-A separate source audit showed that the public 0.953 lineage contains more than a small coordinate-refinement head; it also includes additional association/relinking behavior. The small refinement artifact itself was inspected safely as a **224→32→3** MLP with normalization tensors, but no claim is made that the head alone explains the public-score difference.
+| Outcome | Evidence | Why it matters |
+|---|---:|---|
+| Faithful external reference reproduction | **0.947** scored evaluation | Established a stable control before experimentation |
+| Retrospective local graph improvement | **0.933046 → 0.948059** | Demonstrated controlled integration and exact graph accounting |
+| Independent external check of that candidate | **0.946** | Revealed that repeated inspection had made the development cohort overly optimistic |
+| Association feature study | **557** numeric features | Tested representation breadth before adding model complexity |
+| Failure localization | **8** association-edge edits across four movies, with detections/coordinates preserved | Narrowed a regression from “pipeline drift” to association generalization |
+| Component optimization | **~34.7×** faster with parity-checked selected edges | Shows performance engineering without silently changing model behavior |
+| Research execution | **45** completed scientific workflows | Negative scientific results are retained separately from broken executions |
 
-## Higher-order association frontier
-
-The final structurally different branch evaluated the public HOCT higher-order tracking system while freezing detections. The pinned model/runtime reached real GPU inference, but global decoding and then a downstream graph-API integration issue prevented a native-metric result before the evidence cutoff. That branch is recorded as **unfinished engineering work, not a negative model result**.
-
-## Delivery performance
-
-- parity-checked motion linking reproduced selected edges/attributes while reducing measured component time by about **34.7×**;
-- repeated validation/reselection was removed from the frozen delivery path;
-- public/private assets were hash-checked instead of silently substituted;
-- launch, output verification, and competition submission were treated as separate idempotent states.
-
-The 34.7× figure is a **component benchmark**, not a whole-notebook speedup claim.
+That 0.946 external result is intentionally visible. It is a stronger engineering signal than hiding an unfavorable experiment: the project changed direction when the evidence contradicted the local metric.
 
 ## Evidence discipline
 
-The official 0.946 regression is treated as stronger evidence than the retrospective 0.948059 development score. Diagnostic cohorts that overlap public pretraining are explicitly labeled contaminated/in-sample rather than clean validation. Passing tests and local graph improvements are never presented as leaderboard improvements.
+I used four evidence tiers throughout the project:
 
-## Reproducibility and archival status
+1. **External scored evidence** — strongest available independent check.
+2. **Retrospective development evidence** — useful for controlled comparisons, not treated as clean generalization.
+3. **Diagnostic evidence** — source, output, fidelity, and graph-difference audits.
+4. **Engineering evidence** — runtime, hashing, packaging, failure-path, and reproducibility tests.
 
-A fresh clone contains all first-party source needed to install, test, and inspect the published experiments. External competition data and third-party weights are fetched from their original sources because redistributing them in Git would be inappropriate and unnecessarily large.
+This separation prevented proxy gains, contaminated cohorts, and incomplete runs from being presented as stronger evidence than they were.
 
-See [REPRODUCE.md](REPRODUCE.md) for the exact clone-to-tests workflow and [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for evidence boundaries.
+## Repository map
 
-[Rights](RIGHTS.md) · [Attribution](ATTRIBUTION.md)
+| Path | What an employer can review |
+|---|---|
+| [`src/biohub_tracking/`](src/biohub_tracking/) | Reusable package code, graph evaluation, feature logic, model components, integration utilities |
+| [`research/`](research/) | Executable experiment modules and controlled ablations |
+| [`notebooks/`](notebooks/) | Executed evidence notebooks and visual portfolio |
+| [`tests/`](tests/) | Synthetic/unit coverage for package and publication behavior |
+| [`reports/`](reports/) | Compact result, provenance, and run receipts |
+| [`configs/`](configs/) | Versioned experiment and feature configuration |
+| [`docs/`](docs/) | Engineering overview, model card, experiment ledger, reproducibility notes |
+| [`.github/workflows/portfolio.yml`](.github/workflows/portfolio.yml) | Fresh-checkout quality gate |
+
+## Visual evidence
+
+![Exact tracking error analysis](assets/exact_error_budget_0.png)
+
+*Saved project output used for graph-level error attribution; the repository also includes the executed notebook that produced the analysis.*
+
+## Reproduce the public project checks
+
+```bash
+python -m pip install -r requirements-test.txt
+python -m pip install -e .
+python scripts/check_showcase.py
+python scripts/run_ci.py
+```
+
+See [REPRODUCE.md](REPRODUCE.md) for the full fresh-clone workflow and [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the evidence/data boundary.
+
+## What is intentionally not published
+
+Competition data, third-party pretrained weights, credentials, private AWS state, tuned private thresholds, large cached predictions/checkpoints, and private submission/orchestration machinery are not committed. External assets are referenced by immutable source/version identifiers and checksums where appropriate.
+
+This keeps the repository **inspectable and semi-reproducible without turning it into a dump of private infrastructure or licensed assets**.
+
+## Attribution
+
+Third-party architectures, organizer metric code, public notebooks, and public checkpoints are attributed to their original authors. Original integration, evaluation, feature research, experiment design, failure analysis, packaging, and portfolio engineering are identified as project work.
+
+[Attribution](ATTRIBUTION.md) · [Third-party notices](THIRD_PARTY_NOTICES.md) · [Rights](RIGHTS.md)

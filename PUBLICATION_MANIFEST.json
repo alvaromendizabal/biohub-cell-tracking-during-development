@@ -1,22 +1,45 @@
 {
-  "scope": "employer-facing showcase subset within reproducible executable archive",
-  "hash_type": "git_blob_sha1",
-  "files": {
-    ".github/workflows/portfolio.yml": "255a209ae7fa352e89cade98931d0f16b7cad7bb",
-    ".gitignore": "5a9fd099628e38b2e55d07561665d0d6bf8eb868",
-    "ATTRIBUTION.md": "d4125f5ecb2e51d5fe5af18f5eeaee55aeab7e00",
-    "CASE_STUDY.md": "1dd9e903f65d83e08ac2909e45832c12d7a08454",
-    "FRONTIER.md": "21642b6c61fca3ebf43179f0e0e72530b1b57fe8",
-    "LICENSE.md": "f9039148ee727707d56baca399e60e5b3679ffcf",
-    "README.md": "7541a84a45122a781cc065782ba204be79e16ca0",
-    "REPRODUCIBILITY.md": "cd0e5c272401f0ce13e71df3bea6ef1628687aaa",
-    "RESULTS.md": "f616e3ee09aec01b8a77cec0fa0cf3fef3106b07",
-    "RIGHTS.md": "91dbb531f92f5e1376423d4308c06a3401c59bab",
-    "THIRD_PARTY_NOTICES.md": "fc0c21e89990b9bd9e62226df5fe0cf187208135",
-    "assets/exact_error_budget_0.png": "629191443695e226cac3f3557b31acae649ccc69",
-    "licenses/royerlab-BSD-3-Clause.txt": "830713e4de20385bdea541d08aa897541d91f67e",
-    "notebooks/portfolio.ipynb": "2bd266a7283fa1126aadddbafef858678759c332",
-    "scripts/check_showcase.py": "9ce7271390c03a9c5def8258bbad6efd96dfed91"
-  },
-  "release_id": "biohub-reproducible-archive-20260930"
+  "release_id": "biohub-employer-portfolio-20261005",
+  "scope": "employer-facing semi-reproducible ML engineering portfolio",
+  "required_files": [
+    "README.md",
+    "CASE_STUDY.md",
+    "RESULTS.md",
+    "REPRODUCE.md",
+    "REPRODUCIBILITY.md",
+    "FRONTIER.md",
+    "docs/ENGINEERING_OVERVIEW.md",
+    "docs/MODEL_CARD.md",
+    "docs/PUBLICATION_SCOPE.md",
+    "notebooks/README.md",
+    "notebooks/portfolio.ipynb",
+    "reports/portfolio_summary.json",
+    "scripts/check_showcase.py",
+    "scripts/verify_portfolio.py",
+    "scripts/run_ci.py",
+    ".github/workflows/portfolio.yml",
+    "ATTRIBUTION.md",
+    "THIRD_PARTY_NOTICES.md",
+    "RIGHTS.md"
+  ],
+  "required_directories": [
+    "src/biohub_tracking",
+    "research",
+    "tests",
+    "configs",
+    "reports",
+    "notebooks",
+    "docs",
+    "reproducibility"
+  ],
+  "excluded_public_artifacts": [
+    "private data",
+    "credentials",
+    "cloud account state",
+    "third-party weights",
+    "large checkpoints/caches",
+    "tuned private thresholds",
+    "private candidate graphs",
+    "private orchestration/submission machinery"
+  ]
 }

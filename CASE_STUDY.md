@@ -1,76 +1,113 @@
-# Case study | Tracking cells under sparse supervision
+# Case study | 3D cell tracking under sparse supervision
+
+## Executive summary
+
+This project combines computer vision, temporal modeling, graph reasoning, and ML systems engineering. The task is to reconstruct cell identities and division lineages through 3D microscopy sequences where annotations are sparse and errors compound across time.
+
+My contribution covered the full research loop: reference reproduction, feature and model development, native-metric evaluation, failure analysis, AWS/GPU execution, runtime optimization, provenance controls, and publication-quality packaging.
+
+The most important result was not a single model change. It was building an evidence process strong enough to reject locally attractive ideas when independent evidence disagreed.
 
 ## The problem
 
-A tracking system must detect cells, preserve identity through time, and represent divisions without creating invalid lineage structure. Sparse annotations complicate evaluation: absence is not automatically a negative example, while the competition metric still penalizes wrong links, false forks, and detection-count mismatch.
+A complete tracker must solve three coupled tasks:
+
+1. **Detection** — localize cells in anisotropic 3D volumes.
+2. **Association** — connect the same cell across adjacent time points.
+3. **Division modeling** — create valid one-parent/two-daughter lineage events without false forks.
+
+Sparse labels make this harder: an unlabeled cell is not automatically a negative example, and a small association mistake can alter an entire downstream lineage graph.
 
 ## My role
 
-I reproduced a scored external reference, implemented original temporal and graph representations, built an AWS-centered experiment and evidence workflow, reconciled proxy and native metrics, integrated completed research back into the strongest full baseline, audited prediction fidelity after an official regression, reproduced a public 0.953 saved-output lineage, and explored a higher-order association model under frozen detections.
+I treated the project as an end-to-end ML system rather than an isolated model notebook. I:
 
-Public architectures, notebooks, checkpoints, and organizer code remain attributed to their original authors.
+- reproduced and froze a scored reference for controlled comparisons;
+- implemented original temporal, graph, and candidate-set representations;
+- evaluated 557 association features and multiple learned association families;
+- reconciled proxy metrics with organizer-native graph behavior;
+- built edge- and division-level error budgets;
+- diagnosed output fidelity after an external regression;
+- used AWS GPU environments with resumable artifacts and bounded runs;
+- optimized a motion-linking component with output parity checks;
+- packaged reusable code, executed notebooks, tests, provenance receipts, and CI.
 
-## Benchmark first
+Public architectures, checkpoints, notebooks, and organizer code remain attributed to their original authors.
 
-The project established an official **0.947** Kaggle reference. Development metrics and diagnostic studies were kept separate from official performance.
+## System design
 
-The research moved through feature ablation, graph corrections, sparse-real transfer, grouped temporal models, mixture-of-experts ranking, dense parental competition, image-conditioned variants, native metric reconciliation, and source-preserving integration.
+| Layer | Engineering decision |
+|---|---|
+| Input | Treat physical 3D geometry and anisotropy explicitly |
+| Detection | Keep detection and association evidence separable so regressions can be localized |
+| Candidate generation | Preserve a strong frozen reference while evaluating new candidate relationships |
+| Representation | Combine geometric, temporal, graph, and learned candidate-set features |
+| Association | Evaluate both local ranking quality and complete graph effects |
+| Lineage constraints | Track false links, missed links, forks, and division structure |
+| Evaluation | Prefer native full-graph evidence over convenient proxy metrics |
+| Delivery | Hash outputs, preserve receipts, bound runs, verify notebooks, and test from a fresh clone |
 
-## A local win that failed officially
+## Decision 1 — freeze a trustworthy reference
 
-The strongest retrospective integration replayed **37 saved policies and two controlled combinations** against the original Harmonic development control.
+A faithfully reproduced external reference scored **0.947**. Freezing that result as a control made later comparisons interpretable and prevented baseline drift from being mistaken for research progress.
 
-The selected candidate improved the local exact metric from **0.933046 to 0.948059** (**+0.015014**), increased correct edges from 2,391 to 2,392, reduced false edges from 111 to 110, and recovered one additional annotated division without adding a false division.
+## Decision 2 — evaluate the complete graph, not just a classifier
 
-The candidate then scored **0.946** on Kaggle, below the unchanged **0.947** reference.
+Several ideas improved parent-ranking or local association measures without improving the complete lineage graph. The project therefore tracked exact edge true positives, false positives, false negatives, and division topology alongside model-level metrics.
 
-That result changed the project more than another local gain would have. The development cohort had been repeatedly inspected and overlapped public pretraining, so the official regression demonstrated that the promotion evidence was not an unbiased generalization estimate.
+Across one five-movie retrospective cohort, a selected integration changed the local graph metric from **0.933046 to 0.948059**, with edge TP 2,391→2,392, FP 111→110, FN 112→111, and one additional correctly recovered annotated division.
 
-## Diagnose the regression before adding more models
+An independent scored evaluation of that candidate was **0.946**, below the frozen 0.947 reference. That contradiction changed the research direction: the repeatedly inspected cohort was no longer treated as an unbiased estimate of generalization.
 
-The next step was a prediction-only fidelity audit.
+## Decision 3 — diagnose the regression before adding complexity
 
-The baseline and failed candidate outputs were hash-bound, then compared without hidden labels. Their preview detection sets, frames, and coordinates were identical. The difference was a small set of **eight association-edge edits across four movies**.
+I compared the frozen-reference and candidate predictions using hash-bound output audits. The candidate preserved the same preview detections and coordinates; the difference was **eight association-edge edits across four movies**.
 
-This did not prove the causal reason for the hidden-score decline, but it ruled out a broad class of accidental detector/coordinate drift explanations. The appropriate response was therefore not another tiny association threshold sweep.
+This ruled out a broad detector/coordinate-drift explanation and focused the lesson on association generalization and validation quality.
 
-## Reproduce the public frontier carefully
+## Decision 4 — measure prediction diversity, not model names
 
-The final-day sprint then audited public notebooks advertised at **0.953**.
+Multiple public notebook variants that appeared to be separate systems were checked at the complete-output level. Their saved predictions were byte-identical. The practical lesson is directly transferable to ensemble work: architectural or notebook diversity is not useful if residual behavior is the same.
 
-One exact saved notebook version was verified by source and output hash and submitted as **56687425**. It was accepted and still pending at the latest captured evidence cutoff, so 0.953 is not presented as a verified personal score.
+## Decision 5 — optimize runtime only with parity evidence
 
-Two other public 0.953 notebook versions were tested for prediction diversity. They generated the same complete hidden-test output byte-for-byte, with identical node and edge counts. That closed the idea of treating the three notebooks as an ensemble.
+A motion-linking component was reduced from roughly **80.5 seconds to 2.32 seconds**, about **34.7×**, while preserving selected edges under parity checks. I report this as a component benchmark, not a whole-pipeline speedup.
 
-A source-level audit also showed that the 0.953 lineage was not simply the 0.947 system plus one tiny coordinate head. The refinement artifact was a compact 224→32→3 MLP, while the notebook also introduced additional relinking and recovery logic. That distinction matters because it prevents falsely attributing a leaderboard gain to the easiest visible component.
+## What did not work
 
-## Try a structurally different association model
+Several completed experiments were closed rather than polished into success stories:
 
-The next branch evaluated HOCT, a higher-order cell-tracking transformer, while holding the detection layer fixed.
+- broad association feature expansion did not improve tracking despite **557** numeric candidates;
+- sparse-real division fine-tuning produced no exact graph gain;
+- dense parental competition added true associations but too many false links/forks;
+- some image-conditioned work was blocked by an input-coordinate contract before a valid fit;
+- a higher-order tracking branch reached GPU inference but not a complete native-metric result before the evidence cutoff.
 
-The public implementation reached real GPU inference on the AWS L4 runtime. The first decoding path was blocked by an unavailable Gurobi license and a bounded SCIP timeout; a later fast decoder reached the end of neural inference but hit a graph-API integration error before native scoring.
+Keeping these outcomes visible demonstrates model judgment: a negative scientific result is different from a broken execution, and neither should be rewritten as a win.
 
-No scientific HOCT result was established before the publication cutoff. Recording that distinction is intentional: an unfinished execution is not evidence that the model failed.
+## ML systems engineering
 
-## Engineering decisions
+The research workflow used AWS as the canonical environment and emphasized:
 
-Several engineering controls became first-class project artifacts:
+- resumable caches/checkpoints;
+- immutable artifact hashes;
+- isolated CPU/GPU runtime layers;
+- bounded runtime and failure returns;
+- persistent notebook outputs;
+- source/output/version checks;
+- synthetic/unit tests;
+- a fresh-checkout CI gate;
+- explicit separation of public artifacts from private data, weights, credentials, and orchestration.
 
-- immutable hashes for scored and candidate outputs;
-- separate source-identity and prediction-fidelity evidence axes;
-- isolated CPU/GPU/runtime overlays rather than destructive environment mutation;
-- bounded execution time and cost;
-- resumable caches and explicit reuse contracts;
-- compact failure returns;
-- persistent notebook-output checks;
-- idempotent remote submission guards.
+## Transferable skills demonstrated
 
-A parity-checked motion-linking optimization also reduced a measured component from roughly 80.5 seconds to 2.32 seconds, about **34.7×**, without changing selected edges.
+- **Computer vision:** volumetric data, localization, temporal context, augmentation/model components.
+- **Graph ML:** association graphs, lineage constraints, topology-aware error analysis.
+- **Model development:** ablations, transformers, representation research, failure-driven iteration.
+- **Evaluation design:** validation contamination, native metrics, exact error budgets, independent evidence.
+- **MLOps / ML systems:** AWS GPU workflows, reproducibility, artifact provenance, CI, bounded execution.
+- **Technical judgment:** stopping weak branches, preserving adverse evidence, and separating scientific from engineering failures.
 
-## Evidence limitations
+## Portfolio boundary
 
-The development movies are retrospective diagnostics, not clean hidden-test validation. Some public pretrained detector checkpoints were trained on all annotated train videos, so train-movie evaluation is explicitly treated as contaminated/in-sample diagnostic evidence.
-
-The official 0.946 regression is therefore weighted more heavily than the local 0.948059 promotion result.
-
-This repository intentionally omits private datasets, model weights, exact feature recipes, tuned thresholds, per-movie corrections, executable runners, and submission machinery.
+The public repository contains the reusable first-party package, tests, selected research modules, executed notebooks, compact evidence receipts, and provenance needed to inspect the work. It intentionally omits private datasets, model weights, tuned private thresholds, large caches/checkpoints, credentials, and private submission/orchestration machinery.

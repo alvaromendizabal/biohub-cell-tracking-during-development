@@ -1,14 +1,12 @@
 {
-  "snapshot_as_of_utc": "2026-09-22T02:05:40Z",
+  "snapshot_as_of_utc": "2026-09-29T23:02:00Z",
+  "project": "3D cell tracking and lineage reconstruction",
+  "scope": "Employer-facing portfolio snapshot of completed research and engineering evidence.",
   "official_public_score": 0.947,
-  "submission_ref": 56376695,
-  "reference_notebook": "alvaromendizabal/biohub-harmonic-fusion-exact-repro",
-  "notebook_version": 1,
-  "leader_snapshot_score": 0.974,
-  "leader_snapshot_observed_utc": "2026-09-21T17:51:00Z",
-  "recorded_gap": 0.027,
-  "independently_recreated_leader_training": false,
-  "new_challenger_official_score": null,
+  "reference_submission": 56376695,
+  "completed_scientific_workflows": 45,
+  "executed_evidence_notebooks": 7,
+  "association_features_evaluated": 557,
   "completed_five_movie_baseline": {
     "score": 0.933046,
     "edge_tp": 2391,
@@ -18,14 +16,18 @@
     "division_fp": 1,
     "division_fn": 5
   },
-  "latest_attempt": {
-    "name": "image-appearance continuation association",
-    "status": "blocked_before_fit",
-    "error": "IMAGE_COORDINATE_BOUNDS",
-    "elapsed_seconds": 31.319,
-    "new_fits": 0,
-    "new_submissions": 0,
-    "notebook30_completed": false
+  "selected_retrospective_candidate": {
+    "score": 0.948059,
+    "external_scored_result": 0.946
   },
-  "scope": "Public portfolio snapshot of completed reference reproduction and research; not a claim that research is finished or the leader was beaten."
+  "fidelity_audit": {
+    "changed_association_edges": 8,
+    "movies_with_edge_changes": 4,
+    "detection_set_preserved": true,
+    "shared_coordinates_preserved": true
+  },
+  "engineering": {
+    "motion_linking_component_speedup_x": 34.7,
+    "parity_checked": true
+  }
 }
