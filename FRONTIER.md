@@ -1,60 +1,55 @@
-# Research frontier
+# Research directions
 
-## Final verified state at publication cutoff
+This document records the technical directions that remain interesting after the published evidence snapshot. It is intentionally framed around **validation quality, representation, and system design** rather than external ranking.
 
-The competition deadline has passed, so this document records the research frontier rather than an active submission plan.
+## Current technical conclusions
 
-The strongest **verified personal official score** in the captured evidence remains **0.947** from submission 56376695.
+- A stable frozen reference is essential for controlled graph experiments.
+- Retrospective metrics on repeatedly inspected embryos are useful diagnostics but weak promotion evidence.
+- Full-graph behavior can contradict parent-level or local association improvements.
+- Prediction diversity must be measured at the output/error level; different model names do not guarantee complementary behavior.
+- Detection quality, association quality, and division topology should be evaluated separately before end-to-end integration.
+- Runtime optimizations should carry parity evidence when they affect graph construction.
 
-The locally qualified source-preserving candidate scored **0.946** officially, despite improving the retrospective development metric from 0.933046 to 0.948059. That result closes the specific local graph-edit policy as generalization evidence.
+## Highest-value future work
 
-An exact public notebook advertised at 0.953 was accepted as submission **56687425**, but it was still pending at the latest captured evidence cutoff. It is therefore tracked as an accepted reproduction attempt, not promoted to a verified personal score.
+### 1. Clean embryo-disjoint validation
 
-## What the official regression taught us
+Build a provenance-aware split where upstream pretrained components have not seen the primary validation embryos, and keep that split insulated from iterative manual tuning.
 
-The post-submission fidelity audit established that the failed candidate did not alter the preview detection universe or coordinates. It made only a small number of association-edge changes.
+### 2. Frozen-detection higher-order association
 
-The remaining uncertainty is therefore not “did the deployment accidentally change detections?” but whether association changes selected on an in-sample/repeatedly inspected cohort can generalize at all.
+Complete a structurally different higher-order association comparison while holding detections fixed. This isolates association quality from detector changes and tests whether richer global context provides genuinely different residual behavior.
 
-That shifts the research priority toward **independent validation and structurally new representations**.
+### 3. Localization-focused detector study
 
-## Public 0.953 lineage
+Compare a temporal 3D reference with a high-resolution 2.5D/3D alternative using centroid error, close-neighbor separation, temporal consistency, and downstream graph quality.
 
-Three public notebooks advertised at 0.953 were audited. Their complete saved prediction outputs were byte-identical, so they are one prediction lineage for diversity purposes.
+### 4. Out-of-fold fusion only when diversity is demonstrated
 
-The associated source audit indicates that the lineage combines coordinate refinement with additional relinking/recovery logic. The refinement head is small, but the available evidence does not isolate it as the source of the full public-score difference.
+Learned fusion should be attempted only after candidate systems show complementary held-out errors. Out-of-fold predictions are required so the fusion layer does not train on in-sample base-model behavior.
 
-A future clean study would need same-source head-on/head-off inference with version-locked historical inputs and embryo-disjoint upstream training provenance.
+### 5. Division logic after detector/linker selection
 
-## Higher-order association
+Division-specific modeling should be evaluated after upstream components are frozen, with promotion based on complete graph behavior rather than isolated division recall.
 
-HOCT remains the most interesting unfinished association branch because it is structurally different from the Harmonic linker and the project's grouped-tracklet/MOE families.
+## Closed or deprioritized branches
 
-The deadline sprint established that:
+- broad feature expansion without graph improvement;
+- point-only parental competition that increases false links/forks;
+- repeated micro-adjustments on the same inspected development cohort;
+- ensemble ideas based on nominal model diversity without prediction diversity.
 
-- the public model can run on the project's GPU environment;
-- neural inference completed on a large movie;
-- global ILP decoding was operationally constrained by solver availability/runtime;
-- a source-preserving fast decoder still needed one final API integration fix before native scoring.
+## Evidence required to reopen a branch
 
-That is enough to keep HOCT on the future research frontier, but not enough to claim a metric gain.
+A previously closed idea should return only with at least one of:
 
-## Recommended next research layer
+- new independent validation data;
+- a materially different representation;
+- a corrected evaluation contract;
+- a measured complementary error pattern;
+- a resolved engineering blocker that prevented a valid scientific result.
 
-If this project is continued outside the competition deadline, the highest-value sequence is:
+## Public/private boundary
 
-1. reconstruct a clean embryo-disjoint detector validation regime;
-2. finish the frozen-detection HOCT comparison under the native metric;
-3. run a controlled localization ablation on the public refinement mechanism;
-4. test a genuinely independent high-resolution 2.5D detector representation;
-5. evaluate ensemble value using prediction/residual diversity rather than notebook lineage names.
-
-The goal is to escape the 0.947/0.953 public lineage by changing validation quality and representation, not by accumulating more local graph micro-adjustments.
-
-## What remains private
-
-This repository does not publish model weights, private AWS orchestration, tuned thresholds, exact feature recipes, cached candidate graphs, competition data, or executable submission logic.
-
-## Status
-
-**Verified official score 0.947; locally promoted candidate officially regressed to 0.946; exact public-0.953 reproduction accepted but unscored at the latest captured evidence cutoff; public 0.953 variants proved prediction-identical; HOCT native scoring unfinished.**
+The repository publishes enough first-party code and evidence for technical review while withholding private data, third-party weights, tuned private thresholds, large caches/checkpoints, and private orchestration.
