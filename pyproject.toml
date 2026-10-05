@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "biohub-tracking-portfolio"
 version = "0.1.0"
-description = "Evidence-led 3D cell tracking: public-reference reproduction, feature research, and graph error analysis"
+description = "3D cell tracking and lineage graph ML: temporal modeling, graph evaluation, reproducible research, and AWS-centered engineering"
 requires-python = ">=3.11,<3.14"
 readme = "README.md"
 
