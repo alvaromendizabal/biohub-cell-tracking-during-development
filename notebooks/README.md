@@ -1,19 +1,17 @@
 # Notebook reading guide
 
-Start with **[00 · Portfolio overview](00_portfolio_overview.ipynb)**, executed from
-committed evidence in the publication environment. The notebooks below are genuine
-saved AWS executions; no research was rerun during publication.
+These are **executed evidence notebooks**, not presentation-only mockups. Start with the overview, then choose the technical slice that matches your interests.
 
-| Notebook | What to look for |
+| Notebook | Employer-facing takeaway |
 |---|---|
-| [23 · Training failure analysis](23_organizer_training_reproduction.ipynb) | Why a finite smoke was not proof of stable full training; checkpoint quarantine |
-| [25 · Anchored association ablation](25_anchored_association_ablation.ipynb) | Strong-reference preservation, 557 features, and probability improvement without tracking gain |
-| [26 · Division-retention decision](26_learned_division_retention.ipynb) | Input applicability: no eligible two-daughter alternatives |
-| [27 · Temporal reassignment](27_bidirectional_temporal_reassignment.ipynb) | Graph invariants and a completed five-movie no-change comparison |
-| [28 · Exact error attribution](28_exact_tracking_error_budget.ipynb) | Sparse supervision, competing parents, and missed-division topology |
-| [29 · Competing-parent learning](29_competing_parent_division_model.ipynb) | Cross-embryo fits, few distinct events, 108 additions without measured gain |
+| [00 · Portfolio overview](00_portfolio_overview.ipynb) | End-to-end problem framing, evidence categories, and selected project outcomes |
+| [23 · Training failure analysis](23_organizer_training_reproduction.ipynb) | Checkpoint quarantine and why a finite smoke test is not proof of stable full training |
+| [25 · Anchored association ablation](25_anchored_association_ablation.ipynb) | 557-feature representation study and strong-reference preservation |
+| [26 · Division-retention decision](26_learned_division_retention.ipynb) | Input-applicability checks and disciplined experiment closure |
+| [27 · Temporal reassignment](27_bidirectional_temporal_reassignment.ipynb) | Temporal context, graph invariants, and controlled no-change evidence |
+| [28 · Exact error attribution](28_exact_tracking_error_budget.ipynb) | Sparse supervision, competing parents, and edge/division error budgets |
+| [29 · Competing-parent learning](29_competing_parent_division_model.ipynb) | Cross-embryo fitting, topology tradeoffs, and why extra true links can still hurt the graph |
 
-**Notebook 30 is not marked executed:** its first real-data image-profile extraction
-failed before fitting. The source and exact status are retained in `research/appearance_association/`
-and [STATUS.md](../docs/STATUS.md). Publishing a blank or fabricated completed notebook
-would obscure the actual state.
+The repository intentionally keeps an incomplete image-conditioned branch in source form rather than publishing a fabricated completed notebook. That distinction—scientific result versus blocked execution—is part of the project’s evidence discipline.
+
+See [CASE_STUDY.md](../CASE_STUDY.md) for the narrative and [RESULTS.md](../RESULTS.md) for the compact evidence table.
