@@ -1,31 +1,22 @@
-# Current state and archival status
+# Project status
 
-Evidence cutoff: **September 29, 2026, 23:02 UTC**.
+Public portfolio evidence cutoff: **September 29, 2026, 23:02 UTC**.
 
-## Verified competition state
+## Current public state
 
-- Harmonic reference reproduction: **0.947**, submission 56376695.
-- Locally qualified source-preserving candidate: **0.946**, submission 56659462.
-- Image/division probe: **0.946**, submission 56503335.
-- Exact public notebook advertised at 0.953: submission **56687425**, accepted and still pending at the captured cutoff.
+- The repository is an archived **employer-facing ML engineering portfolio**, not an active experiment workspace.
+- The reusable Python package, selected research modules, tests, configs, reports, and **seven executed evidence notebooks** are committed.
+- A faithfully reproduced external reference scored **0.947**.
+- A retrospective candidate improved the inspected five-movie development metric to **0.948059** but scored **0.946** on independent evaluation, establishing a validation/generalization mismatch.
+- The prediction-fidelity audit localized the difference to **eight association-edge edits** while preserving the compared detections and coordinates.
+- The public CI path validates portfolio integrity, notebook evidence, package syntax/tests, and reproduction utilities from a fresh checkout.
 
-The official regression is treated as stronger evidence than the local 0.948059 retrospective development score.
+## Research state
 
-## Final-day audits
+Completed branches and negative results are preserved because they changed technical decisions. Unfinished work is labeled as unfinished rather than treated as model-quality evidence.
 
-- baseline/candidate preview detections and coordinates were identical; eight association-edge edits differed across four movies;
-- three audited public 0.953 notebook versions produced byte-identical complete prediction outputs;
-- V1284 source/head inspection established a compact 224→32→3 head but did not isolate its causal leaderboard contribution;
-- HOCT reached real GPU neural inference with frozen detections but did not reach a completed native-metric result before cutoff.
+The highest-value future work is described in [`../FRONTIER.md`](../FRONTIER.md), with emphasis on clean embryo-disjoint validation, structurally different association representations, localization quality, and measurable prediction diversity.
 
-## Reproducible repository state
+## Publication boundary
 
-The executable September 22 research snapshot has been restored from Git history onto the archival branch: package source, research modules, configs, reports, tests, and seven executed evidence notebooks.
-
-The root docs and final-evidence utilities capture the September 23–29 research conclusions and reproduce the saved-output fidelity/diversity claims from downloaded CSV artifacts.
-
-## AWS state during archive
-
-The Biohub JupyterLab app was already **Deleted**. The SageMaker Space remained **InService** with a **128-GB EBS volume**. The archive is intended to make that remaining Space disposable after merge/CI verification.
-
-No Biohub-specific S3 bucket or top-level Biohub prefix was identified. Other S3 buckets belong to separate projects and are outside this cleanup.
+The public project excludes private datasets, credentials, AWS account state, third-party weights, large checkpoints/caches, tuned private thresholds, and private orchestration/submission machinery.
