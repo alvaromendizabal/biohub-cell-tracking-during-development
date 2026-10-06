@@ -1,0 +1,19 @@
+{
+  "description": "Authored toy lineage: A divides into C and D; B continues as E. Scores are invented demonstration values, not model predictions.",
+  "nodes": [
+    {"node_id": 1, "label": "A", "t": 0},
+    {"node_id": 2, "label": "B", "t": 0},
+    {"node_id": 3, "label": "C", "t": 1},
+    {"node_id": 4, "label": "D", "t": 1},
+    {"node_id": 5, "label": "E", "t": 1}
+  ],
+  "candidates": [
+    {"source_id": 1, "target_id": 3, "edge_score": 0.91, "misleading_score": 0.91},
+    {"source_id": 1, "target_id": 4, "edge_score": 0.88, "misleading_score": 0.10},
+    {"source_id": 1, "target_id": 5, "edge_score": 0.90, "misleading_score": 0.99},
+    {"source_id": 2, "target_id": 3, "edge_score": 0.15, "misleading_score": 0.15},
+    {"source_id": 2, "target_id": 4, "edge_score": 0.10, "misleading_score": 0.88},
+    {"source_id": 2, "target_id": 5, "edge_score": 0.89, "misleading_score": 0.20}
+  ],
+  "expected_edges": [[1, 3], [1, 4], [2, 5]]
+}

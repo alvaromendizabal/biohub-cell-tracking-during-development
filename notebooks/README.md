@@ -1,6 +1,8 @@
 # Notebook reading guide
 
-These are **executed evidence notebooks**, not presentation-only mockups. Start with the overview, then choose the technical slice that matches your interests.
+The table lists **one executed overview and six archived research notebooks**. Each retains execution counts and saved PNG evidence. `portfolio.ipynb` is a separate presentation-only notebook and is not counted as an executed experiment. Start with the overview, then choose a technical slice.
+
+For a small example that runs from this clone, see the [authored lineage demonstration](../examples/README.md). It is separate from the historical research evidence.
 
 | Notebook | Employer-facing takeaway |
 |---|---|

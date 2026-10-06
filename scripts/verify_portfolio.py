@@ -4,7 +4,7 @@ import ast, base64, binascii, json, re, struct, zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-IGNORED = {".git", "__pycache__", ".pytest_cache", ".ipynb_checkpoints", ".venv", ".venv-review"}
+IGNORED = {".git", "__pycache__", ".pytest_cache", ".ruff_cache", ".ipynb_checkpoints", ".venv", ".venv-review"}
 PRIVATE_PARTS = {".aws", ".kaggle", "data", "outputs", "artifacts", "checkpoints", "weights", "cache", "caches", "external", "repro_data"}
 BAD_EXT = {".pt", ".pth", ".ckpt", ".safetensors", ".pkl", ".pickle", ".npz", ".npy", ".parquet", ".pyz", ".zip", ".gz", ".tar"}
 SECRET = re.compile(r"(?:AKIA|ASIA)[A-Z0-9]{16}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")

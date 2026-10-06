@@ -16,11 +16,11 @@ I owned the integration and research workflow across those layers, while clearly
 
 ### Volumetric detection
 
-`src/biohub_tracking/models/temporal_unet3d.py` provides a compact 3D U-Net-style temporal component using 3D convolutions, instance normalization, SiLU activations, and skip connections.
+[`public_reproduction/models.py`](../src/biohub_tracking/public_reproduction/models.py) contains the project-native `TemporalUNet3DReproduction` adaptation. The architecture code is public; it is separate from the third-party pretrained checkpoint used by the scored reference.
 
 ### Candidate-set modeling
 
-`src/biohub_tracking/models/candidate_set_transformer.py` implements a Transformer encoder over candidate association sets. This representation allows candidates to be scored in context rather than independently.
+The same module contains `SimpleNodeTransformerReproduction` and the combined `UNetNodeTransformerReproduction`. Candidate-set modeling lets associations use context from other candidates. A finite smoke test did not establish stable full training; the separate full attempt became nonfinite.
 
 ### Feature and graph research
 
@@ -82,11 +82,13 @@ The public repository is designed to fail closed on common portfolio problems:
 
 GitHub Actions installs the package from a clean checkout and runs the public integrity and synthetic/unit suites.
 
+The [authored lineage example](../examples/README.md) runs the existing constrained graph solver with no private inputs. Optional neural components are not trained by the lightweight CI suite.
+
 ## What to inspect in code review
 
 | Review goal | Suggested path |
 |---|---|
-| Model architecture | `src/biohub_tracking/models/` |
+| Model architecture | [`public_reproduction/models.py`](../src/biohub_tracking/public_reproduction/models.py) |
 | Evaluation / sparse supervision | `src/biohub_tracking/annotation_eval.py`, `labeled_eval.py` |
 | Feature engineering | `src/biohub_tracking/feature_*` |
 | Controlled research modules | `research/` |

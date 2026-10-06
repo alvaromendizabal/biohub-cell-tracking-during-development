@@ -10,7 +10,9 @@ import argparse
 import csv
 import hashlib
 import json
+import math
 import tempfile
+from decimal import Decimal, InvalidOperation
 from pathlib import Path
 
 
@@ -25,13 +27,24 @@ def sha256(path: Path) -> str:
 def _int_or_none(value: str | None):
     if value is None or value == "":
         return None
-    return int(float(value))
+    # Pandas can serialize nullable integer columns as "123.0". Accept that
+    # representation without routing identities through lossy binary floats.
+    try:
+        number = Decimal(value)
+    except InvalidOperation as exc:
+        raise ValueError(f"invalid integer value {value!r}") from exc
+    if not number.is_finite() or number != number.to_integral_value():
+        raise ValueError(f"expected a finite integer, got {value!r}")
+    return int(number)
 
 
 def _float_or_none(value: str | None):
     if value is None or value == "":
         return None
-    return float(value)
+    number = float(value)
+    if not math.isfinite(number):
+        raise ValueError(f"expected a finite coordinate, got {value!r}")
+    return number
 
 
 def load_submission(path: Path):
@@ -43,27 +56,47 @@ def load_submission(path: Path):
         required = {"dataset", "row_type"}
         if not reader.fieldnames or not required.issubset(reader.fieldnames):
             raise ValueError(f"{path}: missing required columns {sorted(required)}")
+        if len(reader.fieldnames) != len(set(reader.fieldnames)):
+            raise ValueError(f"{path}: duplicate column names")
+        row_columns = {
+            "node": {"node_id", "t", "z", "y", "x"},
+            "edge": {"source_id", "target_id"},
+        }
         for row in reader:
             rows += 1
-            ds = str(row["dataset"])
-            rt = str(row["row_type"]).lower()
-            if rt == "node":
-                nid = _int_or_none(row.get("node_id"))
-                t = _int_or_none(row.get("t"))
-                z = _float_or_none(row.get("z"))
-                y = _float_or_none(row.get("y"))
-                x = _float_or_none(row.get("x"))
-                if nid is None:
-                    raise ValueError(f"{path}: node row without node_id")
-                nodes[(ds, nid)] = (t, z, y, x)
-            elif rt == "edge":
-                src = _int_or_none(row.get("source_id"))
-                tgt = _int_or_none(row.get("target_id"))
-                if src is None or tgt is None:
-                    raise ValueError(f"{path}: edge row without endpoints")
-                edges.setdefault(ds, set()).add((src, tgt))
-            else:
-                raise ValueError(f"{path}: unexpected row_type={rt!r}")
+            try:
+                if None in row or any(value is None for value in row.values()):
+                    raise ValueError("row length does not match the CSV header")
+                ds = row["dataset"]
+                if not ds.strip():
+                    raise ValueError("row without dataset")
+                rt = row["row_type"].lower()
+                if rt not in row_columns:
+                    raise ValueError(f"unexpected row_type={rt!r}")
+                missing = row_columns[rt] - row.keys()
+                if missing:
+                    raise ValueError(f"{rt} row missing columns {sorted(missing)}")
+                empty = [name for name in sorted(row_columns[rt]) if not row[name].strip()]
+                if empty:
+                    raise ValueError(f"{rt} row missing values {empty}")
+                if rt == "node":
+                    nid = _int_or_none(row["node_id"])
+                    t = _int_or_none(row["t"])
+                    z = _float_or_none(row["z"])
+                    y = _float_or_none(row["y"])
+                    x = _float_or_none(row["x"])
+                    if (ds, nid) in nodes:
+                        raise ValueError(f"duplicate node identity {(ds, nid)!r}")
+                    nodes[(ds, nid)] = (t, z, y, x)
+                else:
+                    src = _int_or_none(row["source_id"])
+                    tgt = _int_or_none(row["target_id"])
+                    dataset_edges = edges.setdefault(ds, set())
+                    if (src, tgt) in dataset_edges:
+                        raise ValueError(f"duplicate edge identity {(ds, src, tgt)!r}")
+                    dataset_edges.add((src, tgt))
+            except ValueError as exc:
+                raise ValueError(f"{path}: line {reader.line_num}: {exc}") from exc
     return {"rows": rows, "nodes": nodes, "edges": edges}
 
 

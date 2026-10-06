@@ -1,11 +1,12 @@
 # Project status
 
-Public portfolio evidence cutoff: **September 29, 2026, 23:02 UTC**.
+Scientific evidence cutoff: **September 29, 2026, 23:02 UTC**. Public documentation refreshed October 6, 2026; no new experiment or external score is claimed.
 
 ## Current public state
 
 - The repository is an archived **employer-facing ML engineering portfolio**, not an active experiment workspace.
-- The reusable Python package, selected research modules, tests, configs, reports, and **seven executed evidence notebooks** are committed.
+- The reusable package, selected research modules, tests, configs, and reports are committed, with **six archived research notebooks and one executed overview**, plus a presentation-only notebook.
+- The original AWS workspace has been removed, as confirmed by the owner on October 6. See the [archive record](DECOMMISSION.md).
 - A faithfully reproduced external reference scored **0.947**.
 - A retrospective candidate improved the inspected five-movie development metric to **0.948059** but scored **0.946** on independent evaluation, establishing a validation/generalization mismatch.
 - The prediction-fidelity audit localized the difference to **eight association-edge edits** while preserving the compared detections and coordinates.

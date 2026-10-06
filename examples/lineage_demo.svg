@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1140" height="490" viewBox="0 0 1140 490" role="img" aria-labelledby="title desc">
+<title id="title">Why lineage tracking needs constraints and evaluation</title>
+<desc id="desc">Five invented cells show an invalid independent selection, a correct constrained graph, and an incorrect graph that still satisfies structural checks.</desc>
+<rect width="1140" height="490" fill="#f5f7fa"/>
+<g font-family="Arial, sans-serif" fill="#183041">
+<text x="26" y="32" font-size="21" font-weight="700">A small graph exposes a large modeling lesson</text>
+<text x="26" y="55" font-size="13">Authored cells and scores · Existing public MILP solver · No microscopy, inference, or official score</text>
+<g transform="translate(20,74)">
+<rect width="350" height="365" rx="12" fill="#ffffff" stroke="#d8e1e8"/>
+<text x="16" y="28" font-size="17" font-weight="700">Independent choices</text>
+<text x="16" y="49" font-size="12">Three children violate the contract</text>
+<text x="35" y="82" font-size="12" fill="#647789">Frame 0</text><text x="248" y="82" font-size="12" fill="#647789">Frame 1</text>
+<line x1="84" y1="166" x2="256" y2="116" stroke="#17734d" stroke-width="3"/>
+<line x1="84" y1="166" x2="256" y2="216" stroke="#17734d" stroke-width="3"/>
+<line x1="84" y1="166" x2="256" y2="316" stroke="#be4048" stroke-width="3"/>
+<circle cx="64" cy="166" r="20" fill="#eef3f7" stroke="#be4048" stroke-width="2"/>
+<text x="64" y="171" text-anchor="middle" font-size="16" font-weight="700">A</text>
+<circle cx="64" cy="266" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="64" y="271" text-anchor="middle" font-size="16" font-weight="700">B</text>
+<circle cx="276" cy="116" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="121" text-anchor="middle" font-size="16" font-weight="700">C</text>
+<circle cx="276" cy="216" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="221" text-anchor="middle" font-size="16" font-weight="700">D</text>
+<circle cx="276" cy="316" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="321" text-anchor="middle" font-size="16" font-weight="700">E</text>
+<text x="16" y="351" font-size="12">Exact-ID toy edge agreement: 0.50</text></g>
+<g transform="translate(395,74)">
+<rect width="350" height="365" rx="12" fill="#ffffff" stroke="#d8e1e8"/>
+<text x="16" y="28" font-size="17" font-weight="700">Constrained selection</text>
+<text x="16" y="49" font-size="12">A division and a continuation</text>
+<text x="35" y="82" font-size="12" fill="#647789">Frame 0</text><text x="248" y="82" font-size="12" fill="#647789">Frame 1</text>
+<line x1="84" y1="166" x2="256" y2="116" stroke="#17734d" stroke-width="3"/>
+<line x1="84" y1="166" x2="256" y2="216" stroke="#17734d" stroke-width="3"/>
+<line x1="84" y1="266" x2="256" y2="316" stroke="#17734d" stroke-width="3"/>
+<circle cx="64" cy="166" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="64" y="171" text-anchor="middle" font-size="16" font-weight="700">A</text>
+<circle cx="64" cy="266" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="64" y="271" text-anchor="middle" font-size="16" font-weight="700">B</text>
+<circle cx="276" cy="116" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="121" text-anchor="middle" font-size="16" font-weight="700">C</text>
+<circle cx="276" cy="216" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="221" text-anchor="middle" font-size="16" font-weight="700">D</text>
+<circle cx="276" cy="316" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="321" text-anchor="middle" font-size="16" font-weight="700">E</text>
+<text x="16" y="351" font-size="12">Exact-ID toy edge agreement: 1.00</text></g>
+<g transform="translate(770,74)">
+<rect width="350" height="365" rx="12" fill="#ffffff" stroke="#d8e1e8"/>
+<text x="16" y="28" font-size="17" font-weight="700">Valid graph, wrong answer</text>
+<text x="16" y="49" font-size="12">Constraints do not establish accuracy</text>
+<text x="35" y="82" font-size="12" fill="#647789">Frame 0</text><text x="248" y="82" font-size="12" fill="#647789">Frame 1</text>
+<line x1="84" y1="166" x2="256" y2="116" stroke="#17734d" stroke-width="3"/>
+<line x1="84" y1="166" x2="256" y2="316" stroke="#be4048" stroke-width="3"/>
+<line x1="84" y1="266" x2="256" y2="216" stroke="#be4048" stroke-width="3"/>
+<circle cx="64" cy="166" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="64" y="171" text-anchor="middle" font-size="16" font-weight="700">A</text>
+<circle cx="64" cy="266" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="64" y="271" text-anchor="middle" font-size="16" font-weight="700">B</text>
+<circle cx="276" cy="116" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="121" text-anchor="middle" font-size="16" font-weight="700">C</text>
+<circle cx="276" cy="216" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="221" text-anchor="middle" font-size="16" font-weight="700">D</text>
+<circle cx="276" cy="316" r="20" fill="#eef3f7" stroke="#183041" stroke-width="2"/>
+<text x="276" y="321" text-anchor="middle" font-size="16" font-weight="700">E</text>
+<text x="16" y="351" font-size="12">Exact-ID toy edge agreement: 0.20</text></g>
+<text x="26" y="467" font-size="13">Green = authored true link. Red = authored wrong link. Agreement here is not the organizer’s graph score.</text></g></svg>
