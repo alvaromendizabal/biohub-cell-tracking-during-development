@@ -26,7 +26,7 @@ The GitHub Actions workflow exercises the package, integrity checks, evidence to
 - `tests/` — synthetic/unit tests;
 - `research/` — selected executable experiment modules;
 - `configs/` — versioned feature/experiment configuration;
-- `notebooks/` — seven executed evidence notebooks plus a presentation notebook;
+- `notebooks/` — six archived research notebooks, one executed overview, and one presentation-only notebook;
 - `reports/` — compact result/provenance/run receipts;
 - `docs/` — engineering overview, model card, experiment ledger, status, and reproduction notes;
 - `scripts/` — CI, integrity, and evidence utilities.
@@ -35,7 +35,7 @@ The GitHub Actions workflow exercises the package, integrity checks, evidence to
 
 Competition data, third-party model weights, and selected public outputs are not vendored. Where reproduction depends on them, `reproducibility/external_assets.json` records immutable source references and checksums.
 
-Reproduction tooling fails closed on relevant hash mismatch rather than silently accepting a different asset.
+The CSV evidence utility reports hashes and validates input structure. Compare those hashes with the source pins before treating an input as the historical artifact; the generic comparison command does not enforce manifest hashes or authenticate external scores.
 
 ## Evidence tiers
 

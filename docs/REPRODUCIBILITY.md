@@ -1,46 +1,46 @@
-# Reproducibility: three distinct levels
+# Reproduction scope after AWS archival
 
-## 1. Read the results
-The committed notebooks preserve original execution counts and genuine embedded
-Plotly PNGs. They are readable on GitHub without AWS access. The overview reads only
-committed summaries and images and is data-free; the six numbered research notebooks
-are archived AWS executions. Their private workspace paths remain as historical
-execution context. A provenance header was added, but the scientific outputs were
-not fabricated or relabeled as a new execution.
+The original Biohub AWS workspace has been removed. The public package and its
+checks run from a clean clone; historical private execution is not restored by
+installing this repository. Start with the [fresh-clone guide](../REPRODUCE.md).
 
-## 2. Run lightweight checks
-Use Python 3.12 and `requirements-test.txt` in a separate environment. Run
-`python scripts/run_ci.py`. This validates the publication manifest, notebook PNGs,
-source syntax, feature invariants and selected graph/association tests using synthetic
-fixtures. It does not require credentials or network after dependencies are installed.
+| Level | Available from Git | What the result establishes |
+|---|---|---|
+| Read historical evidence | Six archived research notebooks and one executed overview with saved PNGs | What ran at the recorded evidence cutoff |
+| Run public software checks | Package, pinned direct test dependencies, synthetic tests and CSV utilities | Software behavior on authored fixtures |
+| Run the lineage example | Authored cells/candidate scores and the existing constrained solver | A small inspectable graph decision; no model inference |
+| Repeat a saved-output audit | Comparison utility plus separately acquired CSVs | Differences in supplied outputs; authenticity needs matching source hashes |
+| Reconstruct complete research | Requires external data/weights and private runtime integration/manifests | Outside the public fresh-clone guarantee |
 
-The original 44 source modules are preserved as a project-native implementation
-snapshot. The selected feature and graph tests are the CI scope. Optional neural
-architecture modules are not exercised by this lightweight suite; full project tests
-require additional private-runtime dependencies. A green badge is not a claim that
-all historical experiments or external library integrations passed.
+## Historical notebooks
 
-## 3. Rerun the research in the canonical AWS workspace
-Retain the existing `biohub-cell-tracking-during-development` workspace with its
-`.venv`, `.venv-gpu`, licensed competition data, cached graph stores, frozen reference
-outputs, checkpoint fingerprints, and original run manifests. No such private bytes
-are included here. Research workers use `BIOHUB_PROJECT_ROOT` where supported;
-individual archived notebook code records the exact original paths and environment.
+The overview reads committed summaries and images. The six research notebooks are
+archived AWS executions: their original private workspace references describe the
+historical environment. Their outputs remain unchanged. `portfolio.ipynb` is a
+separate presentation-only notebook and is not counted as an executed experiment.
 
-The publication copy is **not a drop-in replacement** for the AWS directory. It is
-a curated source/evidence view. Reconstructing the private data layout is a separate
-operation requiring the competition's access permissions. Full metrics and figure
-replays require the original manifests; they are not triggered by CI.
+Saved outputs support inspection. They do not mean that a fresh clone can rerun
+all original cells without the missing private inputs and runtime.
 
-The original temporal replay worker is excluded because it depends on the full
-private reference adapter. Its core algorithm and tests remain public.
+## Test coverage
 
-The current image-appearance worker is experimental and known blocked at
-`IMAGE_COORDINATE_BOUNDS`; do not rerun it at scale before repairing that contract.
+The lightweight suite checks selected feature/graph behavior, input contracts,
+publication scope, Python syntax, and notebook output integrity. Optional neural
+components require additional dependencies; CI does not train them or repeat
+competition inference. The numerical-recovery evidence records a finite smoke test
+followed by a nonfinite full training attempt, not complete training reproduction.
 
-## Publication safety
-The publisher works in a separate `biohub-publication` Git clone, never stages the
-AWS workspace, and never force-pushes. It verifies selected live source fingerprints,
-creates an initial main-branch scaffold only for the inspected empty remote, opens
-a feature-branch pull request, waits for the exact commit's checks, and merges only
-that tested head. A concurrent unexpected change stops the workflow.
+## External and private inputs
+
+Immutable references in [external_assets.json](../reproducibility/external_assets.json)
+identify public sources and assets. Access and redistribution terms still apply.
+Private predictions, candidate graphs, exact tuned settings, cached tensors, and
+operational adapters are intentionally excluded. Their recovery or availability
+has not been verified by this publication update.
+
+The original temporal replay worker depended on a private reference adapter; its
+public core algorithm and tests do not replace that integration. The archived
+image-appearance worker was blocked at its coordinate contract and is not a
+completed biological result.
+
+See the [archive record](DECOMMISSION.md) and [publication boundary](PUBLICATION_SCOPE.md).

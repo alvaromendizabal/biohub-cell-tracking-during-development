@@ -1,5 +1,5 @@
 {
-  "release_id": "biohub-employer-portfolio-20261005",
+  "release_id": "biohub-employer-reproduction-20261006",
   "scope": "employer-facing semi-reproducible ML engineering portfolio",
   "required_files": [
     "README.md",
@@ -20,7 +20,11 @@
     ".github/workflows/portfolio.yml",
     "ATTRIBUTION.md",
     "THIRD_PARTY_NOTICES.md",
-    "RIGHTS.md"
+    "RIGHTS.md",
+    "docs/DECOMMISSION.md",
+    "examples/README.md",
+    "examples/run_demo.py",
+    "tests/test_evidence_inputs.py"
   ],
   "required_directories": [
     "src/biohub_tracking",

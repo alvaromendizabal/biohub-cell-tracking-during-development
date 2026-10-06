@@ -1,5 +1,7 @@
 # Case study | 3D cell tracking under sparse supervision
 
+**Status:** archived research; the original AWS workspace has been removed. [Run a small public graph example](examples/README.md) or [inspect the executed evidence](notebooks/README.md).
+
 ## Executive summary
 
 This project combines computer vision, temporal modeling, graph reasoning, and ML systems engineering. The task is to reconstruct cell identities and division lineages through 3D microscopy sequences where annotations are sparse and errors compound across time.
