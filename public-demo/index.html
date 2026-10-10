@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142b3a">
+  <meta name="description" content="Explore an authored synthetic cell movie and inspect the real graph decisions that connect its lineages. A public, offline-ready engineering demo.">
+  <link rel="canonical" href="https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site/">
+  <meta property="og:title" content="Cell Lineage Explorer · Alvaro Mendizabal">
+  <meta property="og:description" content="Explore a synthetic microscopy movie, solve lineage graphs, and inspect every decision.">
+  <meta property="og:type" content="website">
+  <title>Cell lineage explorer · Biohub portfolio</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.js" defer></script>
+  <script src="graph.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <noscript><p>This interactive explorer requires JavaScript. Its complete source and reproduction commands are available in the linked GitHub project.</p></noscript>
+  <a class="skip-link" href="#explorer">Skip to the explorer</a>
+  <header class="site-header page-width">
+    <a class="brand" href="https://github.com/alvaromendizabal/biohub-cell-tracking-during-development" aria-label="Biohub project on GitHub">
+      <svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15" fill="none" stroke="currentColor"/><circle cx="13" cy="15" r="5" fill="currentColor"/><circle cx="24" cy="22" r="4" fill="#117e78"/><path d="m17 18 4 2" stroke="currentColor"/></svg>
+      <span>BIOHUB<span class="brand-divider">/</span><span class="brand-detail">Public review lab</span></span>
+    </a>
+    <nav aria-label="Project links"><a href="#how-it-works">How it works</a><a href="https://github.com/alvaromendizabal/biohub-cell-tracking-during-development">Source <span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main class="page-width">
+    <section class="intro" aria-labelledby="page-title">
+      <div><p class="eyebrow"><span class="status-dot"></span> Interactive engineering demo</p><h1 id="page-title">Follow a cell.<br><span>Inspect every link.</span></h1><p class="intro-copy">Explore a generated cell movie and the graph decisions that connect it. Compare tracking policies, inspect divisions, and trace a lineage across time.</p></div>
+      <div class="scope-card"><span class="scope-tag">SYNTHETIC DATA</span><p>Generated cells.<br>Real graph solver.</p><span class="scope-note">This browser visualizes reproducible Python outputs. It performs no model inference and reports no biological or competition performance.</span><a href="https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/blob/main/examples/run_tracking_demo.py">See how the fixture is made <span aria-hidden="true">↗</span></a></div>
+    </section>
+    <section id="explorer" class="explorer" aria-label="Interactive synthetic cell lineage explorer">
+      <div class="explorer-controls">
+        <div class="control-group"><label for="scenario-select">Explore the sequence</label><select id="scenario-select"><option value="all">Full movie</option><option value="division">Division events</option><option value="missed_detection">Missing observations</option><option value="false_positive">False detections</option></select></div>
+        <div class="control-group policy-control"><label for="policy-select">Association policy</label><select id="policy-select" disabled><option>Loading solver outputs…</option></select></div>
+        <button class="button button-outline export-button" id="export-button" disabled><span aria-hidden="true">↓</span> Export result</button>
+      </div>
+      <div class="live-controls" aria-label="Live browser graph solver"><div><strong>Change the graph.</strong><span>Recompute associations locally from the public candidate edges.</span></div><label for="score-slider">Minimum score <output id="score-value" for="score-slider">0.00</output><input id="score-slider" type="range" min="-0.5" max="2.5" step="0.05" value="0"></label><label for="children-select">Children per cell<select id="children-select"><option value="2">Up to 2 · allow division</option><option value="1">Up to 1 · no division</option></select></label><label class="gap-control"><input id="gap-toggle" type="checkbox" checked> Close two-frame gaps</label><button id="solve-button" class="button solve-button">Solve live <span aria-hidden="true">→</span></button><span id="solve-status" class="sr-only" role="status" aria-live="polite"></span></div>
+      <div class="viewer-grid">
+        <div class="movie-column">
+          <div class="viewer-shell">
+            <div class="viewer-topbar"><div><span class="viewer-dot"></span><span id="projection-label">XY projection</span><span class="viewer-separator">/</span><span id="frame-counter">Frame —</span></div><div class="projection-switch" role="group" aria-label="View projection"><button id="view-xy" aria-pressed="true">XY</button><button id="view-xz" aria-pressed="false">XZ</button></div></div>
+            <div class="canvas-wrap"><canvas id="movie-canvas" tabindex="0" role="img" aria-label="Synthetic cell movie loading" aria-describedby="viewer-help"></canvas><div id="viewer-tooltip" class="viewer-tooltip" hidden></div><div id="load-message" class="load-message" role="status">Preparing the synthetic movie…</div><div class="canvas-caption" id="canvas-caption">Python-rendered synthetic projection</div></div>
+            <div class="viewer-overlays" role="group" aria-label="Viewer overlays"><span class="overlay-label">OVERLAYS</span><label><input type="checkbox" id="toggle-ids"> Cell IDs</label><label><input type="checkbox" id="toggle-links" checked> Links</label><label><input type="checkbox" id="toggle-divisions" checked> Divisions</label><label><input type="checkbox" id="toggle-errors" checked> Errors</label><button id="clear-selection" class="text-button">Clear selection</button></div>
+          </div>
+          <div class="playback"><button id="play-button" class="play-button" aria-label="Play movie" disabled><span id="play-icon" aria-hidden="true">▶</span></button><div class="timeline"><label class="sr-only" for="frame-slider">Movie frame</label><input id="frame-slider" type="range" min="0" max="0" value="0" disabled><div class="timeline-labels"><span id="frame-start">01</span><div id="event-markers" class="event-markers" aria-label="Jump to an annotated event"></div><span id="frame-end">—</span></div></div><label class="speed-label" for="speed-select"><span class="sr-only">Playback speed</span><select id="speed-select"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label></div>
+          <p id="viewer-help" class="viewer-help">Select a cell in the image or the list. Use <kbd>←</kbd> <kbd>→</kbd> to step through frames and <kbd>Space</kbd> to play when the viewer is focused.</p>
+        </div>
+        <aside class="inspector" aria-labelledby="inspector-title">
+          <div class="panel-heading"><p class="eyebrow">Inspect a lineage</p><button class="help-button" type="button" aria-label="Selection help" title="Select a detected cell to highlight its ancestors and descendants under the current policy.">?</button></div>
+          <h2 id="inspector-title">A closer look</h2>
+          <label class="sr-only" for="cell-select">Select a detected cell</label><select id="cell-select"><option value="">Select a cell in this frame</option></select>
+          <div id="selection-empty" class="selection-empty"><svg viewBox="0 0 80 76" aria-hidden="true"><path d="M40 12v23M40 35 20 59M40 35 60 59" fill="none" stroke="#a3b9b0" stroke-width="2"/><circle cx="40" cy="12" r="7" fill="#117e78"/><circle cx="40" cy="35" r="7" fill="#c7ea7a" stroke="#117e78"/><circle cx="20" cy="59" r="7" fill="#e3eae3" stroke="#a3b9b0"/><circle cx="60" cy="59" r="7" fill="#e3eae3" stroke="#a3b9b0"/></svg><p>One cell, many connections.</p><span>Select a detection to see its ancestors, descendants, and graph links.</span></div>
+          <div id="selection-detail" hidden><div class="selected-cell-heading"><span id="selected-cell-id"></span><span id="selected-cell-frame" class="small-tag"></span></div><dl class="cell-details" id="cell-details"></dl><p id="selection-note" class="selection-note"></p><div class="lineage-heading"><span>Lineage through time</span><span id="lineage-count"></span></div><svg id="lineage-svg" viewBox="0 0 280 180" role="img" aria-label="Selected lineage graph"></svg><p class="lineage-help">Select a node to jump to its frame.</p></div>
+          <div class="inspector-foot"><span class="legend-item"><i class="legend-dot selected"></i>Selected lineage</span><span class="legend-item"><i class="legend-dash"></i>Wrong or missing link</span></div>
+        </aside>
+      </div>
+      <div id="event-note" class="event-note" role="status" aria-live="polite"><span class="event-tag">SEQUENCE NOTE</span><p>Select an event above to inspect a challenging frame.</p></div>
+    </section>
+    <section class="results-section" aria-labelledby="results-title"><div class="section-heading"><div><p class="eyebrow">Whole-movie graph audit</p><h2 id="results-title">Structure is only half the story.</h2></div><p>Every value below comes from the generated fixture and selected solver output. Metrics cover the full sequence, not just the visible frame.</p></div><div id="metric-cards" class="metric-cards" aria-live="polite"></div><div class="policy-description"><strong id="policy-name">Association policy</strong><p id="policy-description">Solver details will appear here.</p><span id="topology-status" class="topology-status"></span></div><div class="comparison-wrap"><table class="comparison-table"><caption class="sr-only">Compare all association policies on this synthetic movie</caption><thead><tr><th scope="col">Policy</th><th scope="col">Links</th><th scope="col">Edge F1</th><th scope="col">Division F1</th><th scope="col">Graph constraints</th></tr></thead><tbody id="comparison-body"></tbody></table></div><details class="technical-details"><summary>Inspect the active policy and graph checks</summary><pre id="policy-json"></pre></details></section>
+    <section id="how-it-works" class="how-section" aria-labelledby="how-title"><div><p class="eyebrow">From movie to evidence</p><h2 id="how-title">A small, inspectable<br>tracking problem.</h2><p>The synthetic movie includes motion, division, missing observations, and false detections. Ground truth is known because the sequence is authored.</p><a class="button button-outline" href="https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/blob/main/REPRODUCE.md">Reproduce the demo <span aria-hidden="true">↗</span></a></div><ol class="method-steps"><li><span>01</span><div><h3>Generate a controlled sequence</h3><p>Cell coordinates and rendered frames form a public fixture, with explicitly annotated events.</p></div></li><li><span>02</span><div><h3>Choose associations under constraints</h3><p>The Python solver selects links from geometry and appearance scores. Compare its policies with an independent-link baseline.</p></div></li><li><span>03</span><div><h3>Inspect topology and actual errors</h3><p>A structurally valid graph can still link the wrong cells. Reference-edge and division metrics make that distinction visible.</p></div></li></ol></section>
+  </main>
+  <footer class="page-width site-footer"><div><strong>Alvaro Mendizabal</strong><span>Computer vision · Graph ML · Research engineering</span></div><p>Authored synthetic data. Public solver outputs.<br>No private microscopy, weights, or historical score reproduction.</p><a href="https://github.com/alvaromendizabal/biohub-cell-tracking-during-development">Project on GitHub <span aria-hidden="true">↗</span></a></footer>
+</body>
+</html>

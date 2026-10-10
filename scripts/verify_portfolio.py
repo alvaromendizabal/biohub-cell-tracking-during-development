@@ -1,6 +1,6 @@
 """Fresh-clone integrity checks for the reproducible Biohub archive."""
 from __future__ import annotations
-import ast, base64, binascii, json, re, struct, zlib
+import ast, base64, binascii, hashlib, json, re, struct, zlib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -8,10 +8,57 @@ IGNORED = {".git", "__pycache__", ".pytest_cache", ".ruff_cache", ".ipynb_checkp
 PRIVATE_PARTS = {".aws", ".kaggle", "data", "outputs", "artifacts", "checkpoints", "weights", "cache", "caches", "external", "repro_data"}
 BAD_EXT = {".pt", ".pth", ".ckpt", ".safetensors", ".pkl", ".pickle", ".npz", ".npy", ".parquet", ".pyz", ".zip", ".gz", ".tar"}
 SECRET = re.compile(r"(?:AKIA|ASIA)[A-Z0-9]{16}|gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,}|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
+PRIVATE_LOCATOR = re.compile(r"(?<![\w:])/(?:home|workspace|mnt)/|s3://|arn:aws(?:-[a-z]+)?:", re.IGNORECASE)
+COMPARATOR_KEYS = {
+    "leader_snapshot", "leader_snapshot_score", "leader_snapshot_observed_utc",
+    "retrieved_public_leader_score", "gap_to_retrieved_public_leader",
+    "leaderboard_observed_utc", "fresh_leaderboard_query", "official_gap_snapshot",
+    "recorded_gap", "independently_recreated_leader_training",
+}
 
 def require(ok, message):
     if not ok:
         raise ValueError(message)
+
+
+def check_public_metadata(value, location="public metadata"):
+    """Reject operational locations and ranking metadata, retaining scientific gaps."""
+    if isinstance(value, dict):
+        for key, item in value.items():
+            normalized = str(key).lower()
+            require(normalized not in COMPARATOR_KEYS and "leaderboard" not in normalized,
+                    "Comparator metadata in " + location + ": " + str(key))
+            check_public_metadata(item, location + "." + str(key))
+    elif isinstance(value, list):
+        for index, item in enumerate(value):
+            check_public_metadata(item, f"{location}[{index}]")
+    elif isinstance(value, str):
+        require(not PRIVATE_LOCATOR.search(value), "Private operational location in " + location)
+
+
+def check_publication_receipt(root):
+    """Authenticate transformed publication copies without rewriting source hashes."""
+    root = Path(root)
+    receipt = json.loads((root / "reports/publication_redaction.json").read_text())
+    require(receipt.get("reexecuted_research") is False, "Publication must not claim research reexecution")
+    changed = receipt.get("changed_files", [])
+    require(bool(changed), "Publication transformation receipt is empty")
+    seen = set()
+    for item in changed:
+        rel = item["path"]
+        check_path(rel)
+        require(rel not in seen, "Duplicate publication receipt path " + rel)
+        seen.add(rel)
+        path = root / rel
+        require(path.is_file() and not path.is_symlink(), "Missing publication copy " + rel)
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == item["published_sha256"],
+                "Published copy hash mismatch " + rel)
+    for name, expected in receipt.get("notebook_outputs_unchanged", {}).items():
+        require(Path(name).name == name and name.endswith(".ipynb"), "Invalid notebook receipt path")
+        notebook = json.loads((root / "notebooks" / name).read_text())
+        output_bytes = json.dumps([cell.get("outputs") for cell in notebook["cells"]], sort_keys=True).encode()
+        require(hashlib.sha256(output_bytes).hexdigest() == expected, "Preserved notebook output hash mismatch " + name)
+    return len(changed)
 
 def png_check(data: bytes):
     require(data[:8] == b"\x89PNG\r\n\x1a\n", "PNG signature")
@@ -89,7 +136,7 @@ def verify(root=ROOT):
     py_files = 0
     for p in root.rglob("*"):
         rel = p.relative_to(root)
-        if any(part in IGNORED for part in rel.parts):
+        if any(part in IGNORED or part.endswith(".egg-info") for part in rel.parts):
             continue
         require(not p.is_symlink(), "Symlink " + str(rel))
         if not p.is_file():
@@ -111,6 +158,8 @@ def verify(root=ROOT):
         if p.suffix == ".py":
             ast.parse(text, filename=name)
             py_files += 1
+        if p.suffix in {".json", ".ipynb"} and rel.parts[0] in {"reports", "notebooks", "reproducibility", "public-demo"}:
+            check_public_metadata(json.loads(text), name)
 
     evidence_notebooks = [
         p for p in sorted((root / "notebooks").glob("*.ipynb"))
@@ -126,12 +175,15 @@ def verify(root=ROOT):
     require(assets["organizer"]["commit"] == "075fc5f5a52d11077f9dc2b074644618f26939e2", "Organizer pin drift")
     require(assets["public_0953_lineage"]["expected_output_sha256"].startswith("d52a5d"), "Public 0.953 hash drift")
 
+    published_copies = check_publication_receipt(root)
+
     return {
         "status": "passed",
         "tracked_files_checked": files,
         "python_files_parsed": py_files,
         "executed_evidence_notebooks": notebooks,
         "official_public_score": summary["official_public_score"],
+        "authenticated_publication_copies": published_copies,
     }
 
 if __name__ == "__main__":

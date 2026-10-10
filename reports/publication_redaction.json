@@ -1,0 +1,151 @@
+{
+  "schema": "public-publication-redaction-v1",
+  "scope": "Comparator metadata and private operational locations removed from public presentation. Research findings, own recorded results and original-source hashes retained. Git history unchanged.",
+  "reexecuted_research": false,
+  "notebook_outputs_unchanged": {
+    "25_anchored_association_ablation.ipynb": "1f90b85dcaec9f688e0df08b168f45f5176bc9ed36d35a08126021ac40bcd5a7",
+    "27_bidirectional_temporal_reassignment.ipynb": "bb8aa8d8f5beafc2d87fa0aa82a9f9b081d963b7bb2dc020aa2a0f6180d77c00",
+    "23_organizer_training_reproduction.ipynb": "4290df8fe8acbccc9fcbdc21f95bcb338f615638575b66caf37e4435ce20146c",
+    "26_learned_division_retention.ipynb": "70899dcd11349368e3002a209ec91304dedd1c9d48b2c6e9e5bd34823a8a8d9c",
+    "29_competing_parent_division_model.ipynb": "74cf9be2b154de2722bebb11f0b58cca50d85b075f34b94821293b864aabd818",
+    "28_exact_tracking_error_budget.ipynb": "d0a8abbaac936d737aeec190f61f16dcec41d1de663fbef837f95c6cbe4cdff7"
+  },
+  "changed_files": [
+    {
+      "path": "notebooks/23_organizer_training_reproduction.ipynb",
+      "published_sha256": "d6c37ffa8dcefceb5de59a11b75d39d4ebb37138dd49732dbb92ccd8c9b452f1"
+    },
+    {
+      "path": "notebooks/25_anchored_association_ablation.ipynb",
+      "published_sha256": "43057abcf1656596db126845a7bd748f188769faf78e20cb9a0f1ea0744f57b6"
+    },
+    {
+      "path": "notebooks/26_learned_division_retention.ipynb",
+      "published_sha256": "01124754bb1263871638ecf04023e0ae064b7bbea78777bf1a8ff811257de535"
+    },
+    {
+      "path": "notebooks/27_bidirectional_temporal_reassignment.ipynb",
+      "published_sha256": "3d02da77bca64ad00a07adfd86bad3fbcfdf0622f37077a8dd542dbf941f3791"
+    },
+    {
+      "path": "notebooks/28_exact_tracking_error_budget.ipynb",
+      "published_sha256": "e7a536be7ee247e35f8b7522eaef2c7a9d16486acd9e6571121f16bb17576715"
+    },
+    {
+      "path": "notebooks/29_competing_parent_division_model.ipynb",
+      "published_sha256": "aaeb1278e640f2270c5caae2f5ebaf4c3e0c89e289b720598f8a5d4367fd3ded"
+    },
+    {
+      "path": "reports/anchored_association/notebook_verification.json",
+      "published_sha256": "30a5fa6a22ff362479c13b55ef8b82f1eceea1960bef48b7d24d9a4930fb39f0"
+    },
+    {
+      "path": "reports/appearance_association/run_receipt.json",
+      "published_sha256": "314049b97737084bd26e675cd78a42e130c033c2f1f7c9a64e3d7344d8b11890"
+    },
+    {
+      "path": "reports/appearance_association/worker_failure.json",
+      "published_sha256": "97b526ef1c6f59cb4931eaac3f5fc002181f944e847631fa42723cee0337e82f"
+    },
+    {
+      "path": "reports/competing_parent_events/notebook_verification.json",
+      "published_sha256": "049e92cea30c812b532ffb43432b68bf8279cf8234a6a5ebcce425b338e36d11"
+    },
+    {
+      "path": "reports/competing_parent_events/result.json",
+      "published_sha256": "0f6ee0c8bc7ac5a1bf23c21a5abc34b4629af8d4d96f7e0c6b7439f3c5c9885c"
+    },
+    {
+      "path": "reports/competing_parent_events/run_receipt.json",
+      "published_sha256": "0df0a10ac2e1b673e3ae2fe2f7f3e738bdb918f3b8f4c073ff79a944d57aad47"
+    },
+    {
+      "path": "reports/division_retention/notebook_verification.json",
+      "published_sha256": "874a1e9290ce3b1b6676ebd03cda76d98544339715ad15d3d787687de169cbb4"
+    },
+    {
+      "path": "reports/division_retention/result.json",
+      "published_sha256": "58811d2b525430c82b426d966a89771d9fe7bf60a956f7b81c8136a9af565b2f"
+    },
+    {
+      "path": "reports/division_retention/run_receipt.json",
+      "published_sha256": "85688d18cac57f3c878e5453edad15eca6a8607131e368ec0cdbc831eef6a503"
+    },
+    {
+      "path": "reports/exact_error_budget/notebook_verification.json",
+      "published_sha256": "6e4addaec9d2db91c0b4fdee0a1d0d55f1afebb2af2400839887e9080a7362a0"
+    },
+    {
+      "path": "reports/exact_error_budget/result.json",
+      "published_sha256": "1707dd7a0a0202b76b95ad16ccbeec58d2cff51ceb5fdf09a0479d82cb5522fd"
+    },
+    {
+      "path": "reports/exact_error_budget/run_receipt.json",
+      "published_sha256": "c7ba289335e03e609e9fb4106e3585f114d32c698115d7bd438a6e0cdc4effc2"
+    },
+    {
+      "path": "reports/numerical_recovery/notebook_verification.json",
+      "published_sha256": "b1f1b74eb64312317e29e5ad877235b72aa45b1fade35ac9028a7e1cda4acc53"
+    },
+    {
+      "path": "reports/numerical_recovery/run_receipt.json",
+      "published_sha256": "d7a56aca7491397191441cc28693fee7e7592df811a0f8023e8a17e52d8a4705"
+    },
+    {
+      "path": "reports/official_submission.json",
+      "published_sha256": "41a8d19ab9221daa2398b09d2121549ab04a4d19a39e3fd3278e3513f9c4dae5"
+    },
+    {
+      "path": "reports/source_provenance.json",
+      "published_sha256": "1a816a2b4e9a1853d839bc320b19897adedca82b80a1a6308df57b9f472db21e"
+    },
+    {
+      "path": "reports/temporal_reassignment/notebook_verification.json",
+      "published_sha256": "8b62a5a1b01f1cd83fe437fdb253f251cb700c5980b5b551641edeaf1fe2d5c4"
+    },
+    {
+      "path": "reports/temporal_reassignment/result.json",
+      "published_sha256": "90bb6cdc0b97023d7ec3b731397188fd347ef306b8568170de914f6237cc0d0c"
+    },
+    {
+      "path": "reports/temporal_reassignment/run_receipt.json",
+      "published_sha256": "96e7a98032ecf149dad6e3d3592c524a9d4eeae739f32b5669e2356b15635a80"
+    },
+    {
+      "path": "research/appearance_association/association_report.py",
+      "published_sha256": "d2f8a6ca0644410118cea322f3bb8e27efec0253dc1cc8a994ce4d44985c8e45"
+    },
+    {
+      "path": "research/appearance_association/association_worker.py",
+      "published_sha256": "8b4df9e08a3026c66c589aa526b4cae80c35161f5f38526b92e78e6998171fd4"
+    },
+    {
+      "path": "research/appearance_association/error_worker.py",
+      "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
+    },
+    {
+      "path": "research/competing_parent_events/error_worker.py",
+      "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
+    },
+    {
+      "path": "research/competing_parent_events/event_report.py",
+      "published_sha256": "e67b148297c8f4933b24bc74cc482d975e2579d141807f1e57562f806f7316e6"
+    },
+    {
+      "path": "research/competing_parent_events/event_worker.py",
+      "published_sha256": "22e284aeb492d49bdb6b6d1e5587f3e2c7aeddbbb5826e1f2cb9e2911810336e"
+    },
+    {
+      "path": "research/exact_error_budget/error_report.py",
+      "published_sha256": "04de88bf636a336d8c37f991173d337e2fe5cf452a9faf24f1bce69ef0f18b16"
+    },
+    {
+      "path": "research/exact_error_budget/error_worker.py",
+      "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
+    },
+    {
+      "path": "research/temporal_reassignment/temporal_report.py",
+      "published_sha256": "98fa52a7f9d1c376ac168c5546327014a1394a0b0fb9d2cbd4ab061c28e609ab"
+    }
+  ]
+}

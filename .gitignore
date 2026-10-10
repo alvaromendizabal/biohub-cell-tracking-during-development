@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
+*.egg-info/
 .DS_Store
 
 # Local environments and credentials
@@ -44,3 +45,6 @@ repro_data/
 submission*.csv
 *_return.zip
 *_return*.zip
+
+# Local public-demo experiments (published fixtures live in public-demo/)
+demo-output/

@@ -45,7 +45,7 @@
       "sha256": "5e938535276f97e47b1146dc15cad71611017931850b78a66f8b89f1dd08cd96"
     }
   },
-  "return_path": "/home/sagemaker-user/biohub_next_frontier_return.zip",
+  "return_path": "[private runtime location redacted]",
   "stages": [
     {
       "elapsed_seconds": 0.009,

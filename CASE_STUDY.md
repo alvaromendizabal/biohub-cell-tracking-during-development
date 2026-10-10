@@ -1,12 +1,12 @@
 # Case study | 3D cell tracking under sparse supervision
 
-**Status:** archived research; the original AWS workspace has been removed. [Run a small public graph example](examples/README.md) or [inspect the executed evidence](notebooks/README.md).
+**Computer vision, graph optimization and ML systems engineering.** [Explore the interactive lineage demo](public-demo/index.html) or [inspect the executed research](notebooks/README.md).
 
 ## Executive summary
 
 This project combines computer vision, temporal modeling, graph reasoning, and ML systems engineering. The task is to reconstruct cell identities and division lineages through 3D microscopy sequences where annotations are sparse and errors compound across time.
 
-My contribution covered the full research loop: reference reproduction, feature and model development, native-metric evaluation, failure analysis, AWS/GPU execution, runtime optimization, provenance controls, and publication-quality packaging.
+My contribution covered the full research loop: system integration, feature and model development, native-metric evaluation, failure analysis, AWS/GPU execution, runtime optimization, provenance controls, and publication-quality packaging.
 
 The most important result was not a single model change. It was building an evidence process strong enough to reject locally attractive ideas when independent evidence disagreed.
 
@@ -24,7 +24,7 @@ Sparse labels make this harder: an unlabeled cell is not automatically a negativ
 
 I treated the project as an end-to-end ML system rather than an isolated model notebook. I:
 
-- reproduced and froze a scored reference for controlled comparisons;
+- integrated and evaluated the scored tracking system, then froze its outputs for controlled comparisons;
 - implemented original temporal, graph, and candidate-set representations;
 - evaluated 557 association features and multiple learned association families;
 - reconciled proxy metrics with organizer-native graph behavior;
@@ -38,20 +38,22 @@ Public architectures, checkpoints, notebooks, and organizer code remain attribut
 
 ## System design
 
+![Tracking system: observations, candidates, association scores and lineage graph](docs/assets/architecture.svg)
+
 | Layer | Engineering decision |
 |---|---|
 | Input | Treat physical 3D geometry and anisotropy explicitly |
 | Detection | Keep detection and association evidence separable so regressions can be localized |
-| Candidate generation | Preserve a strong frozen reference while evaluating new candidate relationships |
+| Candidate generation | Preserve the retained tracking system while evaluating new candidate relationships |
 | Representation | Combine geometric, temporal, graph, and learned candidate-set features |
 | Association | Evaluate both local ranking quality and complete graph effects |
 | Lineage constraints | Track false links, missed links, forks, and division structure |
 | Evaluation | Prefer native full-graph evidence over convenient proxy metrics |
 | Delivery | Hash outputs, preserve receipts, bound runs, verify notebooks, and test from a fresh clone |
 
-## Decision 1 — freeze a trustworthy reference
+## Decision 1 — preserve a measured control
 
-A faithfully reproduced external reference scored **0.947**. Freezing that result as a control made later comparisons interpretable and prevented baseline drift from being mistaken for research progress.
+The retained tracking system scored **0.947** in historical external evaluation. I froze its outputs and runtime contract so later experiments could be compared against a stable control.
 
 ## Decision 2 — evaluate the complete graph, not just a classifier
 
@@ -59,11 +61,11 @@ Several ideas improved parent-ranking or local association measures without impr
 
 Across one five-movie retrospective cohort, a selected integration changed the local graph metric from **0.933046 to 0.948059**, with edge TP 2,391→2,392, FP 111→110, FN 112→111, and one additional correctly recovered annotated division.
 
-An independent scored evaluation of that candidate was **0.946**, below the frozen 0.947 reference. That contradiction changed the research direction: the repeatedly inspected cohort was no longer treated as an unbiased estimate of generalization.
+An independent scored evaluation of that candidate was **0.946**, below the retained 0.947 system. That contradiction changed the research direction: the repeatedly inspected cohort was no longer treated as an unbiased estimate of generalization.
 
 ## Decision 3 — diagnose the regression before adding complexity
 
-I compared the frozen-reference and candidate predictions using hash-bound output audits. The candidate preserved the same preview detections and coordinates; the difference was **eight association-edge edits across four movies**.
+I compared the retained-system and candidate predictions using hash-bound output audits. The candidate preserved the same preview detections and coordinates; the difference was **eight association-edge edits across four movies**.
 
 This ruled out a broad detector/coordinate-drift explanation and focused the lesson on association generalization and validation quality.
 
@@ -86,6 +88,12 @@ Several completed experiments were closed rather than polished into success stor
 - a higher-order tracking branch reached GPU inference but not a complete native-metric result before the evidence cutoff.
 
 Keeping these outcomes visible demonstrates model judgment: a negative scientific result is different from a broken execution, and neither should be rewritten as a win.
+
+## Make the graph decisions inspectable
+
+I built a public CPU demonstration that turns synthetic microscopy into association candidates and solved lineage graphs. Several policies expose the trade-off between plausible local links, valid topology and correct identities. The interactive demo lets a reviewer inspect a selected cell's ancestry, change the score threshold, child limit and gap policy, and see the browser recompute the graph and metrics. Saved Python policies provide a second implementation for comparison.
+
+The Python pipeline generates the microscopy fixture and comparison graphs. The browser optimizer matches the five committed Python policies and has separate exhaustive checks on small graphs. Synthetic exact-ID diagnostics are labeled separately from the organizer-native research metrics. [Run the demo](REPRODUCE.md)
 
 ## ML systems engineering
 

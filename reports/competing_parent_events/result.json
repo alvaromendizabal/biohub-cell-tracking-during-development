@@ -329,7 +329,6 @@
   ],
   "fresh_scoring_query": false,
   "gpu_inference_calls": 0,
-  "leader_snapshot": 0.974,
   "limitations": [
     "Only six annotated division events in two repeatedly used development embryos.",
     "Embryo-disjoint fits do not undo prior researcher exposure or unknown pretrained overlap.",

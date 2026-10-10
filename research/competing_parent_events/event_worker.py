@@ -14,10 +14,11 @@ import error_worker as ew
 from diagnostics import scalar_score
 
 ROOT=Path(os.environ['BIOHUB_PROJECT_ROOT']).resolve()
+ARCHIVE=Path(os.environ.get('BIOHUB_RESULTS_ROOT', str(ROOT/'outputs/research'))).resolve()
 OUT=Path(os.environ['BIOHUB_EVENT_OUT']).resolve()
 HERE=Path(__file__).resolve().parent
-AUDIT=ROOT/'outputs/competitive_gap_closure/exact_error_budget'
-OLD=ROOT/'outputs/competitive_gap_closure/temporal_reassignment'
+AUDIT=ARCHIVE/'exact_error_budget'
+OLD=ARCHIVE/'temporal_reassignment'
 CACHE=ROOT/'data/biohub_validation_cache'
 COHORT=['44b6_12dfb391','6bba_062c8d37','44b6_267148e4','6bba_07e24132','44b6_2a2eff9f']
 read,save,sha,log=ew.read,ew.save,ew.sha,ew.log
@@ -96,7 +97,7 @@ def main():
  audit=read(AUDIT/'result.json');ev.require(audit['status']=='complete' and audit['measured_movies']==COHORT,'EXACT_ERROR_AUDIT_REQUIRED')
  ev.require(audit['counts']=={'division_fn':5,'division_fp':1,'division_tp':1,'edge_fn':112,'edge_fp':111,'edge_tp':2391},'AUDITED_BASELINE_COUNTS_CHANGED')
  source_audits={r['stem']:r for r in audit['per_movie']}
- state=read(ROOT/'outputs/competitive_gap_closure/division_retention_aws/data_object_manifest.json')
+ state=read(ARCHIVE/'division_retention_aws/data_object_manifest.json')
  datasets={};coverage=[];baseline_rows=[]
  for i,stem in enumerate(COHORT):
   gtsha=ew.verify_gt(state,stem);gt=ew.load_geff(CACHE/'train'/(stem+'.geff'))
@@ -195,7 +196,7 @@ def main():
   'approved_for_submission':False,'measured_movies':COHORT,'elapsed_seconds':time.monotonic()-start,
   'limitations':['Only six annotated division events in two repeatedly used development embryos.','Embryo-disjoint fits do not undo prior researcher exposure or unknown pretrained overlap.',
      'Event scores are regularized ranking/classification scores, not calibrated probabilities.','New lightweight graph-feature method, not HOCT reproduction.'],
-  'network_requests':0,'downloads':0,'gpu_inference_calls':0,'official_public_score_snapshot':.947,'leader_snapshot':.974,'fresh_scoring_query':False}
+  'network_requests':0,'downloads':0,'gpu_inference_calls':0,'official_public_score_snapshot':.947,'fresh_scoring_query':False}
  save(OUT/'result.json',result)
  with (OUT/'comparison.csv').open('w',newline='') as f:
   fields=['stem','embryo','arm','edge_tp','edge_fp','edge_fn','division_tp','division_fp','division_fn','adj_edge_jaccard']

@@ -53,5 +53,12 @@
     }
   ],
   "sha256": "00496cf8990a8039ed7b8393d89a60678c75aa0564efe9b5ffedd5f8d914d189",
-  "validation_backend": "python_standard_library_no_pillow"
+  "validation_backend": "python_standard_library_no_pillow",
+  "publication_copy": {
+    "sha256": "e7a536be7ee247e35f8b7522eaef2c7a9d16486acd9e6571121f16bb17576715",
+    "source_locations_redacted": true,
+    "historical_outputs_retained": true,
+    "reexecuted": false,
+    "original_verification_unchanged": true
+  }
 }

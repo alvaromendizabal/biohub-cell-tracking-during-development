@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="650" viewBox="0 0 1320 650" role="img" aria-labelledby="title desc">
+  <title id="title">From observations to a defensible lineage graph</title>
+  <desc id="desc">The historical research pipeline converts detections into candidate associations, scores temporal features, and selects a constrained graph. Observations and predicted graphs feed error attribution and a recorded promotion decision. The public synthetic demo begins with authored detections and uses the graph solver; it does not reproduce private microscopy inference.</desc>
+  <defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#117E78"/></marker></defs>
+  <rect width="1320" height="650" rx="24" fill="#F5F3EC"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#142B3A">
+    <text x="48" y="52" fill="#117E78" font-size="12" font-weight="700" letter-spacing="2">SYSTEM DESIGN</text>
+    <text x="48" y="96" font-size="34" font-weight="700" letter-spacing="-.7">From observations to a defensible lineage graph</text>
+    <text x="48" y="128" fill="#5D7076" font-size="16">Separate what was detected, how cells were linked, and whether the change earned promotion.</text>
+    <g fill="#FFFDF7" stroke="#D7DDD6"><rect x="48" y="181" width="269" height="194" rx="14"/><rect x="363" y="181" width="269" height="194" rx="14"/><rect x="678" y="181" width="269" height="194" rx="14"/><rect x="993" y="181" width="279" height="194" rx="14"/></g>
+    <g fill="#117E78" font-size="12" font-weight="700" letter-spacing="1.5"><text x="70" y="212">01 / OBSERVATIONS</text><text x="385" y="212">02 / CANDIDATES</text><text x="700" y="212">03 / TEMPORAL SCORES</text><text x="1015" y="212">04 / LINEAGE GRAPH</text></g>
+    <g font-size="22" font-weight="700"><text x="70" y="251">Cells in 3D + time</text><text x="385" y="251">Plausible links</text><text x="700" y="251">Association evidence</text><text x="1015" y="251">Constrained selection</text></g>
+    <g fill="#5D7076" font-size="15"><text x="70" y="286">Microscopy and frozen</text><text x="70" y="309">detections in the research</text><text x="70" y="332">workflow</text><text x="385" y="286">Spatial neighbors, motion,</text><text x="385" y="309">gaps, and competing</text><text x="385" y="332">parent–child hypotheses</text><text x="700" y="286">Engineered features and</text><text x="700" y="309">learned scores, compared</text><text x="700" y="332">against the reference</text><text x="1015" y="286">Parent and child limits;</text><text x="1015" y="309">continuations, divisions,</text><text x="1015" y="332">and valid time direction</text></g>
+    <g stroke="#117E78" stroke-width="2" fill="none" marker-end="url(#arrow)"><path d="M321 276H355"/><path d="M636 276H670"/><path d="M951 276H985"/><path d="M1132 382V440H910"/><path d="M183 382V440H394"/></g>
+    <rect x="403" y="410" width="498" height="106" rx="14" fill="#142B3A"/>
+    <text x="427" y="443" fill="#C7EA7A" font-size="13" font-weight="700" letter-spacing="1">EVALUATE → EXPLAIN → DECIDE</text>
+    <text x="427" y="473" fill="#F5F3EC" font-size="19">Detection · association · division errors</text>
+    <text x="427" y="497" fill="#A8C0C7" font-size="14">Native graph evaluation and recorded promotion decisions</text>
+    <rect x="48" y="555" width="1224" height="55" rx="10" fill="#E5EADF"/>
+    <text x="69" y="578" fill="#117E78" font-size="12" font-weight="700" letter-spacing="1">PUBLIC DEMO BOUNDARY</text>
+    <text x="69" y="599" fill="#415D61" font-size="14">Authored synthetic detections + geometric candidate scores + the existing graph solver. No private images, weights, or official scoring.</text>
+  </g>
+</svg>

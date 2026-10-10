@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1320" height="600" viewBox="0 0 1320 600" role="img" aria-labelledby="title desc">
+  <title id="title">Following cells. Reconstructing lineages.</title>
+  <desc id="desc">An illustrative sequence of cells divides into a branching lineage. This authored diagram represents the engineering problem, not microscopy or model output.</desc>
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#142B3A"/><stop offset="1" stop-color="#0B1522"/></linearGradient>
+    <radialGradient id="cell"><stop stop-color="#C7EA7A" stop-opacity=".86"/><stop offset=".38" stop-color="#78CFAB" stop-opacity=".45"/><stop offset=".77" stop-color="#30B2A3" stop-opacity=".16"/><stop offset="1" stop-color="#30B2A3" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#A2C3CA" stroke-opacity=".055"/></pattern>
+    <filter id="glow" x="-.8" y="-.8" width="2.6" height="2.6"><feGaussianBlur stdDeviation="6"/></filter>
+  </defs>
+  <rect width="1320" height="600" rx="24" fill="url(#bg)"/>
+  <rect x="618" width="702" height="600" rx="24" fill="url(#grid)"/>
+  <path d="M666 0V600" stroke="#78CFAB" stroke-opacity=".15"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="58" y="55" width="8" height="8" rx="2" fill="#C7EA7A"/>
+    <text x="80" y="65" fill="#99B9C0" font-size="13" letter-spacing="2.7">COMPUTER VISION / GRAPH ML</text>
+    <text x="56" y="160" fill="#F5F3EC" font-size="58" font-weight="700" letter-spacing="-2">Following cells.</text>
+    <text x="56" y="230" fill="#F5F3EC" font-size="58" font-weight="700" letter-spacing="-2">Reconstructing</text>
+    <text x="56" y="300" fill="#C7EA7A" font-size="58" font-weight="700" letter-spacing="-2">lineages.</text>
+    <text x="59" y="352" fill="#BDD0D3" font-size="19">3D microscopy → temporal associations → graphs</text>
+    <path d="M59 390H579" stroke="#77959F" stroke-opacity=".32"/>
+    <g fill="#F5F3EC" font-size="14">
+      <text x="59" y="429">CONSTRAINED OPTIMIZATION</text>
+      <text x="59" y="457">ERROR ATTRIBUTION</text>
+      <text x="59" y="485">REPRODUCIBLE RESEARCH</text>
+    </g>
+    <text x="59" y="549" fill="#829DA8" font-size="13">Alvaro Mendizabal · Machine Learning Engineering</text>
+    <g fill="#89A7B1" font-size="12" letter-spacing="2">
+      <text x="718" y="66">OBSERVE</text><text x="925" y="66">ASSOCIATE</text><text x="1130" y="66">TRACE</text>
+    </g>
+    <g stroke="#254550" stroke-dasharray="3 7"><path d="M758 90V493"/><path d="M970 90V493"/><path d="M1182 90V493"/></g>
+    <g fill="none" stroke="#68BCAA" stroke-width="2">
+      <path d="M758 269C864 269 864 182 970 182S1076 133 1182 133"/>
+      <path d="M970 182C1076 182 1076 242 1182 242"/>
+      <path d="M758 269C864 269 864 364 970 364S1076 386 1182 386"/>
+    </g>
+    <path d="M758 269C864 269 864 182 970 182S1076 133 1182 133" fill="none" stroke="#C7EA7A" stroke-width="8" opacity=".2" filter="url(#glow)"/>
+    <g fill="url(#cell)"><circle cx="758" cy="269" r="75"/><circle cx="970" cy="182" r="60"/><circle cx="970" cy="364" r="62"/><circle cx="1182" cy="133" r="49"/><circle cx="1182" cy="242" r="52"/><circle cx="1182" cy="386" r="61"/></g>
+    <g fill="#163E40" fill-opacity=".4" stroke="#81D2B7" stroke-width="1.4">
+      <ellipse cx="758" cy="269" rx="34" ry="41" transform="rotate(-19 758 269)"/>
+      <ellipse cx="970" cy="182" rx="27" ry="31" transform="rotate(28 970 182)"/>
+      <ellipse cx="970" cy="364" rx="30" ry="26" transform="rotate(-24 970 364)"/>
+      <ellipse cx="1182" cy="133" rx="22" ry="26" transform="rotate(-15 1182 133)"/>
+      <ellipse cx="1182" cy="242" rx="26" ry="22" transform="rotate(12 1182 242)"/>
+      <ellipse cx="1182" cy="386" rx="30" ry="27" transform="rotate(26 1182 386)"/>
+    </g>
+    <g fill="#C7EA7A"><circle cx="758" cy="269" r="8"/><circle cx="970" cy="182" r="7"/><circle cx="970" cy="364" r="7"/><circle cx="1182" cy="133" r="6"/><circle cx="1182" cy="242" r="6"/><circle cx="1182" cy="386" r="7"/></g>
+    <g fill="#A7C7CC" font-size="12"><text x="738" y="340">parent</text><text x="946" y="237">division</text><text x="949" y="418">continue</text></g>
+    <rect x="714" y="509" width="548" height="45" rx="8" fill="#173140"/>
+    <text x="732" y="536" fill="#9DB7BF" font-size="12">ILLUSTRATION · Authored cells, not microscopy or model predictions</text>
+  </g>
+</svg>

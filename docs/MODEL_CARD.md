@@ -31,12 +31,12 @@ claim for the recent exploratory corrections.
 
 ## Research candidates
 Temporal reassignment accepted no exchanges. Competing-parent division learning
-added 108 forks without a scored benefit. Neither replaced the official reference.
+added 108 forks without a scored benefit. Neither replaced the retained scored system.
 The image-appearance classifier has not fitted project data due to a coordinate-bound
 failure. Its synthetic tests establish invariants, not real-data predictive performance.
 
 ## Training limitations
 The organizer smoke generated a checkpoint, but the separate full three-epoch attempt
 became numerically invalid. The invalid checkpoint was quarantined. The finite smoke
-checkpoint is not the scored reference, and exact optimizer-state resume was not available.
-Independent reproduction of the leader's complete training procedure is not claimed.
+checkpoint is not the retained scored system, and exact optimizer-state resume was not available.
+The record establishes the finite smoke and the failed full attempt; it does not establish a completed end-to-end training run.

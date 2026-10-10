@@ -100,10 +100,8 @@
     "source_matched_target_unmatched": 54,
     "source_unmatched_target_matched": 57
   },
-  "fresh_leaderboard_query": false,
   "gpu_inference_calls": 0,
   "kaggle_actions": 0,
-  "leader_snapshot": 0.974,
   "limitations": [
     "Previously used five-movie development cohort, two embryos; pretrained independence unverified.",
     "Sensitivity scores use annotation-dependent hypothetical count changes, not predicted or achieved gains.",
