@@ -5,7 +5,7 @@ performed during publication. Official and local metrics are deliberately separa
 
 | Stage | Evidence / outcome | Decision |
 |---|---|---|
-| Public reference reproduction | Official public score 0.947 | Freeze as reference |
+| Retained tracking system | Historical official public score 0.947 | Preserve as the scored control |
 | Organizer training | Small smoke finite; separate full run nonfinite | Quarantine invalid weights; do not promote |
 | 557-feature anchored association | Local edge Jaccard remained 0.975 on 134 labeled edges | No tracking improvement |
 | Learned-daughter retention | 181,001 usable scored edges across eight graphs; no eligible two-daughter proposals | Stop inapplicable configuration |

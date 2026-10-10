@@ -8,11 +8,12 @@ import scipy,sklearn
 import appearance_edges as ae
 import error_worker as ew
 
-ROOT=Path(os.environ.get('BIOHUB_PROJECT_ROOT','/home/sagemaker-user/biohub-cell-tracking-during-development')).resolve()
-OUT=Path(os.environ.get('BIOHUB_ASSOCIATION_OUT',str(ROOT/'outputs/competitive_gap_closure/appearance_association'))).resolve()
+ROOT=Path(os.environ.get('BIOHUB_PROJECT_ROOT', str(Path.cwd()/'private-workspace'))).resolve()
+ARCHIVE=Path(os.environ.get('BIOHUB_RESULTS_ROOT', str(ROOT/'outputs/research'))).resolve()
+OUT=Path(os.environ.get('BIOHUB_ASSOCIATION_OUT',str(ARCHIVE/'appearance_association'))).resolve()
 HERE=Path(__file__).resolve().parent
-OLD=ROOT/'outputs/competitive_gap_closure/temporal_reassignment'
-PRIOR=ROOT/'outputs/competitive_gap_closure/competing_parent_events'
+OLD=ARCHIVE/'temporal_reassignment'
+PRIOR=ARCHIVE/'competing_parent_events'
 CACHE=ROOT/'data/biohub_validation_cache'
 COHORT=['44b6_12dfb391','6bba_062c8d37','44b6_267148e4','6bba_07e24132','44b6_2a2eff9f']
 ARMS=('geometry','geometry_appearance')
@@ -110,9 +111,9 @@ def main():
       'cohort':COHORT,'arms':list(ARMS),'max_model_fits':4,'training':'leave one embryo out; no random early-stopping split; fixed configuration',
       'prior_result':prior,'existing_models_reused':'frozen detector predictions and all five baseline graphs; rejected event model not used',
       'new_method':'learned nonlinear continuation association with matched image-ablation and balanced global assignment',
-      'not_claimed':'not a Trackastra, HOCT, or 0.974 winning-system reproduction',
+      'not_claimed':'no claim of authorship of Trackastra or HOCT',
       'source_sha256':codeid,'no_downloads':True,'no_gpu_inference':True,'approved_for_submission':False})
- state=read(ROOT/'outputs/competitive_gap_closure/division_retention_aws/data_object_manifest.json')
+ state=read(ARCHIVE/'division_retention_aws/data_object_manifest.json')
  graphs={};data={};inputs={};feature_reuse=0;descriptor_reuse=0
  # Candidate and appearance generation is completed for all videos before annotations.
  for i,stem in enumerate(COHORT):
@@ -242,7 +243,7 @@ def main():
        'score_delta':arms['geometry_appearance']['score_delta'],'new_fits':new_fits,'reused_fits':reused_fits,'models':model_audit,
        'new_prediction_graphs':newgraphs,'reused_prediction_graphs':reusegraphs,'reused_metrics':metric_reuse,'feature_reuse':feature_reuse,
        'coverage':coverage,'modifications':modification_rows,'approved_for_submission':False,'measured_movies':COHORT,'prior_result':prior,
-       'official_score_snapshot':.947,'leader_snapshot':.974,'fresh_scoring_query':False,'network_requests':0,'new_downloads':0,
+       'official_score_snapshot':.947,'fresh_scoring_query':False,'network_requests':0,'new_downloads':0,
        'model_fits':new_fits,'gpu_inference_calls':0,'main_network_inference_calls':0,'elapsed_seconds':time.monotonic()-start,
        'limitations':['Five repeatedly inspected development movies, two embryo groups; pretrained data independence unverified.',
          'Association-only intervention protects detected divisions; it cannot add missing divisions or missing detections.',

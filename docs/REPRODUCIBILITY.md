@@ -7,8 +7,9 @@ installing this repository. Start with the [fresh-clone guide](../REPRODUCE.md).
 | Level | Available from Git | What the result establishes |
 |---|---|---|
 | Read historical evidence | Six archived research notebooks and one executed overview with saved PNGs | What ran at the recorded evidence cutoff |
-| Run public software checks | Package, pinned direct test dependencies, synthetic tests and CSV utilities | Software behavior on authored fixtures |
-| Run the lineage example | Authored cells/candidate scores and the existing constrained solver | A small inspectable graph decision; no model inference |
+| Run public software checks | Package, hash-locked test dependencies, synthetic tests and CSV utilities | Software behavior on authored fixtures |
+| Run the tracking demo | Generated synthetic microscopy, Python constrained solving and a live browser optimizer | End-to-end synthetic tracking behavior and exact-ID graph diagnostics |
+| Run the five-cell example | Authored cells/candidate scores and the constrained solver | A small inspectable graph decision; no model inference |
 | Repeat a saved-output audit | Comparison utility plus separately acquired CSVs | Differences in supplied outputs; authenticity needs matching source hashes |
 | Reconstruct complete research | Requires external data/weights and private runtime integration/manifests | Outside the public fresh-clone guarantee |
 

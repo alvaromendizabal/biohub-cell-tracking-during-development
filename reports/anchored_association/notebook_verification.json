@@ -54,5 +54,12 @@
   "sha256": "ca67ccd4b449aee8006ff0cfa0a1be3defe9b8f84d4d89e499837e76916d67a4",
   "status": "passed",
   "validation_backend": "python_standard_library_no_pillow",
-  "warning_outputs": 0
+  "warning_outputs": 0,
+  "publication_copy": {
+    "sha256": "43057abcf1656596db126845a7bd748f188769faf78e20cb9a0f1ea0744f57b6",
+    "source_locations_redacted": true,
+    "historical_outputs_retained": true,
+    "reexecuted": false,
+    "original_verification_unchanged": true
+  }
 }

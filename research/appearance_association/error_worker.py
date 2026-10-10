@@ -6,9 +6,10 @@ from pathlib import Path
 from diagnostics import require, partition_edges,division_reason,sensitivity_table,scalar_score
 
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('BIOHUB_PROJECT_ROOT','/home/sagemaker-user/biohub-cell-tracking-during-development')).resolve()
-OUT=Path(os.environ.get('BIOHUB_ERROR_OUT',str(ROOT/'outputs/competitive_gap_closure/exact_error_budget'))).resolve()
-OLD=ROOT/'outputs/competitive_gap_closure/temporal_reassignment'
+ROOT=Path(os.environ.get('BIOHUB_PROJECT_ROOT', str(Path.cwd()/'private-workspace'))).resolve()
+ARCHIVE=Path(os.environ.get('BIOHUB_RESULTS_ROOT', str(ROOT/'outputs/research'))).resolve()
+OUT=Path(os.environ.get('BIOHUB_ERROR_OUT',str(ARCHIVE/'exact_error_budget'))).resolve()
+OLD=ARCHIVE/'temporal_reassignment'
 CACHE=ROOT/'data/biohub_validation_cache'
 SCALE=(1.625,.40625,.40625)
 
@@ -184,8 +185,8 @@ def main():
     require(prior['status']=='complete' and prior['accepted_swaps']==0,'PRIOR_DECISION_MISSING')
     require(prior['decision']=='stop_configuration_no_qualified_identity_exchanges','PRIOR_DECISION_CHANGED')
     require(set(prior['measured_movies'])==set(expected),'COHORT_CHANGED')
-    state=read(ROOT/'outputs/competitive_gap_closure/division_retention_aws/data_object_manifest.json')
-    support=read(ROOT/'outputs/competitive_gap_closure/division_retention_cached/result.json')
+    state=read(ARCHIVE/'division_retention_aws/data_object_manifest.json')
+    support=read(ARCHIVE/'division_retention_cached/result.json')
     paths={x['stem']:x for x in support['proposal_audit']}
     codehash=hashlib.sha256(''.join(sha(HERE/n) for n in ['diagnostics.py','error_worker.py','expected_baselines.json','pinned_metric/metrics.py','pinned_metric/division_metrics.py']).encode()).hexdigest()
     records=[];reused=0
@@ -225,8 +226,7 @@ def main():
             'per_movie':records,'reused_movies':reused,'new_movie_audits':5-reused,'elapsed_seconds':time.monotonic()-beg,
             'decision':'design_next_method_from_exact_error_attribution_not_another_blind_threshold_change',
             'prediction_changes':0,'model_fits':0,'network_requests':0,'new_downloads':0,'gpu_inference_calls':0,
-            'kaggle_actions':0,'approved_for_submission':False,'official_public_score_snapshot':.947,'leader_snapshot':.974,
-            'fresh_leaderboard_query':False,
+            'kaggle_actions':0,'approved_for_submission':False,'official_public_score_snapshot':.947,
             'limitations':['Previously used five-movie development cohort, two embryos; pretrained independence unverified.',
                 'Sensitivity scores use annotation-dependent hypothetical count changes, not predicted or achieved gains.',
                 'Unmatched prediction nodes are not ground-truth false positives.','Only graph and metadata files are read; no microscopy images loaded.']}

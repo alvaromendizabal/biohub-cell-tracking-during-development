@@ -6,7 +6,7 @@ Evidence cutoff: **September 29, 2026, 23:02 UTC**. Results are grouped by evide
 
 | Result | Value | Evidence type |
 |---|---:|---|
-| Faithfully reproduced external reference | **0.947** | Independent scored evaluation |
+| Retained tracking system | **0.947** | Independent scored evaluation |
 | Retrospective five-movie baseline | **0.933046** | Development diagnostic |
 | Retrospective selected candidate | **0.948059** | Development diagnostic |
 | Same candidate on independent scored evaluation | **0.946** | Independent scored evaluation |
@@ -30,11 +30,11 @@ The selected candidate improved a repeatedly inspected local cohort from **0.933
 | Division FP | 1 | **1** | 0 |
 | Division FN | 5 | **4** | -1 |
 
-The candidate then scored **0.946** on independent evaluation versus the unchanged **0.947** reference. The correct conclusion is not that the local experiment “won”; it is that repeated inspection and upstream provenance made the development cohort too optimistic for promotion decisions.
+The candidate then scored **0.946** on independent evaluation versus the retained **0.947** system. The correct conclusion is not that the local experiment “won”; it is that repeated inspection and upstream provenance made the development cohort too optimistic for promotion decisions.
 
 ## Prediction-fidelity audit
 
-To distinguish model generalization from accidental pipeline drift, the frozen-reference and candidate outputs were verified by SHA-256 and compared structurally.
+To distinguish model generalization from accidental pipeline drift, the retained-system and candidate outputs were verified by SHA-256 and compared structurally.
 
 The audit found:
 
@@ -71,6 +71,10 @@ This distinction matters because “the model did not help” and “the experim
 2. **Retrospective development evidence** — controlled comparison, not clean promotion evidence.
 3. **Diagnostic evidence** — output fidelity, source/version, graph differences, provenance.
 4. **Engineering evidence** — runtime, parity, packaging, tests, reproducibility.
+
+## Public demonstration evidence
+
+The [interactive lineage demo](public-demo/index.html) displays synthetic microscopy, saved Python-solver policies and graphs recomputed by its browser optimizer. Live threshold, child-limit and gap controls update the selected associations and metrics. Exact-ID edge and division diagnostics use authored truth. They demonstrate candidate construction, constrained selection and error inspection; they do not add to the historical scientific workflow count or establish a new external score.
 
 ## Publication boundary
 

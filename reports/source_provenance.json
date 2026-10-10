@@ -262,17 +262,23 @@
   {
     "published_path": "notebooks/23_organizer_training_reproduction.ipynb",
     "source": "returned biohub_next_frontier_return(20260920-003336).zip:notebooks/23_organizer_training_reproduction.ipynb",
-    "source_sha256": "090674370a9880c8ffad18fde446ba08b277282b738f0a5ca403c05f8640f471"
+    "source_sha256": "090674370a9880c8ffad18fde446ba08b277282b738f0a5ca403c05f8640f471",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "d6c37ffa8dcefceb5de59a11b75d39d4ebb37138dd49732dbb92ccd8c9b452f1"
   },
   {
     "published_path": "reports/numerical_recovery/run_receipt.json",
     "source": "returned biohub_next_frontier_return(20260920-003336).zip:outputs/public_frontier_reproduction/organizer_training_reproduction/runs/v4/numerical_recovery/run_receipt.json",
-    "source_sha256": "729abeb7158fcd46b9a78d88c98263daefb3c999a03705325760b98b44f4dbb5"
+    "source_sha256": "729abeb7158fcd46b9a78d88c98263daefb3c999a03705325760b98b44f4dbb5",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "d7a56aca7491397191441cc28693fee7e7592df811a0f8023e8a17e52d8a4705"
   },
   {
     "published_path": "reports/numerical_recovery/notebook_verification.json",
     "source": "returned biohub_next_frontier_return(20260920-003336).zip:outputs/public_frontier_reproduction/organizer_training_reproduction/runs/v4/numerical_recovery/notebook_verification.json",
-    "source_sha256": "b745d333dd3d126f47de953223a918779083beb44cd138b5c90f69e14c299974"
+    "source_sha256": "b745d333dd3d126f47de953223a918779083beb44cd138b5c90f69e14c299974",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "b1f1b74eb64312317e29e5ad877235b72aa45b1fade35ac9028a7e1cda4acc53"
   },
   {
     "published_path": "reports/numerical_recovery/recovery_receipt.json",
@@ -282,7 +288,9 @@
   {
     "published_path": "notebooks/25_anchored_association_ablation.ipynb",
     "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/25_anchored_association_ablation.ipynb",
-    "source_sha256": "ca67ccd4b449aee8006ff0cfa0a1be3defe9b8f84d4d89e499837e76916d67a4"
+    "source_sha256": "ca67ccd4b449aee8006ff0cfa0a1be3defe9b8f84d4d89e499837e76916d67a4",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "43057abcf1656596db126845a7bd748f188769faf78e20cb9a0f1ea0744f57b6"
   },
   {
     "published_path": "reports/anchored_association/experiment_result.json",
@@ -297,47 +305,65 @@
   {
     "published_path": "reports/anchored_association/notebook_verification.json",
     "source": "returned biohub_next_frontier_return(20260920-013145).zip:outputs/anchored_association/runs/20260920T012531_422521Z/notebook_verification.json",
-    "source_sha256": "85322095f87f796e4e9727d755df59b485e8a3aac3ec0781d1ca485ba7da6aac"
+    "source_sha256": "85322095f87f796e4e9727d755df59b485e8a3aac3ec0781d1ca485ba7da6aac",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "30a5fa6a22ff362479c13b55ef8b82f1eceea1960bef48b7d24d9a4930fb39f0"
   },
   {
     "published_path": "notebooks/26_learned_division_retention.ipynb",
-    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/26_learned_division_retention.ipynb",
-    "source_sha256": "d6ceb7c725e9cb2279ab75abd4183058034acf4640e8ff84b0c5071614f70015"
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:[private report member]/26_learned_division_retention.ipynb",
+    "source_sha256": "d6ceb7c725e9cb2279ab75abd4183058034acf4640e8ff84b0c5071614f70015",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "01124754bb1263871638ecf04023e0ae064b7bbea78777bf1a8ff811257de535"
   },
   {
     "published_path": "reports/division_retention/result.json",
-    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/result.json",
-    "source_sha256": "aedf459b4e1cdb55d2acace169087a599a232d96516a3e95e08d49aa8558dd20"
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:[private report member]/result.json",
+    "source_sha256": "aedf459b4e1cdb55d2acace169087a599a232d96516a3e95e08d49aa8558dd20",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "58811d2b525430c82b426d966a89771d9fe7bf60a956f7b81c8136a9af565b2f"
   },
   {
     "published_path": "reports/division_retention/run_receipt.json",
-    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/run_receipt.json",
-    "source_sha256": "58fa07e6a04b4f72d9f7a3bcd4d09ca6675ad80c9d6ddc2642bd7d0caff4aac5"
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:[private report member]/run_receipt.json",
+    "source_sha256": "58fa07e6a04b4f72d9f7a3bcd4d09ca6675ad80c9d6ddc2642bd7d0caff4aac5",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "85688d18cac57f3c878e5453edad15eca6a8607131e368ec0cdbc831eef6a503"
   },
   {
     "published_path": "reports/division_retention/notebook_verification.json",
-    "source": "returned biohub_next_frontier_return(20260921-224538).zip:outputs/competitive_gap_closure/division_retention_cached/notebook_verification.json",
-    "source_sha256": "8d8b41924ce27254eea9d4f0224ee3ff6461661cf5f25d226e6d6c959154684c"
+    "source": "returned biohub_next_frontier_return(20260921-224538).zip:[private report member]/notebook_verification.json",
+    "source_sha256": "8d8b41924ce27254eea9d4f0224ee3ff6461661cf5f25d226e6d6c959154684c",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "874a1e9290ce3b1b6676ebd03cda76d98544339715ad15d3d787687de169cbb4"
   },
   {
     "published_path": "notebooks/27_bidirectional_temporal_reassignment.ipynb",
-    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/27_bidirectional_temporal_reassignment.ipynb",
-    "source_sha256": "0258c10589ffbc5cde8f54c8dd572a35499a2b5f2c709bd5c4aa5fdb00bf2a36"
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:[private report member]/27_bidirectional_temporal_reassignment.ipynb",
+    "source_sha256": "0258c10589ffbc5cde8f54c8dd572a35499a2b5f2c709bd5c4aa5fdb00bf2a36",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "3d02da77bca64ad00a07adfd86bad3fbcfdf0622f37077a8dd542dbf941f3791"
   },
   {
     "published_path": "reports/temporal_reassignment/result.json",
-    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/result.json",
-    "source_sha256": "551b3b91b14bcd57a3f98f4a7f251649130f663430f5b839b38a22dcb821b777"
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:[private report member]/result.json",
+    "source_sha256": "551b3b91b14bcd57a3f98f4a7f251649130f663430f5b839b38a22dcb821b777",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "90bb6cdc0b97023d7ec3b731397188fd347ef306b8568170de914f6237cc0d0c"
   },
   {
     "published_path": "reports/temporal_reassignment/run_receipt.json",
-    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/run_receipt.json",
-    "source_sha256": "5dc2d8ec65993e39e446fa24a7f85f3b6478b2212cb3c66473fe81ccbd97f373"
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:[private report member]/run_receipt.json",
+    "source_sha256": "5dc2d8ec65993e39e446fa24a7f85f3b6478b2212cb3c66473fe81ccbd97f373",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "96e7a98032ecf149dad6e3d3592c524a9d4eeae739f32b5669e2356b15635a80"
   },
   {
     "published_path": "reports/temporal_reassignment/notebook_verification.json",
-    "source": "returned biohub_next_frontier_return(20260921-232118).zip:outputs/competitive_gap_closure/temporal_reassignment/notebook_verification.json",
-    "source_sha256": "5856c50b647f6f146d5ff9bb823cf5543548313a8b3742f09cacaf269dbef1cf"
+    "source": "returned biohub_next_frontier_return(20260921-232118).zip:[private report member]/notebook_verification.json",
+    "source_sha256": "5856c50b647f6f146d5ff9bb823cf5543548313a8b3742f09cacaf269dbef1cf",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "8b62a5a1b01f1cd83fe437fdb253f251cb700c5980b5b551641edeaf1fe2d5c4"
   },
   {
     "published_path": "research/temporal_reassignment/division_retention.py",
@@ -372,7 +398,9 @@
   {
     "published_path": "research/temporal_reassignment/temporal_report.py",
     "source": "research_payload biohub_next_frontier_return(20260921-232118).zip:temporal_report.py",
-    "source_sha256": "3d1bf2932be33c6441563b4fb86929498680f0000b63c8ef5afb571ba746a3d5"
+    "source_sha256": "3d1bf2932be33c6441563b4fb86929498680f0000b63c8ef5afb571ba746a3d5",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "98fa52a7f9d1c376ac168c5546327014a1394a0b0fb9d2cbd4ab061c28e609ab"
   },
   {
     "published_path": "research/temporal_reassignment/test_division_retention.py",
@@ -386,23 +414,31 @@
   },
   {
     "published_path": "notebooks/28_exact_tracking_error_budget.ipynb",
-    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/28_exact_tracking_error_budget.ipynb",
-    "source_sha256": "00496cf8990a8039ed7b8393d89a60678c75aa0564efe9b5ffedd5f8d914d189"
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:[private report member]/28_exact_tracking_error_budget.ipynb",
+    "source_sha256": "00496cf8990a8039ed7b8393d89a60678c75aa0564efe9b5ffedd5f8d914d189",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "e7a536be7ee247e35f8b7522eaef2c7a9d16486acd9e6571121f16bb17576715"
   },
   {
     "published_path": "reports/exact_error_budget/result.json",
-    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/result.json",
-    "source_sha256": "d696b4953605ca5c6eb1beebc97fca3ddae8b40365d5594282d8ede4eb1ad36d"
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:[private report member]/result.json",
+    "source_sha256": "d696b4953605ca5c6eb1beebc97fca3ddae8b40365d5594282d8ede4eb1ad36d",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "1707dd7a0a0202b76b95ad16ccbeec58d2cff51ceb5fdf09a0479d82cb5522fd"
   },
   {
     "published_path": "reports/exact_error_budget/run_receipt.json",
-    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/run_receipt.json",
-    "source_sha256": "e5dec294313f45e9aea0c0e37086b8c45342a131b5c87845fe667d2485be8719"
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:[private report member]/run_receipt.json",
+    "source_sha256": "e5dec294313f45e9aea0c0e37086b8c45342a131b5c87845fe667d2485be8719",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "c7ba289335e03e609e9fb4106e3585f114d32c698115d7bd438a6e0cdc4effc2"
   },
   {
     "published_path": "reports/exact_error_budget/notebook_verification.json",
-    "source": "returned biohub_next_frontier_return(20260922-000336).zip:outputs/competitive_gap_closure/exact_error_budget/notebook_verification.json",
-    "source_sha256": "dad0e407ed8ba18843dd6c414bdab9e014c95fa5ca23ec75536143ebd9f67682"
+    "source": "returned biohub_next_frontier_return(20260922-000336).zip:[private report member]/notebook_verification.json",
+    "source_sha256": "dad0e407ed8ba18843dd6c414bdab9e014c95fa5ca23ec75536143ebd9f67682",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "6e4addaec9d2db91c0b4fdee0a1d0d55f1afebb2af2400839887e9080a7362a0"
   },
   {
     "published_path": "research/exact_error_budget/diagnostics.py",
@@ -412,12 +448,16 @@
   {
     "published_path": "research/exact_error_budget/error_report.py",
     "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:error_report.py",
-    "source_sha256": "ad8f4e7e50025880d907a0d5ecd44f29a43c281c5d30acabe2a53b9d5c63a4ec"
+    "source_sha256": "ad8f4e7e50025880d907a0d5ecd44f29a43c281c5d30acabe2a53b9d5c63a4ec",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "04de88bf636a336d8c37f991173d337e2fe5cf452a9faf24f1bce69ef0f18b16"
   },
   {
     "published_path": "research/exact_error_budget/error_worker.py",
     "source": "research_payload biohub_next_frontier_return(20260922-000336).zip:error_worker.py",
-    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
   },
   {
     "published_path": "research/exact_error_budget/expected_baselines.json",
@@ -451,37 +491,45 @@
   },
   {
     "published_path": "notebooks/29_competing_parent_division_model.ipynb",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/29_competing_parent_division_model.ipynb",
-    "source_sha256": "c6972883666f174cf64184cebf45523c5fdac045f0e0a6b4b64449218e68aa92"
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/29_competing_parent_division_model.ipynb",
+    "source_sha256": "c6972883666f174cf64184cebf45523c5fdac045f0e0a6b4b64449218e68aa92",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "aaeb1278e640f2270c5caae2f5ebaf4c3e0c89e289b720598f8a5d4367fd3ded"
   },
   {
     "published_path": "reports/competing_parent_events/result.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/result.json",
-    "source_sha256": "722b9f274242993836f97e075c702190d0c9634f286f5c64d65cf47b5028cb18"
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/result.json",
+    "source_sha256": "722b9f274242993836f97e075c702190d0c9634f286f5c64d65cf47b5028cb18",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "0f6ee0c8bc7ac5a1bf23c21a5abc34b4629af8d4d96f7e0c6b7439f3c5c9885c"
   },
   {
     "published_path": "reports/competing_parent_events/run_receipt.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/run_receipt.json",
-    "source_sha256": "08b3f700f1c94c8bc87b138bb1365f236661effdf7df315a2e5314587f7bf517"
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/run_receipt.json",
+    "source_sha256": "08b3f700f1c94c8bc87b138bb1365f236661effdf7df315a2e5314587f7bf517",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "0df0a10ac2e1b673e3ae2fe2f7f3e738bdb918f3b8f4c073ff79a944d57aad47"
   },
   {
     "published_path": "reports/competing_parent_events/coverage.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/coverage.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/coverage.json",
     "source_sha256": "f1dd7156f3c1cdb0dbf6b850bc6a446ac70fe3aeb5c0abf037e806d0f8b40717"
   },
   {
     "published_path": "reports/competing_parent_events/model_audit.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/model_audit.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/model_audit.json",
     "source_sha256": "e5f72fee9d14e8a4217ca052c3e2ab7e893291f93a9928e49c9c7d0628fb0253"
   },
   {
     "published_path": "reports/competing_parent_events/notebook_verification.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/notebook_verification.json",
-    "source_sha256": "f845007e7937605abca24f0e266c18804e1228ed15b02a59f6828c9454bbd9e8"
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/notebook_verification.json",
+    "source_sha256": "f845007e7937605abca24f0e266c18804e1228ed15b02a59f6828c9454bbd9e8",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "049e92cea30c812b532ffb43432b68bf8279cf8234a6a5ebcce425b338e36d11"
   },
   {
     "published_path": "reports/competing_parent_events/fit_progress.json",
-    "source": "returned biohub_next_frontier_return(20260922-004148).zip:outputs/competitive_gap_closure/competing_parent_events/fit_progress.json",
+    "source": "returned biohub_next_frontier_return(20260922-004148).zip:[private report member]/fit_progress.json",
     "source_sha256": "93df4d059817f7d48a9f2a5a89eb7bfce73efe5ea4b01d86b6aed6663dc66bf5"
   },
   {
@@ -497,17 +545,23 @@
   {
     "published_path": "research/competing_parent_events/error_worker.py",
     "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:error_worker.py",
-    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
   },
   {
     "published_path": "research/competing_parent_events/event_report.py",
     "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:event_report.py",
-    "source_sha256": "e7b1dfda77ffa99b87c1e8bf1b934aac5f4329455dfd78bcd3a5f99b6622e340"
+    "source_sha256": "e7b1dfda77ffa99b87c1e8bf1b934aac5f4329455dfd78bcd3a5f99b6622e340",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "e67b148297c8f4933b24bc74cc482d975e2579d141807f1e57562f806f7316e6"
   },
   {
     "published_path": "research/competing_parent_events/event_worker.py",
     "source": "research_payload biohub_next_frontier_return(20260922-004148).zip:event_worker.py",
-    "source_sha256": "7cfff451f3b43ae5789b5ae9e1a51c9dc55bf313876077ced523a7534e2c6258"
+    "source_sha256": "7cfff451f3b43ae5789b5ae9e1a51c9dc55bf313876077ced523a7534e2c6258",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "22e284aeb492d49bdb6b6d1e5587f3e2c7aeddbbb5826e1f2cb9e2911810336e"
   },
   {
     "published_path": "research/competing_parent_events/expected_baselines.json",
@@ -541,17 +595,21 @@
   },
   {
     "published_path": "reports/appearance_association/run_receipt.json",
-    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/run_receipt.json",
-    "source_sha256": "8f044e504a0b744c8fe94ef8368422eedaac8e559aa1e4a7e613eaf0b68268a5"
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:[private report member]/run_receipt.json",
+    "source_sha256": "8f044e504a0b744c8fe94ef8368422eedaac8e559aa1e4a7e613eaf0b68268a5",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "314049b97737084bd26e675cd78a42e130c033c2f1f7c9a64e3d7344d8b11890"
   },
   {
     "published_path": "reports/appearance_association/worker_failure.json",
-    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/worker_failure.json",
-    "source_sha256": "af788942dbb2f5c3385eb0b68be77a66adf46a83e6aa97c4bb7014f7242485ca"
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:[private report member]/worker_failure.json",
+    "source_sha256": "af788942dbb2f5c3385eb0b68be77a66adf46a83e6aa97c4bb7014f7242485ca",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "97b526ef1c6f59cb4931eaac3f5fc002181f944e847631fa42723cee0337e82f"
   },
   {
     "published_path": "reports/appearance_association/fit_progress.json",
-    "source": "returned biohub_next_frontier_return(20260922-020613).zip:outputs/competitive_gap_closure/appearance_association/fit_progress.json",
+    "source": "returned biohub_next_frontier_return(20260922-020613).zip:[private report member]/fit_progress.json",
     "source_sha256": "375a51cdea3a484f50281be200b908966637dd2ac4611c7d5475bc2fc23c0300"
   },
   {
@@ -562,12 +620,16 @@
   {
     "published_path": "research/appearance_association/association_report.py",
     "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:association_report.py",
-    "source_sha256": "bf2b3fe7fb17343c667a5e03d3b3c6555d084d2b0d87203f6946103f6ea0f3aa"
+    "source_sha256": "bf2b3fe7fb17343c667a5e03d3b3c6555d084d2b0d87203f6946103f6ea0f3aa",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "d2f8a6ca0644410118cea322f3bb8e27efec0253dc1cc8a994ce4d44985c8e45"
   },
   {
     "published_path": "research/appearance_association/association_worker.py",
     "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:association_worker.py",
-    "source_sha256": "dcc748dddaa9f116d5d2c06a6363d2a2d8509054794209d4a02c1969364b5db8"
+    "source_sha256": "dcc748dddaa9f116d5d2c06a6363d2a2d8509054794209d4a02c1969364b5db8",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "8b4df9e08a3026c66c589aa526b4cae80c35161f5f38526b92e78e6998171fd4"
   },
   {
     "published_path": "research/appearance_association/diagnostics.py",
@@ -582,7 +644,9 @@
   {
     "published_path": "research/appearance_association/error_worker.py",
     "source": "research_payload biohub_next_frontier_return(20260922-020613).zip:error_worker.py",
-    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680"
+    "source_sha256": "85869ed1f5477da35a397c4fc9a48ad31bca2786b9f464e9fe2df51a2f32e680",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "848d703f90ef641ceb3a4232b75b26ea50e14e1a171a2832eb23bfa85dba67ba"
   },
   {
     "published_path": "research/appearance_association/expected_baselines.json",
@@ -617,6 +681,8 @@
   {
     "published_path": "reports/official_submission.json",
     "source": "scored_submission_receipt.json",
-    "source_sha256": "63db016795e35f02ff417f26ea02ff6cb18a5be624fd32fbd0999daaeb142c93"
+    "source_sha256": "63db016795e35f02ff417f26ea02ff6cb18a5be624fd32fbd0999daaeb142c93",
+    "publication_transform": "Removed comparator metadata or private operational locations; scientific findings retained. Original source_sha256 describes the archived source before this publication transform.",
+    "published_sha256": "41a8d19ab9221daa2398b09d2121549ab04a4d19a39e3fd3278e3513f9c4dae5"
   }
 ]

@@ -14,5 +14,12 @@
   "sentinel": true,
   "sha256": "090674370a9880c8ffad18fde446ba08b277282b738f0a5ca403c05f8640f471",
   "status": "completed",
-  "training_reproduction_success": false
+  "training_reproduction_success": false,
+  "publication_copy": {
+    "sha256": "d6c37ffa8dcefceb5de59a11b75d39d4ebb37138dd49732dbb92ccd8c9b452f1",
+    "source_locations_redacted": true,
+    "historical_outputs_retained": true,
+    "reexecuted": false,
+    "original_verification_unchanged": true
+  }
 }

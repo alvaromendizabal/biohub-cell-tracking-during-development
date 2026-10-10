@@ -6,15 +6,15 @@ The organizer evaluation and reference architecture work comes from [RoyerLab / 
 
 The public portfolio does not vendor the active organizer research tree.
 
-## Scored Harmonic reference
+## Harmonic-fusion system components
 
-The official 0.947 result is a reproduction of the public **Biohub Harmonic Fusion** inference system, including external TemporalUNet3D/SimpleNodeTransformer weights, dual-seed/forward-reverse fusion, and DeepCenter-style prior logic. Attribution belongs to the original public notebook and checkpoint authors, including the pilkwang releases.
+The retained **Biohub Harmonic Fusion** system integrates external TemporalUNet3D/SimpleNodeTransformer weights, dual-seed/forward-reverse fusion, and DeepCenter-style prior logic. These components retain attribution to the original public notebook and checkpoint authors, including the pilkwang releases.
 
-The project's scored reproduction is publicly visible on Kaggle under the user's Biohub notebook history. The external model assets are not copied into this repository.
+The project's historical scored execution is recorded in its Kaggle notebook history. External model assets are not copied into this repository.
 
-## Public 0.953 notebooks
+## Public notebooks used in the diversity audit
 
-The final-day audit examined public saved notebooks by:
+The output-diversity audit examined these public saved notebooks:
 
 - anvithpothula/biohub-0-953-lb-original;
 - raunakdey07/biohub-harmonic-fusion-v3;

@@ -1,74 +1,82 @@
-# Reproduce this project from a fresh clone
+# Run and inspect the project
 
-This portfolio is designed so a reviewer can clone it, install the first-party package, run all data-free checks, inspect genuine executed evidence notebooks, and reproduce the public fidelity/diversity utilities without access to private AWS state.
+A fresh clone supports the interactive lineage viewer, a CPU tracking pipeline, package tests and the recorded research evidence. The public demos use authored synthetic data and need no AWS account, private microscopy or pretrained weights.
 
-## 1. Clone and create the environment
+## Three-minute browser review
 
-Use Python 3.12 if available; the package supports Python 3.11–3.13.
+[Open the public demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) without installation. You can also open `public-demo/index.html` directly from a checkout, or serve it locally:
+
+```bash
+python -m http.server 8000
+```
+
+Then visit `http://localhost:8000/public-demo/`. Play or scrub the cell movie and select a cell to inspect its ancestry. Adjust the link-score threshold, one/two-child limit and gap-closing option. The browser solves the candidate graph again and updates the overlays and exact-ID diagnostics. You can also compare the committed Python-solver policies. No model fitting or backend service is involved.
+
+## Install the CPU environment
+
+Use Python 3.12 for the hash-locked review environment.
 
 ```bash
 git clone https://github.com/alvaromendizabal/biohub-cell-tracking-during-development.git
 cd biohub-cell-tracking-during-development
-python3 -m venv .venv
+python3.12 -m venv .venv
 source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install -r requirements-test.txt
-python -m pip install -e .
+python -m pip install --require-hashes -r requirements-test.lock
+python -m pip install --no-deps --no-build-isolation -e .
 ```
 
-## 2. Run the public quality gates
+## Generate the synthetic tracking demo
+
+```bash
+python examples/run_tracking_demo.py --output public-demo
+```
+
+The pipeline generates a deterministic twelve-frame microscopy fixture, builds geometric and appearance-based association candidates, and runs the repository's constrained graph solver under several policies. The authored sequence includes divisions, missed observations and false detections so errors remain visible. The default seed is `2026`; `--seed` creates another fixture.
+
+`public-demo/data.json` contains the synthetic frames, candidates, selected graphs, exact-ID diagnostics and provenance. `data.js` supplies the same result to the buildless browser viewer, including when it is opened directly from disk. The frontend compares those computed policies, runs its own constrained graph optimizer for interactive settings, and supports result export. The browser implementation matches the selected edges of all five Python fixture policies; its degree-constrained optimization was also checked against exhaustive optima on 80 small graphs. Adjacent-frame optimization is followed by a separate residual-endpoint gap-closing pass; the combined procedure is not claimed to be a globally optimal temporal tracker.
+
+These diagnostics use known synthetic identities and authored truth. They establish behavior of the public pipeline, not biological accuracy or a new external score. Regenerating demo fixtures changes public files; review the diff before including them in a release.
+
+The smaller five-cell graph example remains available:
+
+```bash
+python examples/run_demo.py
+```
+
+Its [guide and executed notebook](examples/README.md) show how local parent choices can violate graph constraints, and how a structurally valid solution can still contain incorrect links.
+
+## Run the quality gates
 
 ```bash
 python scripts/check_showcase.py
 python scripts/verify_portfolio.py
 python scripts/run_ci.py
 python scripts/reproduce_final_evidence.py self-test
+node scripts/test_live_graph.cjs
+node tests/test_public_demo_frontend.js
 ```
 
-These checks use synthetic fixtures and committed evidence only. They do not contact AWS or external scoring services and do not require a GPU.
+These commands use synthetic fixtures and committed evidence. They do not contact cloud services or require a GPU. [Engineering coverage](docs/ENGINEERING_OVERVIEW.md)
 
-## 3. Run the authored lineage example
+## Inspect the research evidence
 
-```bash
-python examples/run_demo.py
-```
+Start with [the executed overview](notebooks/00_portfolio_overview.ipynb) or the [notebook guide](notebooks/README.md). Six archived research notebooks and one executed overview retain the measured findings. The presentation-only notebook is separate from that executed evidence.
 
-The [example guide](examples/README.md) explains the fixture, the existing constrained solver it calls, and its executed notebook. This is a synthetic software demonstration, not new biological validation.
+The historical retained-system score is **0.947**; a later candidate scored **0.946** externally despite improving the reused development cohort. The new public demo does not change those results. [Detailed results](RESULTS.md)
 
-## 4. Inspect the executed evidence notebooks
+## Run saved-output audits
 
-Six archived research notebooks and one executed overview are committed under `notebooks/`, alongside a separate presentation-only notebook. They retain execution counts and saved evidence figures so a reviewer can inspect what actually ran.
-
-Start with [`notebooks/00_portfolio_overview.ipynb`](notebooks/00_portfolio_overview.ipynb) or use the [`notebooks/README.md`](notebooks/README.md) reading guide.
-
-## 5. Reproduce the regression-fidelity audit
-
-Obtain the two saved prediction CSVs identified in `reproducibility/external_assets.json`: the frozen reference output and the independently scored candidate output.
+`reproducibility/external_assets.json` identifies the historical retained-system and candidate CSVs, along with the public outputs used in the diversity audit. Obtain them through their authorized distribution routes, then run:
 
 ```bash
 python scripts/reproduce_final_evidence.py compare path/to/reference.csv path/to/candidate.csv
-```
-
-The script validates input identities and finite coordinates, then reports file hashes, row/node/edge counts, added/removed detections, shared-node coordinate drift, and edge-set differences. It does not require hidden labels. Reported hashes must be compared with the pinned source records separately; this command does not authenticate official receipt history.
-
-## 6. Reproduce the prediction-diversity audit
-
-`reproducibility/external_assets.json` also records exact public notebook/output versions used for a duplicate-prediction audit. After obtaining those outputs from their original source, run:
-
-```bash
 python scripts/reproduce_final_evidence.py duplicate path/to/output1.csv path/to/output2.csv path/to/output3.csv
 ```
 
-The tool compares complete output hashes and graph counts so nominally different systems are not assumed to provide ensemble diversity without evidence.
+The tools validate structure and finite coordinates, report hashes, compare detections and coordinates, and measure edge-set differences or duplicate outputs. Compare input hashes with the pinned records separately before treating a supplied file as a historical artifact. The tools do not authenticate official scoring receipts.
 
-## 7. Reacquire third-party source and weights
+## Research and asset boundary
 
-`reproducibility/external_assets.json` pins organizer and third-party source revisions plus released model hashes where applicable. Clone those repositories at the listed revisions and verify downloaded assets before use.
+The public package, synthetic workflows, tests, evidence checks and CSV utilities can be rerun from this clone. Historical real-data experiments additionally require lawful data/model access and their original runtime integration. Private orchestration, predictions, tuned settings and weights are intentionally absent.
 
-Competition datasets and third-party model assets remain at their original distribution points; they are not mirrored into Git.
-
-## 8. What a fresh clone can and cannot reproduce
-
-A fresh clone can reproduce the first-party package/tests, synthetic research logic, saved notebook evidence, portfolio integrity checks, and CSV fidelity/diversity tooling.
-
-Real-data reruns additionally require lawful access to the original dataset and referenced third-party model assets, plus the necessary runtime integration and manifests. Private orchestration and exact tuned settings are intentionally absent. The original AWS workspace no longer exists; reconstructing a complete private pipeline is outside this fresh-clone contract.
+Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Detailed execution matrix](docs/REPRODUCTION_MATRIX.md)

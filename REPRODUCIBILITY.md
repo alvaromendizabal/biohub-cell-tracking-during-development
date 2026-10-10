@@ -2,7 +2,7 @@
 
 ## Scope
 
-This repository is a **semi-reproducible ML research portfolio**. A fresh clone contains the first-party Python package, tests, selected experiment modules, configs, compact evidence receipts, and executed notebooks needed to inspect the public research logic without private cloud state.
+This repository publishes a **runnable ML engineering portfolio with archived research evidence**. A fresh clone contains the first-party Python package, tests, selected experiment modules, configs, compact evidence receipts, and executed notebooks needed to inspect the public research logic without private cloud state.
 
 External assets remain at their lawful source rather than being mirrored into Git.
 
@@ -10,13 +10,14 @@ External assets remain at their lawful source rather than being mirrored into Gi
 
 A clean checkout should be able to:
 
-1. create a Python 3.11–3.13 environment;
-2. install `requirements-test.txt` and the local package;
+1. create a Python 3.12 review environment;
+2. install `requirements-test.lock` with `--require-hashes`, then the local package with `--no-deps --no-build-isolation`;
 3. run `scripts/check_showcase.py`;
 4. run `scripts/verify_portfolio.py`;
 5. run `scripts/run_ci.py`;
 6. run `scripts/reproduce_final_evidence.py self-test`;
-7. inspect the seven executed evidence notebooks without AWS access.
+7. generate the synthetic tracking demo and open its interactive viewer;
+8. inspect the seven executed evidence notebooks without AWS access.
 
 The GitHub Actions workflow exercises the package, integrity checks, evidence tooling, and synthetic/unit suite from a fresh checkout.
 
@@ -29,7 +30,8 @@ The GitHub Actions workflow exercises the package, integrity checks, evidence to
 - `notebooks/` — six archived research notebooks, one executed overview, and one presentation-only notebook;
 - `reports/` — compact result/provenance/run receipts;
 - `docs/` — engineering overview, model card, experiment ledger, status, and reproduction notes;
-- `scripts/` — CI, integrity, and evidence utilities.
+- `scripts/` — CI, integrity, and evidence utilities;
+- `public-demo/` — buildless lineage viewer and authored synthetic solver outputs.
 
 ## External assets
 

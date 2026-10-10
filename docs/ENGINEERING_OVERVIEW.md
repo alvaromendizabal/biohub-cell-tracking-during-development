@@ -6,17 +6,19 @@ This document is the fastest technical review path for engineers and hiring mana
 
 ## End-to-end responsibility
 
+![Tracking workflow and public demonstration boundary](assets/architecture.svg)
+
 The project spans the ML lifecycle rather than a single training script:
 
 **data/provenance → detection → candidate associations → temporal/graph models → lineage constraints → native evaluation → error attribution → evidence packaging → CI**
 
-I owned the integration and research workflow across those layers, while clearly attributing third-party reference architectures, checkpoints, notebooks, and organizer metric code.
+I owned the integration and research workflow across those layers, while clearly attributing third-party architectures, checkpoints, notebooks, and organizer metric code.
 
 ## Modeling surfaces
 
 ### Volumetric detection
 
-[`public_reproduction/models.py`](../src/biohub_tracking/public_reproduction/models.py) contains the project-native `TemporalUNet3DReproduction` adaptation. The architecture code is public; it is separate from the third-party pretrained checkpoint used by the scored reference.
+[`public_reproduction/models.py`](../src/biohub_tracking/public_reproduction/models.py) contains the project-native `TemporalUNet3DReproduction` adaptation. The architecture code is public; it is separate from the third-party pretrained checkpoint used by the retained scored system.
 
 ### Candidate-set modeling
 
@@ -82,7 +84,7 @@ The public repository is designed to fail closed on common portfolio problems:
 
 GitHub Actions installs the package from a clean checkout and runs the public integrity and synthetic/unit suites.
 
-The [authored lineage example](../examples/README.md) runs the existing constrained graph solver with no private inputs. Optional neural components are not trained by the lightweight CI suite.
+The [public tracking demo](../examples/run_tracking_demo.py) generates synthetic microscopy, builds association candidates and runs the constrained graph solver across several policies. The [browser demo](../public-demo/index.html) recomputes constrained associations when score thresholds, degree limits or gap settings change, then updates tracks, ancestry and graph errors. Its selected edges match the five Python fixture policies, and 80 small graph cases were checked against exhaustive optima. The subsequent gap-closing pass is evaluated separately from the adjacent-frame degree-constrained optimum. The [five-cell example](../examples/README.md) remains a smaller demonstration of the same constraint mechanism. Optional neural components are not trained by the lightweight CI suite.
 
 ## What to inspect in code review
 
