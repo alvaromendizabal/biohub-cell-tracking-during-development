@@ -1,12 +1,16 @@
-# Case study | 3D cell tracking under sparse supervision
+# Case study | 3D cell tracking and lineage-graph engineering
 
-**Computer vision, graph optimization and ML systems engineering.** [Explore the interactive lineage demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) or [inspect the executed research](notebooks/README.md).
+**Alvaro Mendizabal · Computer vision · Graph optimization · ML systems engineering**
+
+[Explore the interactive lineage demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) or [inspect the executed research](notebooks/README.md).
 
 ## Executive summary
 
 This project combines computer vision, temporal modeling, graph reasoning, and ML systems engineering. The task is to reconstruct cell identities and division lineages through 3D microscopy sequences where annotations are sparse and errors compound across time.
 
 My contribution covered the full research loop: system integration, feature and model development, native-metric evaluation, failure analysis, AWS/GPU execution, runtime optimization, provenance controls, and publication-quality packaging.
+
+**The retained system scored 0.947 in historical external evaluation. A motion-linking component ran approximately 34.7× faster with selected-edge parity.** These are separate measurements: an external tracking result and a scoped runtime benchmark, not a claim of a whole-pipeline speedup.
 
 The most important result was not a single model change. It was building an evidence process strong enough to reject locally attractive ideas when independent evidence disagreed.
 
@@ -20,7 +24,7 @@ A complete tracker must solve three coupled tasks:
 
 Sparse labels make this harder: an unlabeled cell is not automatically a negative example, and a small association mistake can alter an entire downstream lineage graph.
 
-## My role
+## Engineering contributions
 
 I treated the project as an end-to-end ML system rather than an isolated model notebook. I:
 
