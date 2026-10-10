@@ -74,7 +74,7 @@ This distinction matters because “the model did not help” and “the experim
 
 ## Public demonstration evidence
 
-The [interactive lineage demo](public-demo/index.html) displays synthetic microscopy, saved Python-solver policies and graphs recomputed by its browser optimizer. Live threshold, child-limit and gap controls update the selected associations and metrics. Exact-ID edge and division diagnostics use authored truth. They demonstrate candidate construction, constrained selection and error inspection; they do not add to the historical scientific workflow count or establish a new external score.
+The [interactive lineage demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) displays synthetic microscopy, saved Python-solver policies and graphs recomputed by its browser optimizer. Live threshold, child-limit and gap controls update the selected associations and metrics. Exact-ID edge and division diagnostics use authored truth. They demonstrate candidate construction, constrained selection and error inspection; they do not add to the historical scientific workflow count or establish a new external score.
 
 ## Publication boundary
 
