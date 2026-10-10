@@ -1,6 +1,6 @@
 # Case study | 3D cell tracking under sparse supervision
 
-**Computer vision, graph optimization and ML systems engineering.** [Explore the interactive lineage demo](public-demo/index.html) or [inspect the executed research](notebooks/README.md).
+**Computer vision, graph optimization and ML systems engineering.** [Explore the interactive lineage demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) or [inspect the executed research](notebooks/README.md).
 
 ## Executive summary
 
