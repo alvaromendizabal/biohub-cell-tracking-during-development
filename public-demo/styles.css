@@ -4,3 +4,14 @@
 
 /* Keep compact controls legible and their event targets easy to activate. */
 .event-markers{height:24px;top:-8px}.event-markers button{width:24px;height:24px}.event-markers button::after{inset:9px}.timeline-labels{margin-top:14px}.viewer-help{font-size:12px}.scope-note{font-size:12px}@media(max-width:610px){.scope-card{display:block;border-left:3px solid #117e78;padding:12px 14px;margin-top:20px;background:#eaf0e3}.scope-card p{font-size:16px;line-height:1.35;margin:9px 0}.scope-note{font-size:12px;line-height:1.55}.scope-card a{font-size:12px;margin-top:10px}.scope-tag{font-size:12px}.viewer-help{font-size:12px}}
+
+/* The audit stays compact until a reviewer asks to inspect alternatives. */
+.candidate-audit{margin-top:18px;border-top:1px solid #dce3d8;padding-top:14px;font-size:12px}
+.candidate-audit summary{cursor:pointer;font-weight:650;line-height:1.6}
+.candidate-audit summary span{display:block;font-weight:400;color:#58686f}
+.candidate-audit p{line-height:1.6;color:#58686f}
+.candidate-scroll{overflow-x:auto;max-height:270px;overflow-y:auto}
+.candidate-audit table{border-collapse:collapse;width:100%;white-space:nowrap;font-variant-numeric:tabular-nums}
+.candidate-audit th,.candidate-audit td{padding:8px 7px;border-bottom:1px solid #e5eadf;text-align:left}
+.candidate-audit .candidate-selected{background:#edf5e1;color:#174b43}
+.candidate-audit summary:focus-visible,.candidate-scroll:focus-visible{outline:3px solid #117e78;outline-offset:3px}

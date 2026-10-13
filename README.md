@@ -26,7 +26,7 @@ I built and evaluated a system for following cells through 3D microscopy and rec
 
 ## Try it in three minutes
 
-[Open the public demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site), or open `public-demo/index.html` from a checkout. Scrub through the synthetic cell movie and inspect a cell's ancestry. Change the link-score threshold, child limit or gap-closing policy: the browser recomputes the graph, overlays and exact-ID metrics. Saved Python-solver policies provide comparison points. No account, installation or model download is needed.
+[Open the public demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site), or open `public-demo/index.html` from a checkout. Scrub through the synthetic cell movie and inspect a cell's ancestry. Change the link-score threshold, child limit or gap-closing policy: the browser recomputes the graph, overlays and exact-ID metrics. Saved Python-solver policies provide comparison points. Select a detection and open **Why these links?** to compare every incident candidate, its utility score and the selected graph decision. No account, installation or model download is needed.
 
 To regenerate its inputs and run the checks:
 

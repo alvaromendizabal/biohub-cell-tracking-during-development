@@ -29,6 +29,43 @@ check('frame clamps and unknown graph endpoints are rejected', () => {
   assert.equal(App.clampFrame(-4,12),0);assert.equal(App.clampFrame(99,12),11);
   assert.throws(()=>App.measureSolution(data,[{source:0,target:999999}],data.solutions[0].parameters),/unknown/);
 });
+check('complete public fixture validates before any rendering',()=>{
+  assert.equal(App.validateFixture(data),data);
+  const broken=structuredClone(data);broken.provenance.evidence_type='RESEARCH';
+  assert.throws(()=>App.init(broken,{getElementById(){throw new Error('DOM accessed before validation');}},{}),/evidence scope/);
+});
+const mutations=[
+ ['missing provenance',x=>delete x.provenance],
+ ['duplicate node',x=>x.nodes.push({...x.nodes[0]})],
+ ['unobserved detection',x=>x.nodes[0].observed=false],
+ ['invalid false-positive flag',x=>x.nodes[0].is_false_positive='no'],
+ ['nonfinite coordinates',x=>x.nodes[0].x=Infinity],
+ ['frame ordering',x=>x.frames[0].index=1],
+ ['remote image request',x=>x.frames[0].image_data_uri='https://example.invalid/image.png'],
+ ['SVG image payload',x=>x.frames[0].image_data_uri='data:image/svg+xml;base64,PHN2Zz4='],
+ ['mismatched detection',x=>x.frames[0].detections[0].x+=1],
+ ['missing detection coverage',x=>x.frames[0].detections.shift()],
+ ['unknown candidate endpoint',x=>x.candidates[0].target=999999],
+ ['incorrect temporal gap',x=>x.candidates[0].dt=2],
+ ['duplicate candidate',x=>x.candidates.push({...x.candidates[0]})],
+ ['falsified saved metric',x=>x.solutions[0].metrics.edge_f1=.123],
+ ['falsified topology',x=>x.solutions[0].checks.valid_topology=false],
+ ['false edge kind',x=>x.solutions[0].edges[0].kind='gap'],
+ ['ineligible selected edge',x=>x.solutions[0].parameters.minimum_score=100000],
+ ['wrong default policy',x=>x.default_solution='absent'],
+ ['mismatched summary',x=>x.summary.detections+=1],
+ ['unknown event endpoint',x=>x.events[0].node_ids=[999999]],
+];
+for(const [name,mutate] of mutations)check(`fixture rejects ${name}`,()=>{
+ const changed=structuredClone(data);mutate(changed);assert.throws(()=>App.validateFixture(changed),/Invalid synthetic fixture/);
+});
+check('candidate audit reports only incident edges, sorted by selection then score',()=>{
+ const policy=data.solutions[0],id=24,rows=App.candidateAudit(data,id,policy);
+ assert.equal(rows.length,data.candidates.filter(e=>e.source===id||e.target===id).length);
+ for(const row of rows){assert(row.source===id||row.target===id);assert.equal(row.selected,policy.edges.some(e=>e.source===row.source&&e.target===row.target));}
+ assert(rows.some(row=>row.selected));assert(rows.some(row=>!row.selected));
+ assert.deepEqual(App.candidateAudit(data,999999,policy),[]);
+});
 class Element {
   constructor(tag='div') {this.tagName=tag.toUpperCase();this.children=[];this.parentNode=null;this.style={};this.dataset={};this.attributes={};this.listeners=new Map();this.value='';this.checked=false;this.disabled=false;this.hidden=false;this._text='';this.className='';}
   set textContent(value){this._text=String(value);this.children=[];}
@@ -115,6 +152,16 @@ check('live solve controls compute new edges and real independently matching met
   el('children-select').value='1';el('gap-toggle').checked=false;el('score-slider').value='2.4';el('solve-button').click();
   assert.equal(ui.getSolution().metrics.selected_edges,0);assert.equal(ui.getSolution().checks.valid_topology,true);
   assert.equal(el('policy-select').children.length,7);assert.match(el('solve-status').textContent,/Solved locally: 0 links/);
+});
+check('candidate comparison renders actual decisions and updates when a policy changes',()=>{
+ ui.selectCell(24,true);ui.setPolicy('balanced');
+ const audit=App.candidateAudit(data,24,ui.getSolution());
+ assert.equal(el('candidate-body').children.length,audit.length);
+ assert.equal(el('candidate-count').textContent,`${audit.length} candidate links`);
+ assert.match(el('candidate-body').textContent,/Selected/);
+ const before=el('candidate-body').textContent;
+ ui.setPolicy('no_divisions');assert.notEqual(el('candidate-body').textContent,before);
+ ui.setPolicy('live');
 });
 check('exports distinguish browser computation from saved outputs and preserve annotations',()=>{
   const result=App.exportResult(data,ui.getState(),ui.getSolution());assert.equal(result.evidence_type,'SYNTHETIC_ONLY');assert.match(result.computation,/Browser graph optimization/);

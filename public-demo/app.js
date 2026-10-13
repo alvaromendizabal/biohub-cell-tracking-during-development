@@ -71,14 +71,80 @@
       solution, nodes:data.nodes,candidates:data.candidates,truth_edges:data.truth_edges,
       review_state:{frame_index:state.frame,projection:state.projection,selected_detection_id:state.selectedId,overlays:{...state.overlays}}};
   }
+  // Validate the entire bundled fixture before constructing images or enabling UI.
+  // These are consistency contracts, not authentication of a scientific result.
+  function validateFixture(data) {
+    const require=(ok,message)=>{if(!ok)throw new Error(`Invalid synthetic fixture: ${message}`);};
+    const list=(value,limit,name)=>{require(Array.isArray(value)&&value.length<=limit,name);return value;};
+    const finite=value=>typeof value==='number'&&Number.isFinite(value)&&Math.abs(value)<=1e6;
+    const text=value=>typeof value==='string'&&value.length>0&&value.length<=2000;
+    require(data&&data.schema==='biohub-synthetic-lineage-demo-v1','schema');
+    require(data.provenance?.evidence_type==='SYNTHETIC_ONLY'&&data.provenance.private_assets_used===false&&data.provenance.official_score===null,'evidence scope');
+    require(data.config&&Number.isInteger(data.config.width)&&data.config.width>0&&data.config.width<=2048&&Number.isInteger(data.config.height)&&data.config.height>0&&data.config.height<=2048,'image dimensions');
+    const frames=list(data.frames,100,'frames'),nodes=list(data.nodes,2000,'nodes');
+    require(frames.length>=2&&nodes.length>0&&data.config.frame_count===frames.length,'frame count');
+    const byId=new Map(), annotated=new Set(),observed=new Set();
+    function checkNode(node,frame) {
+      require(node&&Number.isSafeInteger(node.id)&&node.id>=0&&Number.isInteger(node.t)&&node.t>=0&&node.t<frames.length&&(frame===undefined||node.t===frame),'node identity/time');
+      require(['x','y','z','intensity','radius'].every(key=>finite(node[key]))&&node.radius>0&&text(node.track_id)&&typeof node.observed==='boolean','node coordinates/annotations');
+    }
+    for(const node of nodes){checkNode(node);require(node.observed===true&&typeof node.is_false_positive==='boolean','detection annotations');require(!byId.has(node.id),'duplicate node');byId.set(node.id,node);}
+    let imageBytes=0;
+    frames.forEach((frame,index)=>{
+      require(frame&&frame.index===index,'frame ordering');
+      require(typeof frame.image_data_uri==='string'&&frame.image_data_uri.length<=1000000&&/^data:image\/png;base64,iVBORw0KGgo[A-Za-z0-9+/]*={0,2}$/.test(frame.image_data_uri),'bundled PNG image');
+      imageBytes+=frame.image_data_uri.length;
+      for(const node of list(frame.cells,2000,'frame cells')){checkNode(node,index);require(!annotated.has(node.id),'duplicate annotation');annotated.add(node.id);}
+      for(const node of list(frame.detections,2000,'frame detections')){
+        checkNode(node,index);const canonical=byId.get(node.id);
+        require(canonical&&!observed.has(node.id)&&Object.keys(canonical).every(key=>canonical[key]===node[key]),'frame detection differs from node table');observed.add(node.id);
+      }
+    });
+    require(imageBytes<=20000000&&observed.size===nodes.length,'image budget/detection coverage');
+    const candidates=list(data.candidates,20000,'candidate count'), candidateMap=new Map();
+    function endpoints(edge) {
+      require(edge&&byId.has(edge.source)&&byId.has(edge.target),'unknown graph endpoint');
+      const gap=byId.get(edge.target).t-byId.get(edge.source).t;
+      require(gap===1||gap===2,'edge time direction or gap');return gap;
+    }
+    for(const edge of candidates){const gap=endpoints(edge),key=edgeKey(edge.source,edge.target);require(!candidateMap.has(key)&&edge.dt===gap&&finite(edge.score)&&finite(edge.distance)&&edge.distance>=0&&finite(edge.appearance_difference)&&edge.appearance_difference>=0,'candidate score/gap/duplicate');candidateMap.set(key,edge);}
+    const truthKeys=new Set();
+    for(const edge of list(data.truth_edges,20000,'truth edges')){endpoints(edge);const key=edgeKey(edge.source,edge.target);require(!truthKeys.has(key),'duplicate truth edge');truthKeys.add(key);}
+    const policyIds=new Set();
+    for(const policy of list(data.solutions,20,'solutions')){
+      require(policy&&text(policy.id)&&!policyIds.has(policy.id)&&text(policy.label)&&text(policy.description),'policy identity');policyIds.add(policy.id);
+      const p=policy.parameters;require(p&&finite(p.minimum_score)&&[1,2].includes(p.max_children)&&[1,2].includes(p.max_gap),'policy controls');
+      for(const edge of list(policy.edges,20000,'policy edges')){endpoints(edge);const candidate=candidateMap.get(edgeKey(edge.source,edge.target));require(candidate&&candidate.score===edge.score&&['continuation','division','gap'].includes(edge.kind),'policy edge');}
+      const children=new Map();for(const edge of policy.edges)children.set(edge.source,(children.get(edge.source)||0)+1);
+      for(const edge of policy.edges){const candidate=candidateMap.get(edgeKey(edge.source,edge.target));
+        require(candidate.dt<=p.max_gap&&edge.score>p.minimum_score,'selected edge eligibility');
+        require(edge.kind===(children.get(edge.source)===2?'division':candidate.dt===2?'gap':'continuation'),'selected edge kind');
+      }
+      const actual=measureSolution(data,policy.edges,p);
+      for(const section of ['metrics','checks'])require(policy[section]&&Object.entries(actual[section]).every(([key,value])=>JSON.stringify(value)===JSON.stringify(policy[section][key])),`saved ${section} mismatch`);
+    }
+    require(policyIds.has(data.default_solution),'default policy');
+    for(const event of list(data.events,2000,'events')){
+      require(event&&Number.isInteger(event.frame)&&event.frame>=0&&event.frame<frames.length&&['division','missed_detection','false_positive'].includes(event.type)&&text(event.description),'event annotation');
+      require(list(event.node_ids,2000,'event nodes').every(id=>byId.has(id)||annotated.has(id)),'event endpoint');
+    }
+    require(data.summary&&data.summary.frames===frames.length&&data.summary.detections===nodes.length&&data.summary.candidates===candidates.length&&data.summary.truth_edges===truthKeys.size&&data.summary.truth_divisions===divisionSet(data.truth_edges).size,'summary counts');
+    return data;
+  }
+  function candidateAudit(data, selectedId, solution) {
+    const selected=new Set(solution.edges.map(edge=>edgeKey(edge.source,edge.target)));
+    return data.candidates.filter(edge=>edge.source===selectedId||edge.target===selectedId)
+      .map(edge=>({...edge,direction:edge.target===selectedId?'Incoming':'Outgoing',selected:selected.has(edgeKey(edge.source,edge.target))}))
+      .sort((a,b)=>Number(b.selected)-Number(a.selected)||b.score-a.score||a.source-b.source||a.target-b.target);
+  }
   function init(data, doc, win) {
-    if (!data || data.provenance.evidence_type!=='SYNTHETIC_ONLY' || !data.frames.length || !data.solutions.length) throw new Error('The public synthetic fixture is unavailable or invalid.');
+    validateFixture(data);
     const $ = id => { const el=doc.getElementById(id); if(!el)throw new Error(`Missing explorer control: ${id}`); return el; };
     const canvas=$('movie-canvas'), ctx=canvas.getContext('2d');
     if(!ctx)throw new Error('This viewer needs Canvas 2D support.');
     const nodes=new Map(data.nodes.map(n=>[n.id,n])), truth=new Set(data.truth_edges.map(e=>edgeKey(e.source,e.target)));
     const solutions=[...data.solutions];
-    const state={frame:0,policyId:'balanced',selectedId:null,projection:'xy',playing:false,speed:1,eventFilter:'all',overlays:{ids:false,links:true,divisions:true,errors:true}};
+    const state={frame:0,policyId:data.default_solution,selectedId:null,projection:'xy',playing:false,speed:1,eventFilter:'all',overlays:{ids:false,links:true,divisions:true,errors:true}};
     let hitPoints=[],timer=null,disposed=false;
     const cleanup=[];
     const on=(element,type,handler)=>{element.addEventListener(type,handler);cleanup.push(()=>element.removeEventListener(type,handler));};
@@ -145,6 +211,14 @@
       for(const [key,value] of [['Synthetic truth track',node.track_id],['Position · x / y / z',`${node.x.toFixed(1)} / ${node.y.toFixed(1)} / ${node.z.toFixed(1)}`],['Incoming / outgoing links',`${current().edges.filter(e=>e.target===node.id).length} / ${current().edges.filter(e=>e.source===node.id).length}`]]){details.appendChild(element('dt',key));details.appendChild(element('dd',String(value)));}
       $('selection-note').textContent=node.is_false_positive?'This authored false detection is an annotation for audit, not a biological cell.':`${lineage.ancestors.size} ancestors and ${lineage.descendants.size} descendants in the selected graph. Truth-track names are annotations, not solver predictions.`;
       $('lineage-count').textContent=`${lineage.all.size} nodes`;updateGraph(lineage);
+      const audit=candidateAudit(data,node.id,current()),body=$('candidate-body');body.replaceChildren();
+      $('candidate-count').textContent=`${audit.length} candidate links`;
+      for(const edge of audit){
+        const row=element('tr');row.className=edge.selected?'candidate-selected':'';
+        for(const value of [`${edge.source} → ${edge.target}`,edge.direction,edge.score.toFixed(3),edge.selected?'Selected':'Not selected'])row.appendChild(element('td',value));
+        body.appendChild(row);
+      }
+      $('candidate-empty').hidden=audit.length>0;
     }
     function updateEvents() {
       const events=data.events.filter(e=>state.eventFilter==='all'||e.type===state.eventFilter), markers=$('event-markers');markers.replaceChildren();
@@ -196,10 +270,10 @@
     on($('export-button'),'click',()=>{const blob=new win.Blob([JSON.stringify(exportResult(data,state,current()),null,2)],{type:'application/json'}),url=win.URL.createObjectURL(blob),a=element('a');a.href=url;a.download=`biohub-${state.policyId}-review.json`;doc.body.appendChild(a);a.click();a.remove();win.setTimeout(()=>win.URL.revokeObjectURL(url),1000);});
     on(doc,'visibilitychange',()=>{if(doc.hidden)setPlaying(false);});on(win,'resize',draw);
     let observer=null;if(win.ResizeObserver){observer=new win.ResizeObserver(draw);observer.observe(canvas);}
-    setPolicy('balanced');setFrame(0);selectCell(data.frames[0].detections[0].id);
+    setPolicy(data.default_solution);setFrame(0);selectCell(data.frames[0].detections[0]?.id??null);
     return {getState:()=>({...state,overlays:{...state.overlays}}),getSolution:()=>current(),setFrame,selectCell,setPolicy,solveLive,draw,destroy(){disposed=true;setPlaying(false);cleanup.forEach(fn=>fn());if(observer)observer.disconnect();}};
   }
-  const API={edgeKey,clampFrame,lineageFor,measureSolution,exportResult,init};
+  const API={edgeKey,clampFrame,lineageFor,measureSolution,exportResult,validateFixture,candidateAudit,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=API;
   root.BiohubExplorer=API;
   if(root.document){try{root.biohubExplorer=init(root.BIOHUB_DEMO_DATA,root.document,root);}catch(error){const message=root.document.getElementById('load-message');if(message){message.hidden=false;message.textContent=`Explorer could not start: ${error.message}`;}if(root.console)root.console.error(error);}}
