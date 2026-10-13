@@ -1,5 +1,7 @@
 # 3D Cell Tracking & Lineage Graph ML
 
+> **Inspect the engineering:** [Source-linked review brief](review/README.md) · [Run the verified public checks](review/README.md#one-command-an-inspectable-result) · [Review-kit CI](https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/actions/workflows/employer-review.yml)
+
 **Alvaro Mendizabal · Machine Learning Engineer** · [GitHub](https://github.com/alvaromendizabal)
 
 [![Portfolio CI](https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/actions/workflows/portfolio.yml/badge.svg)](https://github.com/alvaromendizabal/biohub-cell-tracking-during-development/actions/workflows/portfolio.yml)
