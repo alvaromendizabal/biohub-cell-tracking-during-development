@@ -36,23 +36,14 @@ def local_file(root: Path, value: str) -> Path:
     """Accept regular, non-symlink files within the reviewed checkout only."""
     require(isinstance(value, str) and bool(value), "Empty source path")
     path = Path(value)
-    require(
-        not path.is_absolute() and ".." not in path.parts,
-        "Source path escapes checkout",
-    )
+    require(not path.is_absolute() and ".." not in path.parts, "Source path escapes checkout")
     require("\\" not in value and path.as_posix() == value, "Noncanonical source path")
     candidate = root / path
     require(
-        not any(
-            (root / Path(*path.parts[:i])).is_symlink()
-            for i in range(1, len(path.parts) + 1)
-        ),
+        not any((root / Path(*path.parts[:i])).is_symlink() for i in range(1, len(path.parts) + 1)),
         "Symlink source path",
     )
-    require(
-        candidate.resolve().is_relative_to(root.resolve()),
-        "Source path escapes checkout",
-    )
+    require(candidate.resolve().is_relative_to(root.resolve()), "Source path escapes checkout")
     require(candidate.is_file(), f"Missing reviewed file: {value}")
     return candidate
 
@@ -63,13 +54,10 @@ def digest(path: Path) -> str:
 
 
 def load_project(root: Path) -> dict:
-    project = json.loads(
-        local_file(root, "review/project.json").read_text(encoding="utf-8")
-    )
+    project = json.loads(local_file(root, "review/project.json").read_text(encoding="utf-8"))
     require(project["schema_version"] == 1, "Unsupported review schema")
     require(
-        re.fullmatch(r"alvaromendizabal/[A-Za-z0-9_.-]+", project["repository"])
-        is not None,
+        re.fullmatch(r"alvaromendizabal/[A-Za-z0-9_.-]+", project["repository"]) is not None,
         "Invalid repository",
     )
     require(
@@ -84,14 +72,10 @@ def load_project(root: Path) -> dict:
     require(len(ids) == len(set(ids)), "Duplicate command identities")
     for command in project["commands"]:
         require(
-            re.fullmatch(r"[a-z][a-z0-9-]*", command["id"]) is not None,
-            "Unsafe command identity",
+            re.fullmatch(r"[a-z][a-z0-9-]*", command["id"]) is not None, "Unsafe command identity"
         )
         require(command["runtime"] in {"python", "node"}, "Unsupported command runtime")
-        require(
-            all(isinstance(arg, str) for arg in command.get("args", [])),
-            "Invalid arguments",
-        )
+        require(all(isinstance(arg, str) for arg in command.get("args", [])), "Invalid arguments")
         local_file(root, command["entry"])
     for card in project["cards"]:
         require(
@@ -102,17 +86,56 @@ def load_project(root: Path) -> dict:
             local_file(root, card[kind])
     for value in project["read_more"]:
         local_file(root, value["path"])
+    scoped_files(root, project)
     return project
 
 
+def scoped_files(root: Path, project: dict) -> set[str]:
+    """Inventory declared public source trees, including additions and removals."""
+    paths = set(project.get("source_files", []))
+    for name in paths:
+        local_file(root, name)
+    scopes = project.get("source_scopes", [])
+    require(isinstance(scopes, list), "Invalid source scopes")
+    for scope in scopes:
+        directory, suffixes = scope["directory"], scope["suffixes"]
+        require(isinstance(directory, str) and directory not in {"", "."}, "Invalid source scope")
+        relative = Path(directory)
+        require(not relative.is_absolute() and ".." not in relative.parts, "Unsafe source scope")
+        require(
+            "\\" not in directory and relative.as_posix() == directory, "Noncanonical source scope"
+        )
+        require(
+            isinstance(suffixes, list)
+            and bool(suffixes)
+            and all(isinstance(s, str) and re.fullmatch(r"\.[a-z0-9]+", s) for s in suffixes),
+            "Invalid source suffixes",
+        )
+        folder = root / relative
+        require(
+            not any(
+                (root / Path(*relative.parts[:i])).is_symlink()
+                for i in range(1, len(relative.parts) + 1)
+            ),
+            "Symlink source scope",
+        )
+        require(folder.is_dir(), "Missing source scope: " + directory)
+        found = set()
+        for path in folder.rglob("*"):
+            require(not path.is_symlink(), "Symlink in source scope")
+            if path.is_file() and path.suffix in suffixes:
+                name = path.relative_to(root).as_posix()
+                local_file(root, name)
+                found.add(name)
+        require(bool(found), "Empty source scope: " + directory)
+        paths.update(found)
+    return paths
+
+
 def source_hashes(root: Path, project: dict) -> dict[str, str]:
-    """Fingerprint the explicit review surface, without collecting source contents."""
-    paths = {
-        "review/project.json",
-        "review/run.py",
-        "review/test_run.py",
-        "review/template.html",
-    }
+    """Fingerprint linked evidence and complete declared public source inventories."""
+    paths = {"review/project.json", "review/run.py", "review/test_run.py", "review/template.html"}
+    paths.update(scoped_files(root, project))
     paths.update(command["entry"] for command in project["commands"])
     for card in project["cards"]:
         paths.update(card[kind] for kind in ("implementation", "tests", "evidence"))
@@ -123,7 +146,10 @@ def source_hashes(root: Path, project: dict) -> dict[str, str]:
 def page(project: dict, receipt: dict | None = None, root: Path = ROOT) -> str:
     """Render an offline brief; static briefs never claim test success."""
     esc = html.escape
-    base = "https://github.com/" + project["repository"] + "/blob/main/"
+    revision = "main"
+    if receipt is not None and receipt.get("checkout", {}).get("clean") is True:
+        revision = receipt["checkout"]["commit"]
+    base = "https://github.com/" + project["repository"] + "/blob/" + revision + "/"
 
     def link(path: str, label: str) -> str:
         return '<a href="' + base + quote(path, safe="/") + '">' + esc(label) + "</a>"
@@ -131,8 +157,7 @@ def page(project: dict, receipt: dict | None = None, root: Path = ROOT) -> str:
     cards = []
     for number, card in enumerate(project["cards"], 1):
         refs = " · ".join(
-            link(card[kind], kind.capitalize())
-            for kind in ("implementation", "tests", "evidence")
+            link(card[kind], kind.capitalize()) for kind in ("implementation", "tests", "evidence")
         )
         cards.append(
             f'<article><p class="eyebrow">{number:02d} / {esc(card["audience"])}</p>'
@@ -156,12 +181,13 @@ def page(project: dict, receipt: dict | None = None, root: Path = ROOT) -> str:
             "<table><caption>Commands executed for this receipt</caption><thead><tr>"
             "<th>Check</th><th>Outcome</th><th>Seconds</th></tr></thead><tbody>"
             + rows
-            + '</tbody></table><p><a href="receipt.json">Machine-readable receipt</a>'
+            + "</tbody></table><p>"
+            + str(len(receipt["source_sha256"]))
+            + " public source and evidence files fingerprinted. "
+            + '<a href="receipt.json">Machine-readable receipt</a>'
             ' · <a href="manifest.json">Artifact checksums</a></p>'
         )
-    more = " · ".join(
-        link(item["path"], item["label"]) for item in project["read_more"]
-    )
+    more = " · ".join(link(item["path"], item["label"]) for item in project["read_more"])
     template = local_file(root, "review/template.html").read_text(encoding="utf-8")
     return Template(template).substitute(
         title=esc(project["title"]),
@@ -182,63 +208,87 @@ def page(project: dict, receipt: dict | None = None, root: Path = ROOT) -> str:
 
 
 def verify(output: Path, root: Path, project: dict, with_node: bool) -> dict:
-    manifest = json.loads(
-        local_file(output, "manifest.json").read_text(encoding="utf-8")
-    )
+    manifest = json.loads(local_file(output, "manifest.json").read_text(encoding="utf-8"))
     require(manifest["schema_version"] == 1, "Unsupported artifact manifest")
     names = manifest["files"]
-    require(
-        "receipt.json" in names and "index.html" in names, "Incomplete review bundle"
-    )
+    require("receipt.json" in names and "index.html" in names, "Incomplete review bundle")
     actual = {
         p.relative_to(output).as_posix()
         for p in output.rglob("*")
         if p.is_file() and p.relative_to(output).as_posix() != "manifest.json"
     }
     require(set(names) == actual, "Unexpected or missing review artifacts")
-    require(
-        not any(p.is_symlink() for p in output.rglob("*")), "Symlink in review bundle"
-    )
+    require(not any(p.is_symlink() for p in output.rglob("*")), "Symlink in review bundle")
     for name, expected in names.items():
-        require(
-            digest(local_file(output, name)) == expected,
-            f"Changed review artifact: {name}",
-        )
+        require(digest(local_file(output, name)) == expected, f"Changed review artifact: {name}")
     receipt = json.loads(local_file(output, "receipt.json").read_text(encoding="utf-8"))
+    require(receipt["status"] == "passed" and receipt["scope"] == SCOPE, "Invalid review receipt")
+    require(receipt["repository"] == project["repository"], "Repository identity mismatch")
     require(
-        receipt["status"] == "passed" and receipt["scope"] == SCOPE,
-        "Invalid review receipt",
-    )
-    require(
-        receipt["repository"] == project["repository"], "Repository identity mismatch"
-    )
-    require(
-        receipt["with_node"] is with_node,
-        "Different check mode; use a separate output directory",
+        receipt["with_node"] is with_node, "Different check mode; use a separate output directory"
     )
     require(
         receipt["source_sha256"] == source_hashes(root, project),
         "Reviewed source changed; use a new output directory",
     )
-    expected_ids = [
-        c["id"] for c in project["commands"] if c["runtime"] == "python" or with_node
-    ]
+    expected_ids = [c["id"] for c in project["commands"] if c["runtime"] == "python" or with_node]
+    require([c["id"] for c in receipt["checks"]] == expected_ids, "Incomplete command coverage")
     require(
-        [c["id"] for c in receipt["checks"]] == expected_ids,
-        "Incomplete command coverage",
-    )
-    require(
-        all(
-            c["status"] == "passed" and c["returncode"] == 0 for c in receipt["checks"]
-        ),
+        all(c["status"] == "passed" and c["returncode"] == 0 for c in receipt["checks"]),
         "A command did not pass",
+    )
+    checkout = receipt.get("checkout", {})
+    require(type(checkout.get("clean")) is bool, "Invalid checkout status")
+    commit = checkout.get("commit")
+    require(
+        commit is None
+        or (isinstance(commit, str) and re.fullmatch(r"[0-9a-f]{40}", commit) is not None),
+        "Invalid checkout commit",
+    )
+    require(not checkout["clean"] or commit is not None, "Clean checkout needs a commit")
+    selected = [c for c in project["commands"] if c["runtime"] == "python" or with_node]
+    for check, command in zip(receipt["checks"], selected, strict=True):
+        require(
+            check["entry"] == command["entry"]
+            and check["args"] == command.get("args", [])
+            and check["log"] == command["id"] + ".log",
+            "Command identity differs from configuration",
+        )
+        require(check["log"] in names, "Missing command log")
+    require(
+        local_file(output, "index.html").read_text(encoding="utf-8")
+        == page(project, receipt, root),
+        "Review page does not match receipt",
     )
     return receipt
 
 
-def execute(
-    root: Path, project: dict, output: Path, with_node: bool, timeout: int
-) -> dict:
+def checkout_identity(root: Path) -> dict:
+    """Use immutable links only when Git confirms an unchanged tracked checkout."""
+    try:
+        commit = subprocess.run(
+            ["git", "rev-parse", "--verify", "HEAD"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=5,
+        ).stdout.strip()
+        status = subprocess.run(
+            ["git", "status", "--porcelain", "--untracked-files=normal"],
+            cwd=root,
+            capture_output=True,
+            text=True,
+            check=True,
+            timeout=5,
+        ).stdout.strip()
+        require(re.fullmatch(r"[0-9a-f]{40}", commit) is not None, "Invalid Git identity")
+        return {"commit": commit, "clean": not status}
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return {"commit": None, "clean": False}
+
+
+def execute(root: Path, project: dict, output: Path, with_node: bool, timeout: int) -> dict:
     require(timeout > 0, "Timeout must be positive")
     require(
         not output.resolve().is_relative_to(root.resolve()),
@@ -253,8 +303,7 @@ def execute(
             "output": str(output),
         }
     require(
-        not with_node or shutil.which("node") is not None,
-        "Node.js is required for --with-node",
+        not with_node or shutil.which("node") is not None, "Node.js is required for --with-node"
     )
     before = source_hashes(root, project)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -265,9 +314,7 @@ def execute(
         for command in project["commands"]:
             if command["runtime"] == "node" and not with_node:
                 continue
-            args = [
-                arg.replace("{output}", str(staging)) for arg in command.get("args", [])
-            ]
+            args = [arg.replace("{output}", str(staging)) for arg in command.get("args", [])]
             entry = str(local_file(root, command["entry"]))
             argv = (
                 [sys.executable, "-B", "-S", entry, *args]
@@ -312,10 +359,7 @@ def execute(
                 }
             )
             print(f"CHECK {command['id']} PASS", flush=True)
-        require(
-            before == source_hashes(root, project),
-            "Reviewed source changed during checks",
-        )
+        require(before == source_hashes(root, project), "Reviewed source changed during checks")
         receipt = {
             "schema_version": 1,
             "repository": project["repository"],
@@ -326,43 +370,39 @@ def execute(
             "with_node": with_node,
             "seconds": round(time.monotonic() - started, 3),
             "source_sha256": before,
+            "checkout": checkout_identity(root),
+            "node": subprocess.run(
+                ["node", "--version"], capture_output=True, text=True, check=True, timeout=5
+            ).stdout.strip()
+            if with_node
+            else None,
             "checks": checks,
         }
         (staging / "receipt.json").write_text(
             json.dumps(receipt, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
-        (staging / "index.html").write_text(
-            page(project, receipt, root), encoding="utf-8"
-        )
+        (staging / "index.html").write_text(page(project, receipt, root), encoding="utf-8")
         files = {
             p.relative_to(staging).as_posix(): digest(p)
             for p in sorted(staging.rglob("*"))
             if p.is_file()
         }
         (staging / "manifest.json").write_text(
-            json.dumps({"schema_version": 1, "files": files}, indent=2, sort_keys=True)
-            + "\n",
+            json.dumps({"schema_version": 1, "files": files}, indent=2, sort_keys=True) + "\n",
             encoding="utf-8",
         )
         staging.rename(output)
     except BaseException as error:
         failure = output.with_name(output.name + "-failed-" + str(time.time_ns()))
         (staging / "failure.json").write_text(
-            json.dumps(
-                {"status": "failed", "error": str(error), "checks": checks}, indent=2
-            ),
+            json.dumps({"status": "failed", "error": str(error), "checks": checks}, indent=2),
             encoding="utf-8",
         )
         staging.rename(failure)
         print(f"FAILED_CHECK_EVIDENCE: {failure}", file=sys.stderr)
         raise
     verify(output, root, project, with_node)
-    return {
-        "status": "passed",
-        "reused": False,
-        "checks": len(checks),
-        "output": str(output),
-    }
+    return {"status": "passed", "reused": False, "checks": len(checks), "output": str(output)}
 
 
 def main() -> int:
@@ -370,19 +410,13 @@ def main() -> int:
     parser.add_argument("--output", type=Path)
     parser.add_argument("--with-node", action="store_true")
     parser.add_argument(
-        "--check",
-        action="store_true",
-        help="Verify an existing receipt without executing checks",
+        "--check", action="store_true", help="Verify an existing receipt without executing checks"
     )
     parser.add_argument(
-        "--render",
-        action="store_true",
-        help="Regenerate the tracked static inspection brief",
+        "--render", action="store_true", help="Regenerate the tracked static inspection brief"
     )
     parser.add_argument(
-        "--check-page",
-        action="store_true",
-        help="Reject a stale tracked inspection brief",
+        "--check-page", action="store_true", help="Reject a stale tracked inspection brief"
     )
     parser.add_argument(
         "--timeout", type=int, default=90, help="Maximum seconds per selected command"
@@ -395,16 +429,11 @@ def main() -> int:
             rendered = page(project)
             if args.render:
                 target.write_text(rendered, encoding="utf-8")
-            require(
-                target.read_text(encoding="utf-8") == rendered,
-                "Static review page is stale",
-            )
+            require(target.read_text(encoding="utf-8") == rendered, "Static review page is stale")
             print("REVIEW_PAGE_VERIFIED")
             return 0
         require(not args.check or args.output is not None, "--check requires --output")
-        output = args.output or Path(tempfile.gettempdir()) / (
-            "ml-review-" + str(time.time_ns())
-        )
+        output = args.output or Path(tempfile.gettempdir()) / ("ml-review-" + str(time.time_ns()))
         output = output.resolve()
         if args.check:
             receipt = verify(output, ROOT, project, args.with_node)
@@ -418,13 +447,7 @@ def main() -> int:
             result = execute(ROOT, project, output, args.with_node, args.timeout)
         print(json.dumps(result, sort_keys=True))
         return 0
-    except (
-        ValueError,
-        KeyError,
-        TypeError,
-        OSError,
-        subprocess.SubprocessError,
-    ) as error:
+    except (ValueError, KeyError, TypeError, OSError, subprocess.SubprocessError) as error:
         print(f"REVIEW_FAILED: {error}", file=sys.stderr)
         return 1
 

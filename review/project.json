@@ -12,7 +12,7 @@
       "label": "Documented association feature candidates"
     },
     {
-      "value": "34.7×",
+      "value": "34.7\u00d7",
       "label": "Recorded motion-linking component speedup"
     }
   ],
@@ -100,5 +100,19 @@
   ],
   "schema_version": 1,
   "repository": "alvaromendizabal/biohub-cell-tracking-during-development",
-  "reviewed_base_commit": "2323ee9b0a50a90cc46451a6c7034c23e2e49554"
+  "reviewed_base_commit": "2323ee9b0a50a90cc46451a6c7034c23e2e49554",
+  "source_scopes": [
+    {
+      "directory": "public-demo",
+      "suffixes": [
+        ".js",
+        ".json",
+        ".html",
+        ".css"
+      ]
+    }
+  ],
+  "source_files": [
+    "review/run.py"
+  ]
 }

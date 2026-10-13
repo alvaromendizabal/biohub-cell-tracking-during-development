@@ -51,7 +51,7 @@ A repeat invocation verifies the saved bundle rather than rerunning completed ch
 
 Each command has a default 90-second deadline, configurable with `--timeout`. The runner records UTC time, interpreter version, elapsed command times, command identities, and SHA-256 hashes for its configuration, template, invoked entry points, linked implementations, tests, and evidence. Failed runs keep diagnostic logs in a separately named failed-run directory and never produce a success receipt.
 
-The fingerprint covers this curated review surface, **not every transitive dependency or every repository file**. Checksums establish consistency, not independent authentication of historical scores. HTML links follow the current default branch; the receipt is the record of the local bytes inspected. The static page is explicitly an inspection brief, not an execution receipt.
+The fingerprint includes the complete public-demo HTML, CSS, JavaScript and JSON scope declared in `project.json`, as well as the curated review entry points. Additions and removals within that scope invalidate an older receipt. The receipt records the actual Python/Node runtimes and binds the rendered report plus the exact command entry points, arguments and logs. A clean Git checkout produces commit-specific source links; modified checkouts are labeled. This is a declared review scope, **not every transitive dependency or every repository file**. Checksums establish consistency, not independent authentication of historical scores. The receipt records the local bytes inspected, even when a modified checkout requires branch-relative links. The static page is explicitly an inspection brief, not an execution receipt.
 
 ## Public/private boundary
 

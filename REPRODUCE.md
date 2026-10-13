@@ -80,3 +80,21 @@ The tools validate structure and finite coordinates, report hashes, compare dete
 The public package, synthetic workflows, tests, evidence checks and CSV utilities can be rerun from this clone. Historical real-data experiments additionally require lawful data/model access and their original runtime integration. Private orchestration, predictions, tuned settings and weights are intentionally absent.
 
 Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Detailed execution matrix](docs/REPRODUCTION_MATRIX.md)
+
+## Inspect candidate decisions and fixture contracts
+
+Select a detection in the explorer and open **Why these links?**. The comparison
+lists every incoming/outgoing candidate, its uncalibrated utility and whether the
+active graph selected it. Switching policies recomputes the displayed decisions;
+rejected links are not automatically errors because degree constraints compete.
+
+Before decoding any image or enabling the explorer, the browser verifies frame
+ordering, finite geometry, one-to-one detection coverage, local PNG data-URL syntax and size budgets,
+forward candidate gaps, endpoint identity and saved metrics against recomputation.
+A changed or inconsistent bundle fails with an explicit startup message. These
+checks establish internal consistency; they do not authenticate historical scores.
+The Node suite exercises corrupted fixtures and the actual comparison handlers:
+
+```bash
+node tests/test_public_demo_frontend.js
+```
