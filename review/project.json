@@ -1,0 +1,104 @@
+{
+  "title": "From detections to coherent cell lineages.",
+  "discipline": "3D vision / graph association / scientific ML",
+  "summary": "A microscopy-tracking project spanning detection, temporal association, division modeling, graph evaluation, and fidelity audits. The public explorer makes graph decisions inspectable on authored synthetic data.",
+  "signals": [
+    {
+      "value": "3D + time",
+      "label": "Spatial and temporal tracking problem"
+    },
+    {
+      "value": "557",
+      "label": "Documented association feature candidates"
+    },
+    {
+      "value": "34.7×",
+      "label": "Recorded motion-linking component speedup"
+    }
+  ],
+  "scope": "The core review checks archive integrity and the evidence utility self-tests. Optional Node checks execute the public graph engine and interface. Full synthetic microscopy regeneration remains available through the existing pinned Python environment.",
+  "private_boundary": "Microscopy volumes, competition-derived graphs, private model weights, exact fusion recipes, large intermediate tensors, and operational checkpoints are not added by this release.",
+  "cards": [
+    {
+      "audience": "Applied AI",
+      "title": "Solve association as a constrained graph problem.",
+      "decision": "Expose candidate links, lineage structure, and division behavior instead of hiding decisions behind a single score.",
+      "boundary": "The explorer uses synthetic microscopy, not withheld experimental volumes.",
+      "implementation": "src/biohub_tracking/synthetic_demo.py",
+      "tests": "tests/test_synthetic_demo.py",
+      "evidence": "REPRODUCE.md"
+    },
+    {
+      "audience": "Data science",
+      "title": "Screen features without inflating evidence.",
+      "decision": "Keep feature candidates, measurements, and recorded selection outcomes linked to inspectable research reports.",
+      "boundary": "A large candidate count alone is not evidence of improved tracking.",
+      "implementation": "src/biohub_tracking/feature_round2.py",
+      "tests": "tests/test_feature_round2.py",
+      "evidence": "reports/portfolio_summary.json"
+    },
+    {
+      "audience": "ML engineering",
+      "title": "Preserve graph identity during optimization.",
+      "decision": "Audit selected links and graph fidelity so runtime changes can be separated from altered detections or coordinates.",
+      "boundary": "The reported speedup applies to motion linking, not the complete microscopy pipeline.",
+      "implementation": "src/biohub_tracking/public_graph_methods.py",
+      "tests": "tests/test_evidence_inputs.py",
+      "evidence": "RESULTS.md"
+    },
+    {
+      "audience": "Data science",
+      "title": "Keep external transfer failures visible.",
+      "decision": "Retain the stronger system when a locally attractive candidate fails to transfer to external evaluation.",
+      "boundary": "Saved historical receipts are not a freshly run external benchmark.",
+      "implementation": "scripts/reproduce_final_evidence.py",
+      "tests": "tests/test_publication.py",
+      "evidence": "reports/official_submission.json"
+    }
+  ],
+  "commands": [
+    {
+      "id": "source-integrity",
+      "runtime": "python",
+      "entry": "scripts/verify_portfolio.py",
+      "args": []
+    },
+    {
+      "id": "evidence-selftest",
+      "runtime": "python",
+      "entry": "scripts/reproduce_final_evidence.py",
+      "args": [
+        "self-test"
+      ]
+    },
+    {
+      "id": "graph-contract",
+      "runtime": "node",
+      "entry": "scripts/test_live_graph.cjs",
+      "args": []
+    },
+    {
+      "id": "lineage-interface",
+      "runtime": "node",
+      "entry": "tests/test_public_demo_frontend.js",
+      "args": []
+    }
+  ],
+  "read_more": [
+    {
+      "path": "CASE_STUDY.md",
+      "label": "Case study"
+    },
+    {
+      "path": "REPRODUCE.md",
+      "label": "Reproduction guide"
+    },
+    {
+      "path": "RESULTS.md",
+      "label": "Measured outcomes"
+    }
+  ],
+  "schema_version": 1,
+  "repository": "alvaromendizabal/biohub-cell-tracking-during-development",
+  "reviewed_base_commit": "2323ee9b0a50a90cc46451a6c7034c23e2e49554"
+}
