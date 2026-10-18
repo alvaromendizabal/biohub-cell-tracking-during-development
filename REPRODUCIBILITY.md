@@ -70,3 +70,52 @@ The public artifact is designed to answer three questions for another engineer:
 1. **What was actually built?** — package code, models, experiments, notebooks.
 2. **What evidence supports each claim?** — receipts, metrics, provenance, saved outputs.
 3. **Can the public checks run from a clean environment?** — CI and local reproduction commands.
+
+## Archived execution limits
+
+
+The overview reads committed summaries and images. The six research notebooks are
+archived AWS executions: their original private workspace references describe the
+historical environment. Their outputs remain unchanged. `portfolio.ipynb` is a
+separate presentation-only notebook and is not counted as an executed experiment.
+
+Saved outputs support inspection. They do not mean that a fresh clone can rerun
+all original cells without the missing private inputs and runtime.
+
+## Test coverage
+
+The lightweight suite checks selected feature/graph behavior, input contracts,
+publication scope, Python syntax, and notebook output integrity. Optional neural
+components require additional dependencies; CI does not train them or repeat
+competition inference. The numerical-recovery evidence records a finite smoke test
+followed by a nonfinite full training attempt, not complete training reproduction.
+
+## External and private inputs
+
+Immutable references in [external_assets.json](reproducibility/external_assets.json)
+identify public sources and assets. Access and redistribution terms still apply.
+Private predictions, candidate graphs, exact tuned settings, cached tensors, and
+operational adapters are intentionally excluded. Their recovery or availability
+has not been verified by this publication update.
+
+The original temporal replay worker depended on a private reference adapter; its
+public core algorithm and tests do not replace that integration. The archived
+image-appearance worker was blocked at its coordinate contract and is not a
+completed biological result.
+
+
+## Component reproduction matrix
+
+| Method / component | Reproduction status in this clone | External requirement |
+|---|---|---|
+| Retained harmonic-fusion system, historical score 0.947 | Source/evidence contract and historical official receipt preserved | Public notebook/model assets, competition access, and original runtime integration |
+| Original feature research | Source, configs, tests, and reports restored | Synthetic tests require no competition data |
+| Organizer architecture adaptation | Source and finite-smoke evidence retained; full attempt was nonfinite | Optional neural dependencies and data; no complete training reproduction |
+| Exact error-budget / temporal / division studies | Research modules, reports, figures, and executed notebooks restored | Saved real-data reruns require competition inputs |
+| Official 0.946 regression fidelity audit | Reproducible from the two saved submission CSVs via `reproduce_final_evidence.py compare` | User-supplied/downloaded CSVs |
+| Cross-system prediction-diversity audit | Reproducible from exact saved outputs via `reproduce_final_evidence.py duplicate` | Kaggle public notebook output access |
+| V1284 source/head audit | Immutable public notebook/output/head identifiers recorded | Public notebook/dataset access |
+| HOCT frozen-detection frontier | Upstream commit/model hashes and experimental contract recorded | HOCT weights + Biohub images/detections |
+| Audited public output variants | Anvith v1, Kunal v10, Raunak v5 identifiers recorded | Kaggle output access |
+
+The clone contains the selected public code, tests, configs, reports, and saved notebooks. It does not include every private operational adapter or reproduce full competition inference. External data and model binaries must be acquired under their source terms.

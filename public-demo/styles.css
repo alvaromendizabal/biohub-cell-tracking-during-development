@@ -15,3 +15,17 @@
 .candidate-audit th,.candidate-audit td{padding:8px 7px;border-bottom:1px solid #e5eadf;text-align:left}
 .candidate-audit .candidate-selected{background:#edf5e1;color:#174b43}
 .candidate-audit summary:focus-visible,.candidate-scroll:focus-visible{outline:3px solid #117e78;outline-offset:3px}
+
+/* Exact edge comparison stays separate from whole-graph scores. */
+.graph-delta-section{margin:0 0 72px;padding:30px;border:1px solid #d9e3da;border-radius:18px;background:#fff}
+.delta-toolbar{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;gap:24px;align-items:end;margin:22px 0}
+.delta-toolbar label{display:grid;gap:8px;font-size:13px;font-weight:650}
+.delta-toolbar select{width:100%;min-height:44px;padding:10px;border:1px solid #b7c8c0;border-radius:7px;background:#f8faf7;color:#142b3a}
+.delta-toolbar p,.delta-scope{font-size:13px;color:#526b69;line-height:1.6;margin:6px 0 0}
+.delta-cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.delta-card{padding:18px;border:1px solid #d9e3da;border-radius:9px;background:#f7faf5;display:grid;gap:5px}
+.delta-card strong{font-size:30px;font-weight:650;color:#117e78}.delta-card span{font-size:12px;color:#3d5956}
+.delta-card.added_wrong_links,.delta-card.lost_true_links{background:#fff8f2;border-color:#eeddd1}.delta-card.added_wrong_links strong,.delta-card.lost_true_links strong{color:#9c4b39}
+.delta-scope{margin-top:16px;max-width:900px}.delta-details{margin-top:20px;padding-top:15px;border-top:1px solid #d9e3da}.delta-details summary{cursor:pointer;font-size:14px;font-weight:650}
+.delta-scroll{max-height:310px;overflow:auto;margin-top:14px}.delta-scroll table{width:100%;border-collapse:collapse;font-size:13px}.delta-scroll th,.delta-scroll td{text-align:left;padding:10px;border-bottom:1px solid #e7ede6}.delta-scroll th{position:sticky;top:0;background:#f7faf5}.delta-scroll button{min-height:34px}
+@media(max-width:700px){.graph-delta-section{padding:20px;margin-bottom:44px}.delta-toolbar{grid-template-columns:1fr;gap:14px}.delta-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.delta-card{padding:14px}.delta-scroll{font-size:12px}}

@@ -54,6 +54,15 @@
       "implementation": "scripts/reproduce_final_evidence.py",
       "tests": "tests/test_publication.py",
       "evidence": "reports/official_submission.json"
+    },
+    {
+      "audience": "Applied AI",
+      "title": "Explain a graph change at edge level.",
+      "decision": "Compare active and reference policies on fixed candidates, inspect changed parent assignments, and reconcile exact edge changes with metric deltas.",
+      "boundary": "Authored truth labels the changes; it does not provide a causal explanation for solver choices or biological validation.",
+      "implementation": "public-demo/app.js",
+      "tests": "tests/test_public_demo_frontend.js",
+      "evidence": "REPRODUCE.md"
     }
   ],
   "commands": [
@@ -100,7 +109,7 @@
   ],
   "schema_version": 1,
   "repository": "alvaromendizabal/biohub-cell-tracking-during-development",
-  "reviewed_base_commit": "2323ee9b0a50a90cc46451a6c7034c23e2e49554",
+  "reviewed_base_commit": "1de2bbf99b733ae49ebac718c8af3c5dff78fb20",
   "source_scopes": [
     {
       "directory": "public-demo",

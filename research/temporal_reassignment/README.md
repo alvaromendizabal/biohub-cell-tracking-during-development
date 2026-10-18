@@ -5,7 +5,7 @@ Recorded research source from the corresponding return archive; see
 The `pinned_metric` directory is organizer code covered by
 [BSD 3-Clause](../../licenses/royerlab-BSD-3-Clause.txt).
 Synthetic tests do not establish real-data predictive performance. Worker execution
-requires the private AWS workspace documented in [REPRODUCIBILITY.md](../../docs/REPRODUCIBILITY.md).
+requires the private AWS workspace documented in [REPRODUCIBILITY.md](../../REPRODUCIBILITY.md).
 
 The original temporal replay worker is intentionally excluded: it depends on the full
 private reference replay/cache adapter. The core temporal algorithm, candidate tests,
