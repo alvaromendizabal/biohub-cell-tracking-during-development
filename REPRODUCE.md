@@ -79,7 +79,7 @@ The tools validate structure and finite coordinates, report hashes, compare dete
 
 The public package, synthetic workflows, tests, evidence checks and CSV utilities can be rerun from this clone. Historical real-data experiments additionally require lawful data/model access and their original runtime integration. Private orchestration, predictions, tuned settings and weights are intentionally absent.
 
-Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Detailed execution matrix](docs/REPRODUCTION_MATRIX.md)
+Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Detailed execution matrix](REPRODUCIBILITY.md#component-reproduction-matrix)
 
 ## Inspect candidate decisions and fixture contracts
 
@@ -98,3 +98,22 @@ The Node suite exercises corrupted fixtures and the actual comparison handlers:
 ```bash
 node tests/test_public_demo_frontend.js
 ```
+
+## Compare exact changes between policies
+
+The local explorer's **See exactly what changed** section compares the active
+policy with any saved reference. Start with the balanced reference and activate
+no-gap or one-child associations. The four counts separate restored true links,
+new wrong links, lost true links and removed wrong links. A parent replacement can
+contribute both a removed edge and an added edge; the distinct parent-assignment
+count is reported separately.
+
+Expand **Inspect changed links** and select a link to jump to its target detection
+and frame. Switching the active policy or solving live updates the comparison.
+The exported JSON includes both policy identifiers, exact changes, changed parent
+sets and metric deltas recomputed from the same authored truth. No historical
+score or private prediction file is used.
+
+The frontend test exercises all 36 saved policy pairs, verifies the algebra linking
+edge changes to true/false/missing counts, checks input-order invariance, and invokes
+the real reference-selection and frame-navigation handlers.

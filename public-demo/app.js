@@ -63,13 +63,70 @@
     Object.assign(metrics,{selected_edges:predicted.size,gap_edges:[...predicted].filter(key=>{const [s,t]=key.split(':').map(Number);return nodes.get(t).t-nodes.get(s).t>1;}).length,division_events:divisionSet(edges).size,components});
     return {metrics,checks:{valid_topology:issues.length===0,issues:issues.sort(),max_in_degree:maxIn,max_out_degree:maxOut,forward_time_only:forward,all_edges_are_candidates:allowed}};
   }
+  function compareSolutions(data, reference, active) {
+    // Compare edge identities, then recompute diagnostics from the same truth.
+    // Labels describe observed changes, not causal explanations for the solver.
+    const referenceMetrics = measureSolution(data, reference.edges, reference.parameters).metrics;
+    const activeMetrics = measureSolution(data, active.edges, active.parameters).metrics;
+    const before = new Set(reference.edges.map(e => edgeKey(e.source, e.target)));
+    const after = new Set(active.edges.map(e => edgeKey(e.source, e.target)));
+    if (before.size !== reference.edges.length || after.size !== active.edges.length) {
+      throw new Error('Cannot compare graphs with duplicate edge identities.');
+    }
+    const truth = new Set(data.truth_edges.map(e => edgeKey(e.source, e.target)));
+    const nodes = new Map(data.nodes.map(node => [node.id, node]));
+    const counts = {restored_true_links: 0, added_wrong_links: 0, lost_true_links: 0, removed_wrong_links: 0};
+    const changes = [];
+    for (const [edges, other, direction] of [[active.edges, before, 'added'], [reference.edges, after, 'removed']]) {
+      for (const edge of edges) {
+        const key = edgeKey(edge.source, edge.target);
+        if (other.has(key)) continue;
+        const correct = truth.has(key);
+        const category = direction === 'added'
+          ? (correct ? 'restored_true_links' : 'added_wrong_links')
+          : (correct ? 'lost_true_links' : 'removed_wrong_links');
+        counts[category]++;
+        changes.push({source: edge.source, target: edge.target, frame: nodes.get(edge.target).t,
+          direction, reference_match: correct, category});
+      }
+    }
+    changes.sort((a, b) => a.frame - b.frame || a.target - b.target || a.source - b.source || a.direction.localeCompare(b.direction));
+    const parentSets = edges => {
+      const sets = new Map();
+      for (const edge of edges) {
+        if (!sets.has(edge.target)) sets.set(edge.target, new Set());
+        sets.get(edge.target).add(edge.source);
+      }
+      return sets;
+    };
+    const oldParents = parentSets(reference.edges), newParents = parentSets(active.edges);
+    const parentChanges = [];
+    for (const id of [...new Set([...oldParents.keys(), ...newParents.keys()])].sort((a, b) => a - b)) {
+      const previous = [...(oldParents.get(id) || [])].sort((a, b) => a - b);
+      const current = [...(newParents.get(id) || [])].sort((a, b) => a - b);
+      if (JSON.stringify(previous) !== JSON.stringify(current)) {
+        parentChanges.push({target: id, before: previous, after: current});
+      }
+    }
+    const delta = {};
+    for (const key of ['true_positive', 'false_positive', 'false_negative', 'edge_f1',
+      'division_true_positive', 'division_false_positive', 'division_false_negative', 'division_f1', 'components']) {
+      delta[key] = activeMetrics[key] - referenceMetrics[key];
+    }
+    return {reference_policy: reference.id, active_policy: active.id, unchanged_links: [...before].filter(key => after.has(key)).length,
+      changed_links: changes.length, changed_parent_assignments: parentChanges.length,
+      counts, metric_delta: delta, changes, parent_changes: parentChanges,
+      scope: 'Exact edge changes on the same authored synthetic movie; diagnostic truth is not a solver input or biological evidence.'};
+  }
   function exportResult(data, state, solution) {
+    const reference = data.solutions.find(item => item.id === (state.referencePolicyId || data.default_solution));
+    if (!reference) throw new Error('Unknown comparison reference.');
     return {schema:'biohub-public-explorer-result-v1',evidence_type:'SYNTHETIC_ONLY',
       provenance:data.provenance,config:data.config,summary:data.summary,
       computation:solution.id==='live'?'Browser graph optimization on authored synthetic candidates':'Precomputed Python solver output; browser inspection only',
       metric_scope:'Whole authored synthetic movie; no biological or official competition performance',
-      solution, nodes:data.nodes,candidates:data.candidates,truth_edges:data.truth_edges,
-      review_state:{frame_index:state.frame,projection:state.projection,selected_detection_id:state.selectedId,overlays:{...state.overlays}}};
+      solution, comparison:compareSolutions(data,reference,solution),nodes:data.nodes,candidates:data.candidates,truth_edges:data.truth_edges,
+      review_state:{frame_index:state.frame,projection:state.projection,selected_detection_id:state.selectedId,reference_policy_id:reference.id,overlays:{...state.overlays}}};
   }
   // Validate the entire bundled fixture before constructing images or enabling UI.
   // These are consistency contracts, not authentication of a scientific result.
@@ -144,7 +201,7 @@
     if(!ctx)throw new Error('This viewer needs Canvas 2D support.');
     const nodes=new Map(data.nodes.map(n=>[n.id,n])), truth=new Set(data.truth_edges.map(e=>edgeKey(e.source,e.target)));
     const solutions=[...data.solutions];
-    const state={frame:0,policyId:data.default_solution,selectedId:null,projection:'xy',playing:false,speed:1,eventFilter:'all',overlays:{ids:false,links:true,divisions:true,errors:true}};
+    const state={frame:0,policyId:data.default_solution,referencePolicyId:data.default_solution,selectedId:null,projection:'xy',playing:false,speed:1,eventFilter:'all',overlays:{ids:false,links:true,divisions:true,errors:true}};
     let hitPoints=[],timer=null,disposed=false;
     const cleanup=[];
     const on=(element,type,handler)=>{element.addEventListener(type,handler);cleanup.push(()=>element.removeEventListener(type,handler));};
@@ -238,6 +295,41 @@
       for(const row of solutions){const tr=element('tr');tr.className=`${row.id===state.policyId?'active ':''}${row.id==='live'?'live-row':''}`;const label=element('td'),button=element('button',row.label);button.setAttribute('aria-pressed',String(row.id===state.policyId));button.addEventListener('click',()=>setPolicy(row.id));label.appendChild(button);tr.appendChild(label);tr.appendChild(element('td',String(row.metrics.selected_edges)));
         for(const key of ['edge_f1','division_f1']){const td=element('td'),meter=element('span',undefined,'table-meter');meter.appendChild(element('span',fmt(row.metrics[key])));const track=element('span',undefined,'meter-track'),bar=element('i');bar.style.width=`${row.metrics[key]*100}%`;track.appendChild(bar);meter.appendChild(track);td.appendChild(meter);tr.appendChild(td);}
         tr.appendChild(element('td',row.checks.valid_topology?'Pass':row.checks.issues.join('; ')));body.appendChild(tr);}
+      renderComparison();
+    }
+    function renderComparison() {
+      const reference = data.solutions.find(item => item.id === state.referencePolicyId);
+      const comparison = compareSolutions(data, reference, current());
+      const signed = value => `${value > 0 ? '+' : ''}${value}`;
+      $('delta-summary').textContent = `${comparison.changed_links} changed links · ${comparison.unchanged_links} unchanged · ${comparison.changed_parent_assignments} changed parent assignments`;
+      $('delta-metrics').textContent = `Active minus reference: ${signed(comparison.metric_delta.true_positive)} correct links, ${signed(comparison.metric_delta.false_positive)} wrong links, ${signed(comparison.metric_delta.false_negative)} missing links.`;
+      const cards = $('delta-cards'); cards.replaceChildren();
+      const labels = {restored_true_links:'True links restored', added_wrong_links:'Wrong links added',
+        lost_true_links:'True links lost', removed_wrong_links:'Wrong links removed'};
+      for (const [key, label] of Object.entries(labels)) {
+        const card = element('div', undefined, `delta-card ${key}`);
+        card.appendChild(element('strong', String(comparison.counts[key])));
+        card.appendChild(element('span', label)); cards.appendChild(card);
+      }
+      const body = $('delta-body'); body.replaceChildren();
+      for (const row of comparison.changes) {
+        const tr = element('tr');
+        const location = element('td');
+        const jump = element('button', `${row.source} → ${row.target}`, 'text-button');
+        jump.setAttribute('aria-label', `${row.direction} link ${row.source} to ${row.target}. Inspect frame ${row.frame + 1}.`);
+        jump.addEventListener('click', () => {setPlaying(false); selectCell(row.target, true);});
+        location.appendChild(jump); tr.appendChild(location);
+        tr.appendChild(element('td', String(row.frame + 1)));
+        tr.appendChild(element('td', row.direction === 'added' ? 'Added' : 'Removed'));
+        tr.appendChild(element('td', row.reference_match ? 'True reference link' : 'Wrong link'));
+        body.appendChild(tr);
+      }
+      $('delta-empty').hidden = comparison.changed_links !== 0;
+      $('delta-empty').textContent = 'These policies select the same edge identities. Equal graphs do not imply equal scoring algorithms.';
+    }
+    function setReference(id) {
+      if (!data.solutions.some(item => item.id === id)) throw new Error('Unknown comparison reference.');
+      state.referencePolicyId = id; $('reference-select').value = id; renderComparison();
     }
     function setFrame(frame) {state.frame=clampFrame(frame,data.frames.length);$('frame-slider').value=String(state.frame);$('frame-slider').setAttribute('aria-valuetext',`Frame ${state.frame+1} of ${data.frames.length}`);$('frame-counter').textContent=`Frame ${String(state.frame+1).padStart(2,'0')} / ${data.frames.length}`;$('viewer-tooltip').hidden=true;updateSelection();updateEvents();draw();}
     function selectCell(id,jump=false) {const numeric=id===null||id===''?null:Number(id);if(numeric!==null&&!nodes.has(numeric))throw new Error('Unknown selected detection.');state.selectedId=numeric;if(jump&&numeric!==null)setFrame(nodes.get(numeric).t);else{updateSelection();draw();}}
@@ -253,6 +345,10 @@
       setPolicy('live');$('solve-status').textContent=`Solved locally: ${solution.edges.length} links, edge F1 ${fmt(solution.metrics.edge_f1)}, ${solution.checks.valid_topology?'topology checks pass':'topology issues found'}.`;return solution;
     }
     const policySelect=$('policy-select');policySelect.replaceChildren();for(const solution of solutions){const option=element('option',solution.label);option.value=solution.id;policySelect.appendChild(option);}policySelect.disabled=false;
+    const referenceSelect=$('reference-select');referenceSelect.replaceChildren();
+    for(const solution of data.solutions){const option=element('option',solution.label);option.value=solution.id;referenceSelect.appendChild(option);}
+    referenceSelect.value=state.referencePolicyId;referenceSelect.disabled=false;
+    on(referenceSelect,'change',()=>setReference(referenceSelect.value));
     $('frame-slider').max=String(data.frames.length-1);$('frame-slider').disabled=false;$('frame-end').textContent=String(data.frames.length).padStart(2,'0');$('play-button').disabled=false;$('export-button').disabled=false;
     on(policySelect,'change',()=>setPolicy(policySelect.value));on($('frame-slider'),'input',()=>{setPlaying(false);setFrame($('frame-slider').value);});
     on($('play-button'),'click',()=>setPlaying(!state.playing));on($('speed-select'),'change',()=>{state.speed=Number($('speed-select').value);setPlaying(state.playing);});
@@ -271,9 +367,9 @@
     on(doc,'visibilitychange',()=>{if(doc.hidden)setPlaying(false);});on(win,'resize',draw);
     let observer=null;if(win.ResizeObserver){observer=new win.ResizeObserver(draw);observer.observe(canvas);}
     setPolicy(data.default_solution);setFrame(0);selectCell(data.frames[0].detections[0]?.id??null);
-    return {getState:()=>({...state,overlays:{...state.overlays}}),getSolution:()=>current(),setFrame,selectCell,setPolicy,solveLive,draw,destroy(){disposed=true;setPlaying(false);cleanup.forEach(fn=>fn());if(observer)observer.disconnect();}};
+    return {getState:()=>({...state,overlays:{...state.overlays}}),getSolution:()=>current(),setFrame,selectCell,setPolicy,setReference,solveLive,draw,destroy(){disposed=true;setPlaying(false);cleanup.forEach(fn=>fn());if(observer)observer.disconnect();}};
   }
-  const API={edgeKey,clampFrame,lineageFor,measureSolution,exportResult,validateFixture,candidateAudit,init};
+  const API={edgeKey,clampFrame,lineageFor,measureSolution,compareSolutions,exportResult,validateFixture,candidateAudit,init};
   if(typeof module!=='undefined'&&module.exports)module.exports=API;
   root.BiohubExplorer=API;
   if(root.document){try{root.biohubExplorer=init(root.BIOHUB_DEMO_DATA,root.document,root);}catch(error){const message=root.document.getElementById('load-message');if(message){message.hidden=false;message.textContent=`Explorer could not start: ${error.message}`;}if(root.console)root.console.error(error);}}

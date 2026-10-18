@@ -17,6 +17,24 @@ check('all saved policy metrics and topology match Python exactly', () => {
     assert.deepEqual(result.checks,policy.checks,policy.id);
   }
 });
+check('edge comparisons explain metric changes across every policy pair', () => {
+  for (const before of data.solutions) for (const after of data.solutions) {
+    const result = App.compareSolutions(data, before, after), counts = result.counts;
+    assert.equal(result.changed_links, Object.values(counts).reduce((a, b) => a + b, 0));
+    assert.equal(result.metric_delta.true_positive, counts.restored_true_links - counts.lost_true_links);
+    assert.equal(result.metric_delta.false_positive, counts.added_wrong_links - counts.removed_wrong_links);
+    assert.equal(result.metric_delta.false_negative, counts.lost_true_links - counts.restored_true_links);
+    assert.equal(result.unchanged_links + counts.restored_true_links + counts.added_wrong_links, after.edges.length);
+    assert.equal(result.unchanged_links + counts.lost_true_links + counts.removed_wrong_links, before.edges.length);
+    assert.deepEqual(App.compareSolutions(data, {...before, edges:[...before.edges].reverse()}, after), result);
+    if (before.id === after.id) assert.equal(result.changed_links, 0);
+  }
+});
+check('graph comparison recomputes metrics and rejects duplicate identities', () => {
+  const before=data.solutions[0],after=data.solutions[1];
+  assert.deepEqual(App.compareSolutions(data, {...before,metrics:{}}, {...after,metrics:{edge_f1:999}}), App.compareSolutions(data,before,after));
+  assert.throws(()=>App.compareSolutions(data,before,{...after,edges:[...after.edges,after.edges[0]]}),/duplicate/);
+});
 check('directed ancestry follows divisions and terminates on cycles', () => {
   const edges=[{source:1,target:2},{source:2,target:3},{source:2,target:4},{source:4,target:5}];
   const branch=App.lineageFor(4,edges);
@@ -168,6 +186,23 @@ check('exports distinguish browser computation from saved outputs and preserve a
   assert.equal(result.provenance.private_assets_used,false);assert.equal(result.provenance.official_score,null);
   assert.equal(result.solution.metrics.selected_edges,0);assert.equal(result.nodes.length,data.nodes.length);
   el('export-button').click();assert.equal(env.downloads.length,1);assert.equal(env.revoked.length,1);
+});
+check('reference controls and changed-edge jumps inspect the actual graph difference',()=>{
+  ui.setPolicy('no_gap');
+  el('reference-select').value='balanced';el('reference-select').fire('change');
+  const result=App.compareSolutions(data,data.solutions[0],ui.getSolution());
+  assert.equal(el('delta-body').children.length,result.changed_links);
+  assert.match(el('delta-summary').textContent,new RegExp(`${result.changed_links} changed links`));
+  assert.equal(ui.getState().referencePolicyId,'balanced');
+  assert(result.changed_links>0);
+  el('delta-body').children[0].children[0].children[0].click();
+  assert.equal(ui.getState().selectedId,result.changes[0].target);
+  assert.equal(ui.getState().frame,result.changes[0].frame);
+  const exported=App.exportResult(data,ui.getState(),ui.getSolution());
+  assert.deepEqual(exported.comparison,result);assert.equal(exported.review_state.reference_policy_id,'balanced');
+  ui.setReference('no_gap');assert.equal(el('delta-empty').hidden,false);
+  assert.equal(el('delta-body').children.length,0);
+  assert.throws(()=>ui.setReference('absent'),/Unknown/);
 });
 check('offline source ordering, no remote runtime scripts, no autoplay',()=>{
   assert(env.html.indexOf('src="data.js"')<env.html.indexOf('src="graph.js"'));
