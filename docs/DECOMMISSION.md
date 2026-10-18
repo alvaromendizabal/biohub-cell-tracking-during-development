@@ -31,4 +31,4 @@ raw microscopy, large checkpoints, and exact tuned settings. Reacquiring public
 third-party data or weights alone does not reconstruct that private layer. No
 claim is made that all historical private artifacts remain recoverable.
 
-[Fresh-clone instructions](../REPRODUCE.md) · [Reproduction matrix](../REPRODUCIBILITY.md#component-reproduction-matrix)
+[Fresh-clone instructions](../REPRODUCE.md) · [Reproduction matrix](../REPRODUCE.md#component-reproduction-matrix)

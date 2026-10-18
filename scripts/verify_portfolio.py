@@ -116,7 +116,7 @@ def check_notebook(path: Path):
                 b = "".join(b) if isinstance(b, list) else b
                 png_check(base64.b64decode(b, validate=False))
                 png += 1
-    require(png >= 1, "Missing saved PNG " + str(path))
+    require(png >= 1 or any("image/svg+xml" in out.get("data", {}) for cell in cells for out in cell.get("outputs", [])), "Missing saved figure " + str(path))
     return {"file": path.name, "execution_counts": counts, "png_outputs": png}
 
 def verify(root=ROOT):
@@ -161,11 +161,9 @@ def verify(root=ROOT):
         if p.suffix in {".json", ".ipynb"} and rel.parts[0] in {"reports", "notebooks", "reproducibility", "public-demo"}:
             check_public_metadata(json.loads(text), name)
 
-    evidence_notebooks = [
-        p for p in sorted((root / "notebooks").glob("*.ipynb"))
-        if p.name != "portfolio.ipynb"
-    ]
-    require(len(evidence_notebooks) == 7, "Expected seven executed evidence notebooks")
+    evidence_notebooks = [root / "examples/lineage_reasoning.ipynb"]
+    require(not (root / "research").exists(), "Retired experiment workspace returned")
+    require(not (root / "src/biohub_tracking/models").exists(), "Unused model prototypes returned")
     notebooks = [check_notebook(p) for p in evidence_notebooks]
 
     summary = json.loads((root / "reports/portfolio_summary.json").read_text())

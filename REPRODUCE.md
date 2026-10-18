@@ -58,11 +58,9 @@ node tests/test_public_demo_frontend.js
 
 These commands use synthetic fixtures and committed evidence. They do not contact cloud services or require a GPU. [Engineering coverage](docs/ENGINEERING_OVERVIEW.md)
 
-## Inspect the research evidence
+## Inspect the final evidence
 
-Start with [the executed overview](notebooks/00_portfolio_overview.ipynb) or the [notebook guide](notebooks/README.md). Six archived research notebooks and one executed overview retain the measured findings. The presentation-only notebook is separate from that executed evidence.
-
-The historical retained-system score is **0.947**; a later candidate scored **0.946** externally despite improving the reused development cohort. The new public demo does not change those results. [Detailed results](RESULTS.md)
+The [executed solver example](examples/lineage_reasoning.ipynb) is the maintained notebook. The historical **0.947** retained score and rejected **0.946** candidate remain in the original compact reports. Old experiment notebooks are not part of the runnable public project. [Results](RESULTS.md)
 
 ## Run saved-output audits
 
@@ -79,7 +77,7 @@ The tools validate structure and finite coordinates, report hashes, compare dete
 
 The public package, synthetic workflows, tests, evidence checks and CSV utilities can be rerun from this clone. Historical real-data experiments additionally require lawful data/model access and their original runtime integration. Private orchestration, predictions, tuned settings and weights are intentionally absent.
 
-Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Detailed execution matrix](REPRODUCIBILITY.md#component-reproduction-matrix)
+Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Implementation and validation](docs/ENGINEERING_OVERVIEW.md)
 
 ## Inspect candidate decisions and fixture contracts
 
