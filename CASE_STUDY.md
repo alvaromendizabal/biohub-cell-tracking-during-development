@@ -1,127 +1,25 @@
-# Case study | 3D cell tracking and lineage-graph engineering
+# Case study · Reliable cell-lineage reconstruction
 
-**Alvaro Mendizabal · Computer vision · Graph optimization · ML systems engineering**
+## Problem and ownership
 
-[Explore the interactive lineage demo](https://alvaro-cell-lineage-explorer.tartmacaw2.chatgpt.site) or [inspect the executed research](notebooks/README.md).
+Nearby detections create ambiguous links, missing frames interrupt tracks, and division creates two-child events. High local association scores do not guarantee a coherent lineage. I integrated model outputs, built fidelity checks, optimized motion linking with parity verification, and developed the public CPU pipeline and interactive explorer. The retained **0.947** system uses credited upstream architectures and pretrained artifacts. [Contribution boundary](ATTRIBUTION.md)
 
-## Executive summary
+## The final approach
 
-This project combines computer vision, temporal modeling, graph reasoning, and ML systems engineering. The task is to reconstruct cell identities and division lineages through 3D microscopy sequences where annotations are sparse and errors compound across time.
+[Volumetric components](src/biohub_tracking/public_reproduction/models.py) describe the credited architecture. The [harmonic kernel](src/biohub_tracking/fusion.py) exposes the retained fusion arithmetic with caller-supplied weights and numerical parity tests. The [constrained solver](src/biohub_tracking/public_graph_methods.py) selects compatible parent/child edges rather than every locally attractive edge.
 
-My contribution covered the full research loop: system integration, feature and model development, native-metric evaluation, failure analysis, AWS/GPU execution, runtime optimization, provenance controls, and publication-quality packaging.
+The original private orchestration, full microscopy inputs and tuned fusion recipe are not shipped as apparently runnable public code. The documented example is genuinely self-contained: it generates synthetic images, candidates and solved graph policies on CPU.
 
-**The retained system scored 0.947 in historical external evaluation. A motion-linking component ran approximately 34.7× faster with selected-edge parity.** These are separate measurements: an external tracking result and a scoped runtime benchmark, not a claim of a whole-pipeline speedup.
+## A decision supported by evidence
 
-The most important result was not a single model change. It was building an evidence process strong enough to reject locally attractive ideas when independent evidence disagreed.
+A candidate improved the repeatedly inspected development cohort but scored **0.946** externally, so the **0.947** reference stayed frozen. The candidate changed eight association edges across four movies while keeping detections and shared coordinates unchanged. This isolates the changed output component without proving the cause of the regression. The original measurements remain intact. [Results](RESULTS.md)
 
-## The problem
+## Engineering a reviewer can exercise
 
-A complete tracker must solve three coupled tasks:
+The [CSV audit](scripts/reproduce_final_evidence.py) rejects duplicate identities, invalid schemas and nonfinite coordinates. Large integer IDs are parsed without lossy float conversion. File hashes and exact node/edge differences make the comparison inspectable. [Failure-path tests](tests/test_evidence_inputs.py)
 
-1. **Detection** — localize cells in anisotropic 3D volumes.
-2. **Association** — connect the same cell across adjacent time points.
-3. **Division modeling** — create valid one-parent/two-daughter lineage events without false forks.
+The [public pipeline](src/biohub_tracking/synthetic_demo.py) and browser share policy constraints. The browser solver is checked against exhaustive small-graph optima and saved Python policies. Gap closing is a separate pass; global optimality of the combined procedure is not claimed. The **34.7×** historical speedup applies only to motion linking with selected-edge parity, not end-to-end inference.
 
-Sparse labels make this harder: an unlabeled cell is not automatically a negative example, and a small association mistake can alter an entire downstream lineage graph.
+## Reproducibility and limitations
 
-## Engineering contributions
-
-I treated the project as an end-to-end ML system rather than an isolated model notebook. I:
-
-- integrated and evaluated the scored tracking system, then froze its outputs for controlled comparisons;
-- implemented original temporal, graph, and candidate-set representations;
-- evaluated 557 association features and multiple learned association families;
-- reconciled proxy metrics with organizer-native graph behavior;
-- built edge- and division-level error budgets;
-- diagnosed output fidelity after an external regression;
-- used AWS GPU environments with resumable artifacts and bounded runs;
-- optimized a motion-linking component with output parity checks;
-- packaged reusable code, executed notebooks, tests, provenance receipts, and CI.
-
-Public architectures, checkpoints, notebooks, and organizer code remain attributed to their original authors.
-
-## System design
-
-![Tracking system: observations, candidates, association scores and lineage graph](docs/assets/architecture.svg)
-
-| Layer | Engineering decision |
-|---|---|
-| Input | Treat physical 3D geometry and anisotropy explicitly |
-| Detection | Keep detection and association evidence separable so regressions can be localized |
-| Candidate generation | Preserve the retained tracking system while evaluating new candidate relationships |
-| Representation | Combine geometric, temporal, graph, and learned candidate-set features |
-| Association | Evaluate both local ranking quality and complete graph effects |
-| Lineage constraints | Track false links, missed links, forks, and division structure |
-| Evaluation | Prefer native full-graph evidence over convenient proxy metrics |
-| Delivery | Hash outputs, preserve receipts, bound runs, verify notebooks, and test from a fresh clone |
-
-## Decision 1 — preserve a measured control
-
-The retained tracking system scored **0.947** in historical external evaluation. I froze its outputs and runtime contract so later experiments could be compared against a stable control.
-
-## Decision 2 — evaluate the complete graph, not just a classifier
-
-Several ideas improved parent-ranking or local association measures without improving the complete lineage graph. The project therefore tracked exact edge true positives, false positives, false negatives, and division topology alongside model-level metrics.
-
-Across one five-movie retrospective cohort, a selected integration changed the local graph metric from **0.933046 to 0.948059**, with edge TP 2,391→2,392, FP 111→110, FN 112→111, and one additional correctly recovered annotated division.
-
-An independent scored evaluation of that candidate was **0.946**, below the retained 0.947 system. That contradiction changed the research direction: the repeatedly inspected cohort was no longer treated as an unbiased estimate of generalization.
-
-## Decision 3 — diagnose the regression before adding complexity
-
-I compared the retained-system and candidate predictions using hash-bound output audits. The candidate preserved the same preview detections and coordinates; the difference was **eight association-edge edits across four movies**.
-
-This ruled out a broad detector/coordinate-drift explanation and focused the lesson on association generalization and validation quality.
-
-## Decision 4 — measure prediction diversity, not model names
-
-Multiple public notebook variants that appeared to be separate systems were checked at the complete-output level. Their saved predictions were byte-identical. The practical lesson is directly transferable to ensemble work: architectural or notebook diversity is not useful if residual behavior is the same.
-
-## Decision 5 — optimize runtime only with parity evidence
-
-A motion-linking component was reduced from roughly **80.5 seconds to 2.32 seconds**, about **34.7×**, while preserving selected edges under parity checks. I report this as a component benchmark, not a whole-pipeline speedup.
-
-## What did not work
-
-Several completed experiments were closed rather than polished into success stories:
-
-- broad association feature expansion did not improve tracking despite **557** numeric candidates;
-- sparse-real division fine-tuning produced no exact graph gain;
-- dense parental competition added true associations but too many false links/forks;
-- some image-conditioned work was blocked by an input-coordinate contract before a valid fit;
-- a higher-order tracking branch reached GPU inference but not a complete native-metric result before the evidence cutoff.
-
-Keeping these outcomes visible demonstrates model judgment: a negative scientific result is different from a broken execution, and neither should be rewritten as a win.
-
-## Make the graph decisions inspectable
-
-I built a public CPU demonstration that turns synthetic microscopy into association candidates and solved lineage graphs. Several policies expose the trade-off between plausible local links, valid topology and correct identities. The interactive demo lets a reviewer inspect a selected cell's ancestry, change the score threshold, child limit and gap policy, and see the browser recompute the graph and metrics. Saved Python policies provide a second implementation for comparison.
-
-The Python pipeline generates the microscopy fixture and comparison graphs. The browser optimizer matches the five committed Python policies and has separate exhaustive checks on small graphs. Synthetic exact-ID diagnostics are labeled separately from the organizer-native research metrics. [Run the demo](REPRODUCE.md)
-
-## ML systems engineering
-
-The research workflow used AWS as the canonical environment and emphasized:
-
-- resumable caches/checkpoints;
-- immutable artifact hashes;
-- isolated CPU/GPU runtime layers;
-- bounded runtime and failure returns;
-- persistent notebook outputs;
-- source/output/version checks;
-- synthetic/unit tests;
-- a fresh-checkout CI gate;
-- explicit separation of public artifacts from private data, weights, credentials, and orchestration.
-
-## Transferable skills demonstrated
-
-- **Computer vision:** volumetric data, localization, temporal context, augmentation/model components.
-- **Graph ML:** association graphs, lineage constraints, topology-aware error analysis.
-- **Model development:** ablations, transformers, representation research, failure-driven iteration.
-- **Evaluation design:** validation contamination, native metrics, exact error budgets, independent evidence.
-- **MLOps / ML systems:** AWS GPU workflows, reproducibility, artifact provenance, CI, bounded execution.
-- **Technical judgment:** stopping weak branches, preserving adverse evidence, and separating scientific from engineering failures.
-
-## Portfolio boundary
-
-The public repository contains the reusable first-party package, tests, selected research modules, executed notebooks, compact evidence receipts, and provenance needed to inspect the work. It intentionally omits private datasets, model weights, tuned private thresholds, large caches/checkpoints, credentials, and private submission/orchestration machinery.
+[Run from a clone](REPRODUCE.md), inspect the [executed five-cell notebook](examples/lineage_reasoning.ipynb), or replay browser decisions against synthetic truth. These exercises establish component contracts, not biological accuracy. The historical five-movie cohort covered two previously examined embryos and was not an untouched test. [Asset identities and source credits](reproducibility/external_assets.json) preserve the distinction between upstream models and this project's integration work.

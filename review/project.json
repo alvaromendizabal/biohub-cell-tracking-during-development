@@ -8,15 +8,15 @@
       "label": "Spatial and temporal tracking problem"
     },
     {
-      "value": "557",
-      "label": "Documented association feature candidates"
+      "value": "0.947",
+      "label": "Retained historical scored system"
     },
     {
       "value": "34.7\u00d7",
       "label": "Recorded motion-linking component speedup"
     }
   ],
-  "scope": "The core review checks archive integrity and the evidence utility self-tests. Optional Node checks execute the public graph engine and interface. Full synthetic microscopy regeneration remains available through the existing pinned Python environment.",
+  "scope": "The public review checks retained source, original final receipts and saved-output fidelity. Optional Node checks exercise the actual graph engine and UI. The hash-locked CPU environment regenerates authored microscopy.",
   "private_boundary": "Microscopy volumes, competition-derived graphs, private model weights, exact fusion recipes, large intermediate tensors, and operational checkpoints are not added by this release.",
   "cards": [
     {
@@ -27,15 +27,6 @@
       "implementation": "src/biohub_tracking/synthetic_demo.py",
       "tests": "tests/test_synthetic_demo.py",
       "evidence": "REPRODUCE.md"
-    },
-    {
-      "audience": "Data science",
-      "title": "Screen features without inflating evidence.",
-      "decision": "Keep feature candidates, measurements, and recorded selection outcomes linked to inspectable research reports.",
-      "boundary": "A large candidate count alone is not evidence of improved tracking.",
-      "implementation": "src/biohub_tracking/feature_round2.py",
-      "tests": "tests/test_feature_round2.py",
-      "evidence": "reports/portfolio_summary.json"
     },
     {
       "audience": "ML engineering",

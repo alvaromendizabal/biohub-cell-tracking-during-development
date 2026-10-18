@@ -1,5 +1,5 @@
 from pathlib import Path
-import sys,json,copy
+import sys,json,copy,base64
 import pytest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 from verify_portfolio import check_path,check_notebook,png_check,verify,SECRET
@@ -12,10 +12,10 @@ def test_private_paths_rejected(path):
 def test_public_path_allowed():check_path('reports/portfolio_summary.json')
 def test_manifest_exact():assert verify()['status']=='passed'
 def test_corrupt_png_rejected():
- data=bytearray(next((ROOT/'assets').glob('*.png')).read_bytes());data[55]^=1
+ data=bytearray(base64.b64decode(json.loads((ROOT/'public-demo/data.json').read_text())['frames'][0]['image_data_uri'].split(',',1)[1]));data[55]^=1
  with pytest.raises(ValueError):png_check(bytes(data))
 def test_unexecuted_notebook_rejected(tmp_path):
- data=json.loads((ROOT/'notebooks/00_portfolio_overview.ipynb').read_text());next(c for c in data['cells'] if c['cell_type']=='code')['execution_count']=None
+ data=json.loads((ROOT/'examples/lineage_reasoning.ipynb').read_text());next(c for c in data['cells'] if c['cell_type']=='code')['execution_count']=None
  p=tmp_path/'a.ipynb';p.write_text(json.dumps(data))
  with pytest.raises(ValueError):check_notebook(p)
 def test_private_key_pattern():assert SECRET.search('-----BEGIN '+'PRIVATE KEY-----')

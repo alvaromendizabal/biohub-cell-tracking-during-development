@@ -10,8 +10,7 @@ from verify_portfolio import SECRET, check_public_metadata, require
 ROOT = Path(__file__).resolve().parents[1]
 PRIMARY_DOCS = [
     "README.md", "CASE_STUDY.md", "RESULTS.md", "REPRODUCE.md",
-    "REPRODUCIBILITY.md", "FRONTIER.md", "docs/ENGINEERING_OVERVIEW.md",
-    "docs/STATUS.md", "docs/PUBLICATION_SCOPE.md", "notebooks/README.md",
+    "docs/ENGINEERING_OVERVIEW.md", "docs/PUBLICATION_SCOPE.md", "examples/README.md",
 ]
 FORBIDDEN_FRAMING = re.compile(
     r"\bleaderboard\b|\btop score\b|\brecorded gap\b|\bleader snapshot\b|"
@@ -74,7 +73,7 @@ def check_showcase(root=ROOT):
     for target in ("CASE_STUDY.md", "RESULTS.md", "REPRODUCE.md", "docs/ENGINEERING_OVERVIEW.md", "public-demo/index.html"):
         require(target in readme or (target == "public-demo/index.html" and "public-demo" in readme),
                 "README missing review route: " + target)
-    for evidence in ("0.947", "0.946", "557", "45", "34.7"):
+    for evidence in ("0.947", "0.946", "34.7"):
         require(evidence in readme, "README missing measured evidence: " + evidence)
     require("synthetic" in readme.lower() and "private" in readme.lower(), "README must explain public reproduction scope")
     require("```mermaid" in readme or "architecture.svg" in readme, "README missing architecture diagram")
@@ -97,13 +96,9 @@ def check_showcase(root=ROOT):
     for rel in ("public-demo/index.html", "public-demo/app.js", "public-demo/styles.css", "public-demo/data.js", "public-demo/graph.js"):
         require((root / rel).is_file(), "Missing public demo file: " + rel)
 
-    image = (root / "assets/exact_error_budget_0.png").read_bytes()
-    require(image[:8] == b"\x89PNG\r\n\x1a\n", "Historical evidence image is not PNG")
-    width, height = struct.unpack(">II", image[16:24])
-    require(width >= 600 and height >= 300, "Historical evidence image too small")
     return {"status": "passed", "release_id": manifest["release_id"],
             "primary_docs_checked": len(PRIMARY_DOCS), "required_files_checked": len(manifest["required_files"]),
-            "ranking_gap_fields_present": 0, "broken_links": 0, "hero_image": [width, height],
+            "ranking_gap_fields_present": 0, "broken_links": 0, "hero_image": "docs/assets/hero.svg",
             "accessible_svg_assets": 2, "demo_evidence": provenance["evidence_type"]}
 
 

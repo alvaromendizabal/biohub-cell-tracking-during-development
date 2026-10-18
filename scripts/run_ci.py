@@ -8,8 +8,6 @@ def main():
  start=time.monotonic();print(json.dumps(verify()),flush=True)
  env=os.environ.copy();env.update(CUDA_VISIBLE_DEVICES='',PYTHONDONTWRITEBYTECODE='1',OMP_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',MKL_NUM_THREADS='1',PYTHONPATH=str(ROOT/'src')+os.pathsep+str(ROOT/'tests'))
  commands=[([sys.executable,'-m','pytest','-q','tests'],ROOT)]
- for d in sorted((ROOT/'research').iterdir()):
-  for t in sorted(d.glob('test_*.py')):commands.append(([sys.executable,str(t)],d))
  for cmd,cwd in commands:
   print('SYNTHETIC_TEST',Path(cmd[-1]).name,flush=True)
   subprocess.run(cmd,cwd=cwd,env=env,check=True,timeout=120)
