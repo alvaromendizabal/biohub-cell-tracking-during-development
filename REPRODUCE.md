@@ -77,7 +77,7 @@ The tools validate structure and finite coordinates, report hashes, compare dete
 
 The public package, synthetic workflows, tests, evidence checks and CSV utilities can be rerun from this clone. Historical real-data experiments additionally require lawful data/model access and their original runtime integration. Private orchestration, predictions, tuned settings and weights are intentionally absent.
 
-Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The [archive record](docs/DECOMMISSION.md) documents the historical AWS environment. This guide performs no cloud cleanup or account operation. [Implementation and validation](docs/ENGINEERING_OVERVIEW.md)
+Source revisions and model hashes remain in `reproducibility/external_assets.json`; upstream licensing still applies. The public checks do not require a historical AWS workspace and perform no cloud or account operations.
 
 ## Inspect candidate decisions and fixture contracts
 

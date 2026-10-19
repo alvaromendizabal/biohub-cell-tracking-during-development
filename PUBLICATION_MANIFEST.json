@@ -17,7 +17,6 @@
     "ATTRIBUTION.md",
     "THIRD_PARTY_NOTICES.md",
     "RIGHTS.md",
-    "docs/DECOMMISSION.md",
     "examples/README.md",
     "examples/run_demo.py",
     "tests/test_evidence_inputs.py",
