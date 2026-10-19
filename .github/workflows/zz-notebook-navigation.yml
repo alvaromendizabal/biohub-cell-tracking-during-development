@@ -1,0 +1,45 @@
+name: Repair final lineage review navigation
+on:
+  push:
+    branches: [cleanup/review-closeout-20261019]
+    paths: [.github/workflows/zz-notebook-navigation.yml]
+permissions:
+  contents: write
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - name: Replace only the obsolete notebook pointer, preserving executed code and outputs
+        shell: python
+        run: |
+          import hashlib, json
+          from pathlib import Path
+          p = Path('examples/lineage_reasoning.ipynb')
+          raw = p.read_bytes()
+          if hashlib.sha256(raw).hexdigest() != '0b9cfa55807847214156e4bff55defadaa656a5a6479526ab9ac6f91bc146424':
+              raise ValueError('Notebook changed; reconcile before editing')
+          old = b'[the executed research notebooks](../notebooks/README.md)'
+          new = b'[the maintained engineering overview](../docs/ENGINEERING_OVERVIEW.md)'
+          if raw.count(old) != 1:
+              raise ValueError('Expected one retired notebook pointer')
+          before = json.loads(raw)
+          data = raw.replace(old, new)
+          after = json.loads(data)
+          old_code = [c for c in before['cells'] if c['cell_type'] == 'code']
+          new_code = [c for c in after['cells'] if c['cell_type'] == 'code']
+          if old_code != new_code or before['metadata'] != after['metadata']:
+              raise ValueError('Unexpected computational or execution-metadata change')
+          if not Path('docs/ENGINEERING_OVERVIEW.md').is_file():
+              raise ValueError('New review destination is missing')
+          p.write_bytes(data)
+          print('NOTEBOOK_NAVIGATION_REPAIRED_CODE_AND_OUTPUTS_UNCHANGED')
+      - name: Commit only the reviewed notebook pointer
+        run: |
+          git add examples/lineage_reasoning.ipynb
+          git diff --cached --check
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Point the executed example to maintained lineage engineering instead of retired notebooks'
+          git push origin HEAD:cleanup/review-closeout-20261019
